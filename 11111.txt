@@ -1,0 +1,4 @@
+I have a wordpress blog with some posts that works fine on windows 10 and xampp.
+Now I have also installed next js which is working and I want to build my front end site in it.
+In other words, I want to display data in next js with wp rest api.
+Please write me the necessary codes with an example.
