@@ -1,5 +1,10 @@
-I have a wordpress blog with some posts that works fine on windows 10 and xampp.
-Now I have also installed next js which is working and I want to build my front end site in it.
+I have a wordpress blog called raiatec.com which works well on Windows 10 and xampp and contains the following parts:
+1- home page
+2- about page
+3- Page 404
+4- Several posts
+
+Now I have installed next js which is working and I want to build my front end site in it.
 In other words, I want to display data in next js with wp rest api.
-Considering that I have a fresh installation of next js, please create a suitable folder
-structure for the project and the necessary codes to show the list of post titles.
+Given that I have a fresh install of next js,
+Please create for me the proper folder and files that I need to create.
