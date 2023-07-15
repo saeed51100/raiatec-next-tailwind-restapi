@@ -1,10 +1,7 @@
-I have a wordpress blog called raiatec.com which works well on Windows 10 and xampp and contains the following parts:
-1- home page
-2- about page
-3- Page 404
-4- Several posts
-
-Now I have installed next js which is working and I want to build my front end site in it.
-In other words, I want to display data in next js with wp rest getPosts.
-Given that I have a fresh install of next js,
-Please create for me the proper folder and files that I need to create.
+I have a wordpress blog called raiatec.com that works fine on windows 10 and xampp and also a fresh install of next js that works properly and I want to build my front end on it using the wordpress api.
+Please write me the code of the following parts:
+1- pages/index.js
+2- pages/posts/[post-slug].js
+3- ~/api/getPosts.js
+4- .env.local
+Also, if another file is needed for the program to work, write to me.
