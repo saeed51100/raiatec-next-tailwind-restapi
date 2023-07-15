@@ -1,13 +1,13 @@
-// pages/index.js
 import React from 'react';
-import Link from 'next/link';
+import Posts from './posts';
 
-const IndexPage = () => {
+const Index = () => {
     return (
         <div>
-            <Link href="/posts">Posts</Link>
+            <h1>Welcome to my blog!</h1>
+            <Posts />
         </div>
     );
 };
 
-export default IndexPage;
+export default Index;
