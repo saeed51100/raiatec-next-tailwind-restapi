@@ -1,3 +1,4 @@
+// api/getPost.js  (api folder in root of directory)
 import axios from "axios";
 
 const getPosts = () => {

@@ -1,7 +1,61 @@
-I have a wordpress blog called raiatec.com that works fine on windows 10 and xampp and also a fresh install of next js that works properly and I want to build my front end on it using the wordpress api.
-Please write me the code of the following parts:
-1- pages/index.js
-2- pages/posts/[post-slug].js
-3- ~/api/getPosts.js
-4- .env.local
-Also, if another file is needed for the program to work, write to me.
+in this next js code:
+
+// api/getPost.js  (api folder in root of directory)
+import axios from "axios";
+
+const getPosts = () => {
+    const url = "https://raiatec.com/wp-json/wp/v2/posts";
+    return axios.get(url);
+};
+
+export default getPosts;
+
+// pages/index.js
+import React from "react";
+import { useState } from "react";
+import { getPosts } from "api/getPosts";
+import { useEffect } from "react";
+
+const IndexPage = () => {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        getPosts().then((data) => {
+            setPosts(data.posts);
+        });
+    }, []);
+
+    return (
+        <div>
+            <h1>My Blog</h1>
+            <ul>
+                {posts.map((post) => (
+                    <li key={post.id}>
+                        <a href={`/posts/${post.slug}`}>{post.title}</a>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default IndexPage;
+
+
+
+i get this error:
+Unhandled Runtime Error
+TypeError: (0 , api_getPosts__WEBPACK_IMPORTED_MODULE_2__.getPosts) is not a function
+
+Source
+pages\index.js (11:16) @ getPosts
+
+   9 |
+  10 | useEffect(() => {
+> 11 |     getPosts().then((data) => {
+     |            ^
+  12 |         setPosts(data.posts);
+  13 |     });
+  14 | }, []);
+
+please debug it.

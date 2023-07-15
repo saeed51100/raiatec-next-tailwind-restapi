@@ -1,3 +1,4 @@
+// pages/index.js
 import React from "react";
 import { useState } from "react";
 import { getPosts } from "api/getPosts";
