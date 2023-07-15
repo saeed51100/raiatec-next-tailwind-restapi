@@ -1,8 +1,8 @@
 // pages/index.js
 import React from "react";
-import { useState } from "react";
-import { getPosts } from "api/getPosts";
-import { useEffect } from "react";
+import {useState} from "react";
+import {getPosts} from "api/getPosts";
+import {useEffect} from "react";
 
 const IndexPage = () => {
     const [posts, setPosts] = useState([]);
