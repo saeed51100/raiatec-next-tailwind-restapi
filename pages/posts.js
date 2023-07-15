@@ -1,3 +1,4 @@
+// pages/posts.js
 import React from 'react';
 
 import api from '../utils/api';
