@@ -1,6 +1,5 @@
 // pages/index.js
 import React, { useState, useEffect } from "react";
-import swr from "swr";
 import { getPosts } from "api/getPosts";
 
 const Posts = () => {
