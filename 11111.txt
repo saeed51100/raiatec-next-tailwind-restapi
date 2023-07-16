@@ -17,7 +17,7 @@ export default getPosts;
 // pages/index.js
 
 
-Write me the code of pages/index.js
+Write me the code of pages/index.js in pages directory
 
 
 use swr instead of axios
