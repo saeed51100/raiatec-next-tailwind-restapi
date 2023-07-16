@@ -48,21 +48,21 @@ export default Posts;
 
 i get this error:
 Unhandled Runtime Error
-TypeError: (0 , api_getPosts__WEBPACK_IMPORTED_MODULE_3__.getPosts) is not a function
+TypeError: (0 , api_getPosts__WEBPACK_IMPORTED_MODULE_2__.getPosts) is not a function
 
 Source
-pages\index.js (11:43) @ getPosts
+pages\index.js (10:43) @ getPosts
 
-   9 | useEffect(() => {
-  10 |     const fetchPosts = async () => {
-> 11 |         const { data } = await getPosts();
+   8 | useEffect(() => {
+   9 |     const fetchPosts = async () => {
+> 10 |         const { data } = await getPosts();
      |                                       ^
-  12 |         setPosts(data);
-  13 |     };
-  14 |     fetchPosts();
+  11 |         setPosts(data);
+  12 |     };
+  13 |     fetchPosts();
 Call Stack
 fetchPosts
-pages\index.js (14:8)
+pages\index.js (13:8)
 
 please debug it.
 
