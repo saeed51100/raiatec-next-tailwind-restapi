@@ -1,5 +1,5 @@
-I have a wordpress site called raiatec.com with some posts that works fine on
-win 10 and xampp. I also have a fresh installation of next js with which I want
-to retrieve data from wp rest api and build my front end site with next js.
-I want to show the posts.
+I have a wordpress site called raiatec.com with a few posts that works fine on win 10 and xampp. I also have a fresh install of nextjs and want to build my frontend site there.
+I want to retrieve data from:
+http://localhost/test.raiatec.com/wp-json/wp/v2/posts
+and without using the wp rest api plugin.
 Please write me its code.
