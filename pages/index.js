@@ -1,35 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
-class Posts extends Component {
-    state = {
-        posts: [],
-    };
+const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts';
 
-    componentDidMount() {
-        axios.get('http://localhost/test.raiatec.com/wp-json/wp/v2/posts')
-            .then(response => {
-                this.setState({
-                    posts: response.data,
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
+const getPosts = async () => {
+    const response = await axios.get(apiUrl);
 
-    render() {
-        return (
-            <div>
-                {this.state.posts.map(post => (
-                    <div key={post.id}>
-                        <h2>{post.title}</h2>
-                        <p>{post.content}</p>
-                    </div>
-                ))}
-            </div>
-        );
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        throw new Error(response.statusText);
     }
-}
+};
+
+const posts = await getPosts();
+
+const Posts = () => {
+  return (
+    <div>
+      {posts.map((post) => (
+        <h2 key={post.id}>{post.title.rendered}</h2>
+      ))}
+    </div>
+  );
+};
 
 export default Posts;
