@@ -1,14 +1,17 @@
-// api/getPost.js  (api folder in root of directory)
-import swr from "swr";
+// api/getPosts.js
+import axios from 'axios';
 
-const getPosts = () => {
-    const url = "http://localhost/test.raiatec.com/wp-json/wp/v2/posts";
-    return swr(url, {
-        cache: true,
-        revalidateOnMount: true,
+const getPosts = async () => {
+    const response = await axios.get('http://localhost/test.raiatec.com/wp-json/wp/v2/posts', {
+        params: {
+            per_page: 20,
+        },
     });
+
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        throw new Error(response.statusText);
+    }
 };
-
 export default getPosts;
-
-
