@@ -1,6 +1,31 @@
-I have a wordpress site called raiatec.com with a few posts that works fine on win 10 and xampp. I also have a fresh install of nextjs and want to build my frontend site there.
-I want to retrieve data from:
-http://localhost/test.raiatec.com/wp-json/wp/v2/posts
-and without using the wp rest api plugin.
-i want show posts in pages/index.js
-Please write me its code.
+
+import axios from 'axios';
+
+const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts';
+
+const getPosts = async () => {
+    const response = await axios.get(apiUrl);
+
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        throw new Error(response.statusText);
+    }
+};
+
+const posts = await getPosts();
+
+const Posts = () => {
+  return (
+    <div>
+      {posts.map((post) => (
+        <h2 key={post.id}>{post.title.rendered}</h2>
+      ))}
+    </div>
+  );
+};
+
+export default Posts;
+
+The nextjs code below shows only 10 posts. How to change the number
+of outgoing posts?

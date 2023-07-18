@@ -1,10 +1,13 @@
-import React from 'react';
 import axios from 'axios';
 
 const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts';
 
 const getPosts = async () => {
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(apiUrl, {
+        params: {
+            per_page: 20,
+        },
+    });
 
     if (response.status === 200) {
         return response.data;
