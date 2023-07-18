@@ -2,4 +2,5 @@ I have a wordpress site called raiatec.com with a few posts that works fine on w
 I want to retrieve data from:
 http://localhost/test.raiatec.com/wp-json/wp/v2/posts
 and without using the wp rest api plugin.
+i want show posts in pages/index.js
 Please write me its code.
