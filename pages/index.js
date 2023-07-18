@@ -36,7 +36,9 @@ const Posts = () => {
         return (
             <div>
                 {data.map((post) => (
-                    <h2 key={post.id}>{post.title.rendered}</h2>
+                    <h2 key={post.id}>
+                        {post.title.rendered}
+                    </h2>
                 ))}
             </div>
         );
