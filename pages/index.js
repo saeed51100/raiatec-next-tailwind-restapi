@@ -1,25 +1,9 @@
-import axios from 'axios';
 import useSWR from 'swr';
-
-const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts';
-
-const getPosts = async () => {
-    const response = await axios.get(apiUrl, {
-        params: {
-            per_page: 20,
-        },
-    });
-
-    if (response.status === 200) {
-        return response.data;
-    } else {
-        throw new Error(response.statusText);
-    }
-};
+import getPosts from 'api/getPosts';
 
 const Posts = () => {
     const {data, error, isLoading} = useSWR(
-        apiUrl,
+        'http://localhost/test.raiatec.com/wp-json/wp/v2/posts',
         getPosts,
         {
             revalidate: 10000,
