@@ -1,1 +1,42 @@
-I have a wordpress site called raiatec.com with a few posts that works
+I am using tailwindcss in nextjs application.
+In the following code:
+// pages/index.js
+export default function Example() {
+
+     return (
+         <>
+
+             <div>
+                 <h1 className="bg-red-200">
+                     hello tailwind!!!!!!!!!!!
+                 </h1>
+             </div>
+         </>
+     )
+}
+
+// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+   content: [
+     './app/**/*.{js,ts,jsx,tsx,mdx}', // Note the addition of the `app` directory.
+     './pages/**/*.{js,ts,jsx,tsx,mdx}',
+     './components/**/*.{js,ts,jsx,tsx,mdx}',
+
+     // Or if using `src` directory:
+     './src/**/*.{js,ts,jsx,tsx,mdx}',
+   ],
+   theme: {
+     extend: {},
+   },
+   plugins: [
+     require('@tailwindcss/forms'),
+   ],
+}
+
+// src/global.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+Class bg-red-200 does not work. Where is the problem?
