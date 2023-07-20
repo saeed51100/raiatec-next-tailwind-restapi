@@ -65,7 +65,7 @@ export default function Example() {
         ```
       */}
             <Head>
-                <title>My page title</title>
+                <title>raiatec.com</title>
             </Head>
             <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
