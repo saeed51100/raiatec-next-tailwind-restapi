@@ -12,7 +12,6 @@
   }
   ```
 */
-import Head from 'next/head'
 import {Fragment, useState} from 'react'
 import {Dialog, Menu, Transition} from '@headlessui/react'
 import {
@@ -64,9 +63,6 @@ export default function Example() {
         <body class="h-full">
         ```
       */}
-            <Head>
-                <title>raiatec.com</title>
-            </Head>
             <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
@@ -383,4 +379,3 @@ export default function Example() {
         </>
     )
 }
-
