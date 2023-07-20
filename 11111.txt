@@ -1,13 +1,4 @@
-I am using tailwindcss in nextjs application.
-I have installed tailwindcss and it works properly with nuxtjs.
-It is written in one of the tailwindcss codes:
-{/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
-
-How should I do it?
+how to add:
+<html class="h-full bg-white">
+<body class="h-full">
+to nextjs application
