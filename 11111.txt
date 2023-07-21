@@ -1,60 +1,7 @@
 I have a wordpress site with a few posts and an about page.
 I use next.js for frontend and get data from wordpress with below link (without installing any wordpress api plugin):
 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts'
-The above link is used in the following two files:
 
-// api/getPosts.js
-import axios from 'axios';
-
-const getPosts = async () => {
-    const response = await axios.get('http://localhost/test.raiatec.com/wp-json/wp/v2/posts', {
-        params: {
-            per_page: 20,
-        },
-    });
-
-    if (response.status === 200) {
-        return response.data;
-    } else {
-        throw new Error(response.statusText);
-    }
-};
-export default getPosts;
-
-// components/grid/index.js
-import useSWR from 'swr';
-import getPosts from 'api/getPosts';
-
-const Posts = () => {
-    const {data, error, isLoading} = useSWR(
-        'http://localhost/test.raiatec.com/wp-json/wp/v2/posts',
-        getPosts,
-        {
-            revalidate: 10000,
-            staleWhileRevalidate: true,
-            defer: true,
-        } // This part has been added for optimization. please control it later. saeed.doc
-    );
-
-    if (error) {
-        return <div>Error fetching posts</div>;
-    } else if (isLoading) {
-        return <div>Loading posts...</div>;
-    } else {
-        return (
-            <div>
-                {data.map((post) => (
-                    <h2 key={post.id}>
-                        {post.title.rendered}
-                    </h2>
-                ))}
-            </div>
-        );
-    }
-};
-
-export default Posts;
-
-
-As we can see, both axios and swr libraries are fetching data separately. Is this necessary and is my
-code structure correct?
+I want to fetch the data with the swr library and in the api/getPost file and also show the list of posts
+in the components/grid/index.js file.
+Please write me their code.
