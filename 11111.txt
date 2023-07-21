@@ -1,7 +1,21 @@
 I have a wordpress site with a few posts and an about page
     I use the nextjs program for the front end and get the data from WordPress with the following link (without installing any WordPress api plugin):
 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts'
-And I show the list of posts by the following two files:
+And I show the list of posts by the following files:
+
+// pages/index.js
+import Posts from 'components/grid';
+
+export default function IndexShow() {
+    return (
+        <div>
+            {/*<Navbar />*/}
+            <Posts />
+            {/*<Footer />*/}
+        </div>
+    );
+}
+
 
 // components/grid/index.js
 import useSWR from 'swr';

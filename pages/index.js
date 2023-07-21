@@ -1,13 +1,14 @@
+// pages/index.js
 
 // import Navbar from 'components/navbar';
-import Grid from 'components/grid';
+import Posts from 'components/grid';
 // import Footer from 'components/footer';
 
 export default function IndexShow() {
     return (
         <div>
             {/*<Navbar />*/}
-            <Grid />
+            <Posts />
             {/*<Footer />*/}
         </div>
     );
