@@ -1,10 +1,7 @@
 // api/getPosts.js
 import useSWR from 'swr';
 
-const fetcher = async (url) => {
-    const res = await fetch(url);
-    return await res.json();
-};
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export function getPosts() {
     const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts';
