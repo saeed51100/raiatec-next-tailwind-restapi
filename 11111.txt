@@ -1,21 +1,25 @@
-I have a wordpress site with a few posts and an about page
-    I use the nextjs program for the front end and get the data from WordPress with the following link (without installing any WordPress api plugin):
+I have a wordpress site with a few posts and an about page.
+I use next.js for frontend and get data from wordpress with below link (without installing any wordpress api plugin):
 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts'
-And I show the list of posts by the following files:
+The above link is used in the following two files:
 
-// pages/index.js
-import Posts from 'components/grid';
+// api/getPosts.js
+import axios from 'axios';
 
-export default function IndexShow() {
-    return (
-        <div>
-            {/*<Navbar />*/}
-            <Posts />
-            {/*<Footer />*/}
-        </div>
-    );
-}
+const getPosts = async () => {
+    const response = await axios.get('http://localhost/test.raiatec.com/wp-json/wp/v2/posts', {
+        params: {
+            per_page: 20,
+        },
+    });
 
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        throw new Error(response.statusText);
+    }
+};
+export default getPosts;
 
 // components/grid/index.js
 import useSWR from 'swr';
@@ -51,23 +55,6 @@ const Posts = () => {
 
 export default Posts;
 
-// api/getPosts.js
-import axios from 'axios';
 
-const getPosts = async () => {
-    const response = await axios.get('http://localhost/test.raiatec.com/wp-json/wp/v2/posts', {
-        params: {
-            per_page: 20,
-        },
-    });
-
-    if (response.status === 200) {
-        return response.data;
-    } else {
-        throw new Error(response.statusText);
-    }
-};
-export default getPosts;
-
-Please write me the code for pages/[post-slug].js And put
-post.title.rendered in the link.
+As we can see, both axios and swr libraries are fetching data separately. Is this necessary and is my
+code structure correct?
