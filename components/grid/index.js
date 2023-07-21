@@ -1,5 +1,8 @@
 // components/grid/index.js
 
+import {getPosts} from "api/getPosts";
+
+
 const Grid = ({ posts }) => {
     return (
         <div>
@@ -13,4 +16,23 @@ const Grid = ({ posts }) => {
     );
 };
 
-export default Grid;
+const HomePage = () => {
+    const { posts, isLoading, isError } = getPosts();
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error loading posts.</div>;
+    }
+
+    return (
+        <div>
+            <h1>WordPress Posts</h1>
+            <Grid posts={posts} />
+        </div>
+    );
+};
+
+export default HomePage;
