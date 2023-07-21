@@ -1,7 +1,7 @@
 // pages/index.js
 
-import Grid from '../components/grid';
-import { getPosts } from '../api/getPosts';
+import Grid from 'components/grid';
+import { getPosts } from 'api/getPosts';
 
 const HomePage = () => {
     const { posts, isLoading, isError } = getPosts();
