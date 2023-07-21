@@ -1,9 +1,58 @@
-I have a wordpress site with some posts
-  I use the nextjs program for the front end and the data by
+I have a wordpress site with a few posts and an about page
+    I use the nextjs program for the front end and get the data from WordPress with the following link (without installing any WordPress api plugin):
 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts'
-I get it without installing any WordPress plugin.
-Now that I am writing the nextjs program, I have the following question:
-  Where should be the entry point in the nextjs program?
-Like the nuxt program, should the starting point be in the root of the program, such
-as app.vue, or can it be from the pages folder and the index.js file?
-What approach is right for me?
+And I show the list of posts by the following two files:
+
+// components/grid/index.js
+import useSWR from 'swr';
+import getPosts from 'api/getPosts';
+
+const Posts = () => {
+    const {data, error, isLoading} = useSWR(
+        'http://localhost/test.raiatec.com/wp-json/wp/v2/posts',
+        getPosts,
+        {
+            revalidate: 10000,
+            staleWhileRevalidate: true,
+            defer: true,
+        } // This part has been added for optimization. please control it later. saeed.doc
+    );
+
+    if (error) {
+        return <div>Error fetching posts</div>;
+    } else if (isLoading) {
+        return <div>Loading posts...</div>;
+    } else {
+        return (
+            <div>
+                {data.map((post) => (
+                    <h2 key={post.id}>
+                        {post.title.rendered}
+                    </h2>
+                ))}
+            </div>
+        );
+    }
+};
+
+export default Posts;
+
+// api/getPosts.js
+import axios from 'axios';
+
+const getPosts = async () => {
+    const response = await axios.get('http://localhost/test.raiatec.com/wp-json/wp/v2/posts', {
+        params: {
+            per_page: 20,
+        },
+    });
+
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        throw new Error(response.statusText);
+    }
+};
+export default getPosts;
+
+Please write me the code for pages/[post-slug].js.

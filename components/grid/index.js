@@ -1,3 +1,4 @@
+// components/grid/index.js
 import useSWR from 'swr';
 import getPosts from 'api/getPosts';
 
