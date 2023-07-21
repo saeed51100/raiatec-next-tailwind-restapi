@@ -69,4 +69,5 @@ const getPosts = async () => {
 };
 export default getPosts;
 
-Please write me the code for pages/[post-slug].js.
+Please write me the code for pages/[post-slug].js And put
+post.title.rendered in the link.
