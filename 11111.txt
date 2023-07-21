@@ -1,69 +1,16 @@
-I have a wordpress site with a few posts .
-I use next.js for frontend and get data from wordpress with below link (without installing any wordpress api plugin):
-'http://localhost/test.raiatec.com/wp-json/wp/v2/posts'
-
-To display the posts, I use the following three files that work well:
-
+The following code in next.js shows only the first 10 posts. How to increase the number of displayable posts by defining params?
 // api/getPosts.js
 import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export function getPosts() {
-    const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts';
-    const { data, error } = useSWR(apiUrl, fetcher);
+     const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts';
+     const { data, error } = useSWR(apiUrl, fetcher);
 
-    return {
-        posts: data,
-        isLoading: !error && !data,
-        isError: error,
-    };
+     return {
+         posts: data,
+         isLoading: !error && !data,
+         isError: error,
+     };
 }
-
-// components/grid/index.js
-const Grid = ({ posts }) => {
-    return (
-        <div>
-            {posts.map((post) => (
-                <div key={post.id}>
-                    <h2>{post.title.rendered}</h2>
-                    <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-                </div>
-            ))}
-        </div>
-    );
-};
-
-export default Grid;
-
-// pages/index.js
-import Grid from 'components/grid';
-import { getPosts } from 'api/getPosts';
-
-const HomePage = () => {
-    const { posts, isLoading, isError } = getPosts();
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (isError) {
-        return <div>Error loading posts.</div>;
-    }
-
-    return (
-        <div>
-            <h1>WordPress Posts</h1>
-            <Grid posts={posts} />
-        </div>
-    );
-};
-
-export default HomePage;
-
-
-But the above codes show all the titles and content of the posts on the main
-page, which I don't want.
-I want to display only the title of the posts on the main page and show the corresponding post
-with a link to the single post located in pages/[post-slug].js.
-Please modify the above code and write the code for pages/[post-slug].js.
