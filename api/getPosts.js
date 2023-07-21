@@ -1,17 +1,18 @@
 // api/getPosts.js
-import axios from 'axios';
+import useSWR from 'swr';
 
-const getPosts = async () => {
-    const response = await axios.get('http://localhost/test.raiatec.com/wp-json/wp/v2/posts', {
-        params: {
-            per_page: 20,
-        },
-    });
-
-    if (response.status === 200) {
-        return response.data;
-    } else {
-        throw new Error(response.statusText);
-    }
+const fetcher = async (url) => {
+    const res = await fetch(url);
+    return await res.json();
 };
-export default getPosts;
+
+export function getPosts() {
+    const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts';
+    const { data, error } = useSWR(apiUrl, fetcher);
+
+    return {
+        posts: data,
+        isLoading: !error && !data,
+        isError: error,
+    };
+}
