@@ -6,7 +6,7 @@ const Grid = ({ posts }) => {
             {posts.map((post) => (
                 <div key={post.id}>
                     <h2>{post.title.rendered}</h2>
-                    <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+
                 </div>
             ))}
         </div>
