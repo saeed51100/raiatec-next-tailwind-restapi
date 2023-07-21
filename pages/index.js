@@ -1,13 +1,13 @@
 
 // import Navbar from 'components/navbar';
-import Grid from 'components/grid';
+import HomePage from 'components/grid';
 // import Footer from 'components/footer';
 
 export default function IndexShow() {
     return (
         <div>
             {/*<Navbar />*/}
-            <Grid />
+            <HomePage />
             {/*<Footer />*/}
         </div>
     );
