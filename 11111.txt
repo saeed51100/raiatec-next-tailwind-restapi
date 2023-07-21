@@ -1,4 +1,9 @@
-how to add:
-<html class="h-full bg-white">
-<body class="h-full">
-to nextjs application
+I have a wordpress site with some posts
+  I use the nextjs program for the front end and the data by
+'http://localhost/test.raiatec.com/wp-json/wp/v2/posts'
+I get it without installing any WordPress plugin.
+Now that I am writing the nextjs program, I have the following question:
+  Where should be the entry point in the nextjs program?
+Like the nuxt program, should the starting point be in the root of the program, such
+as app.vue, or can it be from the pages folder and the index.js file?
+What approach is right for me?
