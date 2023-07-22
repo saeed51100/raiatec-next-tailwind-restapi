@@ -18,10 +18,11 @@ const HomePage = () => {
         <div>
             {posts.map((post) => (
                 <div key={post.id}>
-          {/* Wrap the title with Link component */}
-          <Link legacyBehavior href={`/pages/${post.slug}`}>
-            <a>{post.title.rendered}</a>
-          </Link>
+
+                    <Link href={`/${post.slug}`}>
+                        {post.title.rendered}
+                    </Link>
+
                 </div>
             ))}
         </div>

@@ -1,21 +1,6 @@
-In the next.js program, I have written the following two-file that shows the
+In the next.js program, I have written the file that shows the
 titles of the posts:
 
-// api/getPosts.js
-import useSWR from 'swr';
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
-export function getPosts() {
-    const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts?per_page=20';
-    const { data, error } = useSWR(apiUrl, fetcher);
-
-    return {
-        posts: data,
-        isLoading: !error && !data,
-        isError: error,
-    };
-}
 
 // components/grid/index.js
 
@@ -48,8 +33,6 @@ export default HomePage;
 
 In the next.js program, I have written the following two-file that shows the titles of the posts:
 
-Please do the following for me:
-1- In the // components/grid/index.js file, put a link around {post.title.rendered} that will
- be directed to pages/[post-slug].js.
-2- Write me the pages/[post-slug].js file so that clicking on the {post.title.rendered} title
- link will show the desired page.
+
+In the // components/grid/index.js file, put a link around {post.title.rendered}
+which will provide the desired page
