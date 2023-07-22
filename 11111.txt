@@ -1,6 +1,7 @@
 please optimize this next.js code:
 
 // components/grid/index.js
+
 import {getPosts} from "api/getPosts";
 
 
@@ -19,8 +20,7 @@ const HomePage = () => {
         <div>
             {posts.map((post) => (
                 <div key={post.id}>
-                    <h2>{post.title.rendered}</h2>
-
+                    {post.title.rendered}
                 </div>
             ))}
         </div>
@@ -28,3 +28,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
