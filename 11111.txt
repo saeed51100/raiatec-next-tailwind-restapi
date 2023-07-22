@@ -1,7 +1,7 @@
 In the next.js program, I have created the following file, which is responsible
 for fetching data:
 
-// api/getPosts.js
+// api/usePosts.js
 import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -19,4 +19,4 @@ export function getPosts() {
 
 
 To manage dynamic routing for individual posts based on their slug, please
-Create the pages/[post-slug].js file and add the necessary codes to the api/getPosts.js file.
+Create the pages/[post-slug].js file and add the necessary codes to the api/usePosts.js file.
