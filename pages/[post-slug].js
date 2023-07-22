@@ -1,1 +1,2 @@
-<div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+// <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+
