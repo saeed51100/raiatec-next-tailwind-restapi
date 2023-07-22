@@ -18,8 +18,7 @@ const HomePage = () => {
         <div>
             {posts.map((post) => (
                 <div key={post.id}>
-                    <h2>{post.title.rendered}</h2>
-
+                    {post.title.rendered}
                 </div>
             ))}
         </div>
