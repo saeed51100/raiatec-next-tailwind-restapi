@@ -1,4 +1,21 @@
-please optimize this next.js code:
+In the next.js program, I have written the following two-file that shows the
+titles of the posts:
+
+// api/getPosts.js
+import useSWR from 'swr';
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export function getPosts() {
+    const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts?per_page=20';
+    const { data, error } = useSWR(apiUrl, fetcher);
+
+    return {
+        posts: data,
+        isLoading: !error && !data,
+        isError: error,
+    };
+}
 
 // components/grid/index.js
 
@@ -29,3 +46,6 @@ const HomePage = () => {
 
 export default HomePage;
 
+Please write me the pages/[post-slug].js file so that when you click on
+the {post.title.rendered} title link, the
+desired page will be shown.
