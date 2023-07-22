@@ -1,6 +1,33 @@
 In the next.js program, I use the following two files to display a single post:
 
-// <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+// api/usePosts.js
+
+// Function to fetch post titles
+import useSWR from 'swr';
+const fetcher = (url) => fetch(url).then((res) => res.json());
+export function usePosts() {
+    const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts?per_page=20';
+    const { data, error } = useSWR(apiUrl, fetcher);
+
+    return {
+        posts: data,
+        isLoading: !error && !data,
+        isError: error,
+    };
+}
+
+// Function to fetch a single post by its slug using SWR
+export function usePostBySlug(slug) {
+  const apiUrl = `http://localhost/test.raiatec.com/wp-json/wp/v2/posts?slug=${slug}`;
+    const { data, error } = useSWR(apiUrl, fetcher);
+
+    return {
+        post: data && data[0], // Assuming the slug is unique, so we take the first post found
+        isLoading: !error && !data,
+        isError: error,
+    };
+}
+
 
 // pages/[post-slug].js
 import { useRouter } from 'next/router';
@@ -22,47 +49,6 @@ export default function PostPage() {
 
 And when displaying a single post I get the following error:
 
-Unhandled Runtime Error
-TypeError: Cannot read properties of undefined (reading 'title')
-
-Source
-pages\[post-slug].js (20:22) @ title
-
-  18 | return (
-  19 |     <div>
-> 20 |         <h1>{post.title.rendered}</h1>
-     |                  ^
-  21 |         <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-  22 |     </div>
-  23 | );
-Call Stack
-renderWithHooks
-node_modules\react-dom\cjs\react-dom.development.js (16305:0)
-mountIndeterminateComponent
-node_modules\react-dom\cjs\react-dom.development.js (20074:0)
-beginWork
-node_modules\react-dom\cjs\react-dom.development.js (21587:0)
-HTMLUnknownElement.callCallback
-node_modules\react-dom\cjs\react-dom.development.js (4164:0)
-Object.invokeGuardedCallbackDev
-node_modules\react-dom\cjs\react-dom.development.js (4213:0)
-invokeGuardedCallback
-node_modules\react-dom\cjs\react-dom.development.js (4277:0)
-beginWork$1
-node_modules\react-dom\cjs\react-dom.development.js (27451:0)
-performUnitOfWork
-node_modules\react-dom\cjs\react-dom.development.js (26557:0)
-workLoopConcurrent
-node_modules\react-dom\cjs\react-dom.development.js (26543:0)
-renderRootConcurrent
-node_modules\react-dom\cjs\react-dom.development.js (26505:0)
-performConcurrentWorkOnRoot
-node_modules\react-dom\cjs\react-dom.development.js (25738:0)
-workLoop
-node_modules\scheduler\cjs\scheduler.development.js (266:0)
-flushWork
-node_modules\scheduler\cjs\scheduler.development.js (239:0)
-MessagePort.performWorkUntilDeadline
-node_modules\scheduler\cjs\scheduler.development.js (533:0)
+Post not found.
 
 How do I solve it?
