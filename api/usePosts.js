@@ -20,6 +20,7 @@ export function usePosts() {
 // Function to fetch a single post by its slug using SWR
 export function usePostBySlug(slug) {
   const apiUrl = `${process.env.API_URL}/v2/posts?slug=${slug}`;
+    console.log(apiUrl);
     const { data, error } = useSWR(apiUrl, fetcher);
 
     return {

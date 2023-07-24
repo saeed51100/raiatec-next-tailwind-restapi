@@ -1,4 +1,4 @@
-In the next.js program, I use the following two files to display a single post:
+In the next.js program, I use the following file to show the list of posts and also to show a single post:
 
 // api/usePosts.js
 
@@ -6,7 +6,10 @@ In the next.js program, I use the following two files to display a single post:
 import useSWR from 'swr';
 const fetcher = (url) => fetch(url).then((res) => res.json());
 export function usePosts() {
-    const apiUrl = 'http://localhost/test.raiatec.com/wp-json/wp/v2/posts?per_page=20';
+
+    // Use the API_URL from .env.local here
+    const apiUrl = `${process.env.API_URL}/posts?per_page=20`;
+
     const { data, error } = useSWR(apiUrl, fetcher);
 
     return {
@@ -18,7 +21,8 @@ export function usePosts() {
 
 // Function to fetch a single post by its slug using SWR
 export function usePostBySlug(slug) {
-  const apiUrl = `http://localhost/test.raiatec.com/wp-json/wp/v2/posts?slug=${slug}`;
+  const apiUrl = `${process.env.API_URL}/v2/posts?slug=${slug}`;
+    console.log(apiUrl);
     const { data, error } = useSWR(apiUrl, fetcher);
 
     return {
@@ -29,41 +33,15 @@ export function usePostBySlug(slug) {
 }
 
 
-// pages/[post-slug].js
-import { useRouter } from 'next/router';
-import { usePosts } from '../api/usePosts';
+In the first part:
+const apiUrl = `${process.env.API_URL}/posts?per_page=20`;
+It works fine and the first 20 posts are stored in the apiUrl variable.
 
-export default function PostPage() {
-    const router = useRouter();
-    const { postSlug } = router.query;
-
-    const { posts, isLoading, isError } = usePosts();
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (isError) {
-        return <div>Error fetching data.</div>;
-    }
-
-    const post = posts.find((post) => post.slug === postSlug);
-
-    if (!post) {
-        return <div>Post not found.</div>;
-    }
-
-    return (
-        <div>
-            <h1>{post.title.rendered}</h1>
-            <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-        </div>
-    );
-}
-
-
-And when displaying a single post I get the following error:
-
-Post not found.
-
-How do I solve it?
+but In the second part:
+const apiUrl = `${process.env.API_URL}/v2/posts?slug=${slug}`;
+Run the following command:
+     console.log(apiUrl);
+And the output is:
+http://localhost/test.raiatec.com/wp-json/wp/v2/v2/posts?slug=undefined
+and does not return any data
+Where is the problem?
