@@ -1,4 +1,4 @@
-In the next.js program, I use the following file to show the list of posts and also to show a single post:
+In the next.js program, I use the following file to show a single post:
 
 // api/usePosts.js
 
@@ -6,17 +6,6 @@ import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-// Function to fetch post titles
-export function usePosts() {
-    const apiUrl = `${API_URL}/posts?per_page=20`;
-    const {data, error} = useSWR(apiUrl, fetcher);
-    return {
-        posts: data,
-        isLoading: !error && !data,
-        isError: error,
-    };
-}
 
 // Function to fetch a single post by its slug
 export function usePostBySlug(slug) {
@@ -32,12 +21,6 @@ export function usePostBySlug(slug) {
 }
 
 
-
-In the first part:
-const apiUrl = `${API_URL}/posts?per_page=20`;
-It works fine and the first 20 posts are stored in the apiUrl variable.
-
-but In the second part:
 the usePostBySlug function has a parameter called slug, which should be
 extracted from the current post and passed to it.
 Complete the code so that the slug of the current post is obtained and sent
