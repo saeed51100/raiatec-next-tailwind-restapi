@@ -3,10 +3,11 @@
 // Function to fetch post titles
 import useSWR from 'swr';
 const fetcher = (url) => fetch(url).then((res) => res.json());
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export function usePosts() {
 
     // Use the API_URL from .env.local here
-    const apiUrl = `${process.env.API_URL}/posts?per_page=20`;
+    const apiUrl = `${API_URL}/posts?per_page=20`;
 
     const { data, error } = useSWR(apiUrl, fetcher);
 
@@ -19,7 +20,7 @@ export function usePosts() {
 
 // Function to fetch a single post by its slug using SWR
 export function usePostBySlug(slug) {
-  const apiUrl = `${process.env.API_URL}/posts?slug=${slug}`;
+  const apiUrl = `${API_URL}/posts?slug=${slug}`;
     console.log(apiUrl);
     const { data, error } = useSWR(apiUrl, fetcher);
 
