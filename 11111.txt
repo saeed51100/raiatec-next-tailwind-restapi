@@ -38,10 +38,10 @@ const apiUrl = `${process.env.API_URL}/posts?per_page=20`;
 It works fine and the first 20 posts are stored in the apiUrl variable.
 
 but In the second part:
-const apiUrl = `${process.env.API_URL}/v2/posts?slug=${slug}`;
+const apiUrl = `${process.env.API_URL}/posts?slug=${slug}`;
 Run the following command:
      console.log(apiUrl);
 And the output is:
-http://localhost/test.raiatec.com/wp-json/wp/v2/v2/posts?slug=undefined
+http://localhost/test.raiatec.com/wp-json/wp/v2/posts?slug=undefined
 and does not return any data
 Where is the problem?
