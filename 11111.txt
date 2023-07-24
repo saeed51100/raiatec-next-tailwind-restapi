@@ -25,3 +25,4 @@ the usePostBySlug function has a parameter called slug, which should be
 extracted from the current post and passed to it.
 Complete the code so that the slug of the current post is obtained and sent
 to the usePostBySlug function.
+I show a single post with pages/[post-slug].js
