@@ -1,4 +1,4 @@
-In the next.js program, I use the following file to show a single post:
+In the next.js program below:
 
 // api/usePosts.js
 
@@ -23,5 +23,3 @@ export function usePostBySlug(slug) {
 
 The usePostBySlug function requires a slug parameter, which is the slug of the current post.
 Write code that gets it by useRouter so that usePostBySlug uses it.
-It should be noted that previously by clicking on the post title, the current post is
-specified and it is in useRouter.
