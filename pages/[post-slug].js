@@ -6,6 +6,7 @@ import { usePostBySlug } from '../api/usePosts';
 
 export default function Post() {
     const router = useRouter();
+    console.log("router=", router)
     const { post, isLoading, isError } = usePostBySlug(router.query.postSlug);
 
     if (isLoading) {

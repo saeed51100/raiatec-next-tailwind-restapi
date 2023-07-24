@@ -62,3 +62,24 @@ export function usePostBySlug(slug) {
 
 But when I click on the post title, the individual post is not shown and I get the message Post
 not found. Where is the error in my code?
+
+This is consule.log in the pages/[post-slug].js file:
+const router = useRouter();
+     console.log("router=", router)
+
+Report:
+router= ServerRouter {
+   route: '/[post-slug]',
+   pathname: '/[post-slug]',
+   query: {},
+   asPath: '/[post-slug]',
+   isFallback: false,
+   basePath: '',
+   locale: undefined,
+   locales: undefined,
+   defaultLocale: undefined,
+   isReady: false,
+   domainLocales: undefined,
+   isPreview: false,
+   isLocaleDomain: false
+}
