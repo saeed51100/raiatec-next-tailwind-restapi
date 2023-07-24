@@ -2,26 +2,22 @@
 
 // pages/[post-slug].js
 import { useRouter } from 'next/router';
-import { usePosts } from '../api/usePosts';
+import { usePostBySlug } from '../api/usePosts';
 
-export default function PostPage() {
+export default function Post() {
     const router = useRouter();
-    const { postSlug } = router.query;
-
-    const { posts, isLoading, isError } = usePosts();
+    const { post, isLoading, isError } = usePostBySlug(router.query.postSlug);
 
     if (isLoading) {
         return <div>Loading...</div>;
     }
 
     if (isError) {
-        return <div>Error fetching data.</div>;
+        return <div>Error loading post</div>;
     }
 
-    const post = posts.find((post) => post.slug === postSlug);
-
     if (!post) {
-        return <div>Post not found.</div>;
+        return <div>Post not found</div>;
     }
 
     return (
@@ -31,3 +27,4 @@ export default function PostPage() {
         </div>
     );
 }
+
