@@ -1,11 +1,49 @@
-In the next.js program below:
+In the next.js program, I use the following file to show a single post:
+
+// pages/[post-slug].js
+import { useRouter } from 'next/router';
+import { usePostBySlug } from '../api/usePosts';
+
+export default function Post() {
+    const router = useRouter();
+    const { post, isLoading, isError } = usePostBySlug(router.query.postSlug);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error loading post</div>;
+    }
+
+    if (!post) {
+        return <div>Post not found</div>;
+    }
+
+    return (
+        <div>
+            <h1>{post.title.rendered}</h1>
+            <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+        </div>
+    );
+}
 
 // api/usePosts.js
-
 import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+// Function to fetch post titles
+export function usePosts() {
+    const apiUrl = `${API_URL}/posts?per_page=20`;
+    const {data, error} = useSWR(apiUrl, fetcher);
+    return {
+        posts: data,
+        isLoading: !error && !data,
+        isError: error,
+    };
+}
 
 // Function to fetch a single post by its slug
 export function usePostBySlug(slug) {
@@ -21,5 +59,6 @@ export function usePostBySlug(slug) {
 }
 
 
-The usePostBySlug function requires a slug parameter, which is the slug of the current post.
-Write code that gets it so that usePostBySlug uses it.
+
+But when I click on the post title, the individual post is not shown and I get the message Post
+not found. Where is the error in my code?
