@@ -1,10 +1,10 @@
 // components/grid/index.js
 
-import { usePosts } from "api/usePosts"; // Import the custom hook
+import {usePosts} from "api/usePosts"; // Import the custom hook
 import Link from "next/link";
 
 const HomePage = () => {
-    const { posts, isLoading, isError } = usePosts(); // Use the custom hook
+    const {posts, isLoading, isError} = usePosts(); // Use the custom hook
 
     if (isLoading) {
         return <div>Loading...</div>;
