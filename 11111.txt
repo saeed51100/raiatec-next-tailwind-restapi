@@ -1,34 +1,12 @@
-In the next.js program, I use the following file to show a single post:
+In the next.js program, I use the following code to show the titles of the posts as
+well as the single post, which works correctly: (without using graphql or wp rest api, etc.)
 
-// pages/[post-slug].js
-import { useRouter } from 'next/router';
-import { usePostBySlug } from '../api/usePosts';
-
-export default function Post() {
-    const router = useRouter();
-    const { post, isLoading, isError } = usePostBySlug(router.query.postSlug);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (isError) {
-        return <div>Error loading post</div>;
-    }
-
-    if (!post) {
-        return <div>Post not found</div>;
-    }
-
-    return (
-        <div>
-            <h1>{post.title.rendered}</h1>
-            <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-        </div>
-    );
-}
+// .env.local
+NEXT_PUBLIC_API_URL=http://localhost/test.raiatec.com/wp-json/wp/v2
 
 // api/usePosts.js
+
+
 import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -48,7 +26,6 @@ export function usePosts() {
 // Function to fetch a single post by its slug
 export function usePostBySlug(slug) {
     const apiUrl = `${API_URL}/posts?slug=${slug}`;
-    console.log(apiUrl);
     const {data, error} = useSWR(apiUrl, fetcher);
 
     return {
@@ -59,27 +36,6 @@ export function usePostBySlug(slug) {
 }
 
 
-
-But when I click on the post title, the individual post is not shown and I get the message Post
-not found. Where is the error in my code?
-
-This is consule.log in the pages/[post-slug].js file:
-const router = useRouter();
-     console.log("router=", router)
-
-Report:
-router= ServerRouter {
-   route: '/[post-slug]',
-   pathname: '/[post-slug]',
-   query: {},
-   asPath: '/[post-slug]',
-   isFallback: false,
-   basePath: '',
-   locale: undefined,
-   locales: undefined,
-   defaultLocale: undefined,
-   isReady: false,
-   domainLocales: undefined,
-   isPreview: false,
-   isLocaleDomain: false
-}
+I need to fetch post titles as well as individual posts.
+My question is, are my endpoints correct and does it not lead to fetching unnecessary data?
+Is my code optimized?
