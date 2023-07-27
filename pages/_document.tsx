@@ -3,7 +3,9 @@ class MyDocument extends Document {
     render() {
         return (
             <Html dir="rtl" className="h-full bg-white">
-                <Head />
+                <Head >
+                    <title>raiatec.com</title>
+                </Head>
                 <body className="h-full">
                 <Main />
                 <NextScript />
