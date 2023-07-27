@@ -8,7 +8,7 @@ export default function IndexShow() {
     return (
         <div>
             {/*<Navbar />*/}
-            <Everyname />
+            <Everyname/>
             {/*<Footer />*/}
         </div>
     );
