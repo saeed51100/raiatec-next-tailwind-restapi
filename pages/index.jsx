@@ -452,20 +452,7 @@ export default function Example() {
                                         </div>
                                     </div>
                                 ))}
-
-                                <div>
-                                    {posts.map((post) => (
-                                        <div key={post.id}>
-
-                                            <Link href={`/${post.slug}`}>{post.title.rendered}</Link>
-
-                                        </div>
-                                    ))}
-                                </div>
-
                             </section>
-
-
                         </div>
                     </main>
                 </div>
