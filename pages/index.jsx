@@ -422,11 +422,6 @@ export default function Example() {
                                                 <h3 className="mt-6 text-sm font-medium text-gray-900">{post.title.rendered}</h3>
                                                 <h2 className="mt-6 text-sm font-medium text-gray-900">{post.excerpt.rendered}</h2>
                                             </div>
-                                            <div>
-                                                <div className="-mt-px flex divide-x divide-gray-200">
-
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 ))}
