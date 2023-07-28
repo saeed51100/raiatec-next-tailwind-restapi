@@ -405,48 +405,22 @@ export default function Example() {
                                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
 
-                                {people.map((person) => (
-                                    <div className="max-w-lg mx-auto">
-                                        <div key={person.email}
-                                             className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm mb-5">
+                                {posts.map((post) => (
+                                    <div key={post.id} className="max-w-lg mx-auto">
+
+                                        <div
+                                            className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm mb-5">
+                                            {/*<img*/}
+                                            {/*    src={post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : ''}*/}
+                                            {/*    alt="Featured Image"*/}
+                                            {/*/>*/}
                                             <div className="flex flex-1 flex-col p-8">
-                                                <img className="mx-auto h-32 w-32 flex-shrink-0 rounded-full"
-                                                     src={person.imageUrl} alt=""/>
-                                                <h3 className="mt-6 text-sm font-medium text-gray-900">{person.name}</h3>
-                                                <dl className="mt-1 flex flex-grow flex-col justify-between">
-                                                    <dt className="sr-only">Title</dt>
-                                                    <dd className="text-sm text-gray-500">{person.title}</dd>
-                                                    <dt className="sr-only">Role</dt>
-                                                    <dd className="mt-3">
-                <span
-                    className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                  {person.role}
-                </span>
-                                                    </dd>
-                                                </dl>
+                                                <h3 className="mt-6 text-sm font-medium text-gray-900">{post.title.rendered}</h3>
+                                                <h2 className="mt-6 text-sm font-medium text-gray-900">{post.excerpt.rendered}</h2>
                                             </div>
                                             <div>
                                                 <div className="-mt-px flex divide-x divide-gray-200">
-                                                    <div className="flex w-0 flex-1">
-                                                        <a
-                                                            href={`mailto:${person.email}`}
-                                                            className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
-                                                        >
-                                                            <EnvelopeIcon className="h-5 w-5 text-gray-400"
-                                                                          aria-hidden="true"/>
-                                                            Email
-                                                        </a>
-                                                    </div>
-                                                    <div className="-ml-px flex w-0 flex-1">
-                                                        <a
-                                                            href={`tel:${person.telephone}`}
-                                                            className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
-                                                        >
-                                                            <PhoneIcon className="h-5 w-5 text-gray-400"
-                                                                       aria-hidden="true"/>
-                                                            Call
-                                                        </a>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
