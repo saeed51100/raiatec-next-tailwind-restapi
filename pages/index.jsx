@@ -427,18 +427,28 @@ export default function Example() {
                                                     className="rounded-t"
                                                 />
                                             )}
+                                            <div className="p-5">
+                                                <h3 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">
+                                                    <Link href={`/${post.slug}`}>{post.title.rendered}</Link>
+                                                </h3>
 
-                                            <h3 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">
-                                                <Link href={`/${post.slug}`}>{post.title.rendered}</Link>
-                                            </h3>
+                                                {/*<h2 className="font-normal text-gray-700 mb-3 line-clamp-4 break-all">{post.excerpt.rendered}</h2>*/}
+                                                {post.excerpt && (
+                                                    <div
+                                                        className="font-normal text-gray-700 mb-3 line-clamp-4 break-all"
+                                                        dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}/>
+                                                )}
 
-                                            {/*<h2 className="font-normal text-gray-700 mb-3 line-clamp-4 break-all">{post.excerpt.rendered}</h2>*/}
-                                            {post.excerpt && (
-                                                <div className="font-normal text-gray-700 mb-3 line-clamp-4 break-all"
-                                                     dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
-                                            )}
-
-
+                                                <div className="relative">
+                                                    {post.slug && (
+                                                        <Link
+                                                            className="absolute bottom-0 left-0 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center"
+                                                            href={`/${post.slug}`}>
+                                                            {"Read More"}
+                                                        </Link>
+                                                    )}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
