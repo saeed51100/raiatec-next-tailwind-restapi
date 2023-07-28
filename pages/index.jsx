@@ -438,7 +438,8 @@ export default function Example() {
                                                         className="font-normal text-gray-700 mb-3 line-clamp-4 break-all"
                                                         dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}/>
                                                 )}
-
+                                                <br/>
+                                                <br/>
                                                 <div className="relative">
                                                     {post.slug && (
                                                         <Link
