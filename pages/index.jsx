@@ -417,6 +417,7 @@ export default function Example() {
                                                 <img
                                                     src={post._embedded['wp:featuredmedia'][0].source_url}
                                                     alt={post.title.rendered}
+                                                    className="rounded-t"
                                                 />
                                             ) : (
                                                 <img
