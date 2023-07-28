@@ -410,10 +410,14 @@ export default function Example() {
 
                                         <div
                                             className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm mb-5">
-                                            <img
-                                                src={post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : ''}
-                                                alt="Featured Image"
-                                            />
+                                            {post._embedded &&
+                                                post._embedded['wp:featuredmedia'] &&
+                                                post._embedded['wp:featuredmedia'][0].source_url && (
+                                                    <img
+                                                        src={post._embedded['wp:featuredmedia'][0].source_url}
+                                                        alt={post.title.rendered}
+                                                    />
+                                                )}
                                             <div className="flex flex-1 flex-col p-8">
                                                 <h3 className="mt-6 text-sm font-medium text-gray-900">{post.title.rendered}</h3>
                                                 <h2 className="mt-6 text-sm font-medium text-gray-900">{post.excerpt.rendered}</h2>
