@@ -27,6 +27,8 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline'
 import {ChevronDownIcon, MagnifyingGlassIcon, EnvelopeIcon, PhoneIcon} from '@heroicons/react/20/solid'
+import {usePosts} from "api/usePosts"; // Import the custom hook
+import Link from "next/link";
 
 const navigation = [
     {name: 'Dashboard', href: '#', icon: HomeIcon, current: true},
@@ -394,13 +396,12 @@ export default function Example() {
 
 
 
-                            <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                            <section role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
 
                                 {people.map((person) => (
-                                    <li
-                                        key={person.email}
-                                        className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
-                                    >
+                                    <div className="max-w-lg mx-auto">
+                                    <div key={person.email} className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm mb-5">
                                         <div className="flex flex-1 flex-col p-8">
                                             <img className="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src={person.imageUrl} alt="" />
                                             <h3 className="mt-6 text-sm font-medium text-gray-900">{person.name}</h3>
@@ -437,11 +438,11 @@ export default function Example() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
+                                    </div>
+                                    </div>
                                 ))}
 
-
-                            </ul>
+                            </section>
 
 
 
