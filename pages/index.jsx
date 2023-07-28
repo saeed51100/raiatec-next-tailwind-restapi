@@ -434,9 +434,8 @@ export default function Example() {
 
                                                 {/*<h2 className="font-normal text-gray-700 mb-3 line-clamp-4 break-all">{post.excerpt.rendered}</h2>*/}
                                                 {post.excerpt && (
-                                                    <div
-                                                        className="font-normal text-gray-700 mb-3 line-clamp-4 break-all"
-                                                        dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}/>
+                                                    <p className="font-normal text-gray-700 mb-3 line-clamp-4 break-all"
+                                                       dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}/>
                                                 )}
                                                 <br/>
                                                 <br/>
