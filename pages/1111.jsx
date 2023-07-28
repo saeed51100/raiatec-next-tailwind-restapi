@@ -418,13 +418,13 @@ export default function Example() {
                                                     alt={post.title.rendered}
                                                 />
                                             ) : (
-                                                <img /*style="width: 100%;"*/ src={public/raiatecThumb.svg}g alt="title"
+                                                <img style="width: 100%;" src="/public/raiatecThumb.svg" alt="title"
                                                      class="rounded-t"/>
                                             )}
-                                            <div className="flex flex-1 flex-col p-8">
-                                                <h3 className="mt-6 text-sm font-medium text-gray-900">{post.title.rendered}</h3>
-                                                <h2 className="mt-6 text-sm font-medium text-gray-900">{post.excerpt.rendered}</h2>
-                                            </div>
+                                        </div>
+                                        <div className="flex flex-1 flex-col p-8">
+                                            <h3 className="mt-6 text-sm font-medium text-gray-900">{post.title.rendered}</h3>
+                                            <h2 className="mt-6 text-sm font-medium text-gray-900">{post.excerpt.rendered}</h2>
                                         </div>
                                     </div>
                                 ))}
