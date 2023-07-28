@@ -410,6 +410,7 @@ export default function Example() {
 
                                         <div
                                             className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm mb-5">
+                                            {/* Check if the featured media is available */}
                                             {post._embedded &&
                                             post._embedded['wp:featuredmedia'] &&
                                             post._embedded['wp:featuredmedia'][0].source_url ? (
@@ -418,8 +419,12 @@ export default function Example() {
                                                     alt={post.title.rendered}
                                                 />
                                             ) : (
-                                                <img /*style="width: 100%;"*/ src={public/raiatecThumb.svg}g alt="title"
-                                                     class="rounded-t"/>
+                                                <img
+                                                    src="/raiatecThumb.svg"
+                                                    alt={post.title.rendered}
+                                                    style={{width: '100%'}}
+                                                    className="rounded-t"
+                                                />
                                             )}
                                             <div className="flex flex-1 flex-col p-8">
                                                 <h3 className="mt-6 text-sm font-medium text-gray-900">{post.title.rendered}</h3>

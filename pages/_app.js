@@ -6,7 +6,7 @@ export default function MyApp({Component, pageProps}) {
         <>
             <Component {...pageProps} />
             <Head>
-                <title>My new cool app</title>
+                <title>raiatec.com</title>
             </Head>
         </>
     )
