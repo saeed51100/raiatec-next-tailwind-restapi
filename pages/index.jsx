@@ -427,10 +427,13 @@ export default function Example() {
                                                     className="rounded-t"
                                                 />
                                             )}
-                                            <div className="flex flex-1 flex-col p-8">
-                                                <h3 className="mt-6 text-sm font-medium text-gray-900">{post.title.rendered}</h3>
-                                                <h2 className="mt-6 text-sm font-medium text-gray-900">{post.excerpt.rendered}</h2>
-                                            </div>
+
+                                            <h3 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">
+                                                <Link href={`/${post.slug}`}>{post.title.rendered}</Link>
+                                            </h3>
+
+                                            <h2 className="mt-6 text-sm font-medium text-gray-900">{post.excerpt.rendered}</h2>
+
                                         </div>
                                     </div>
                                 ))}
@@ -439,9 +442,7 @@ export default function Example() {
                                     {posts.map((post) => (
                                         <div key={post.id}>
 
-                                            <Link href={`/${post.slug}`}>
-                                                {post.title.rendered}
-                                            </Link>
+                                            <Link href={`/${post.slug}`}>{post.title.rendered}</Link>
 
                                         </div>
                                     ))}
