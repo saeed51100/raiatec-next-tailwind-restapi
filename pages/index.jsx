@@ -27,7 +27,7 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline'
 import {ChevronDownIcon, MagnifyingGlassIcon, EnvelopeIcon, PhoneIcon} from '@heroicons/react/20/solid'
-import {usePosts} from "api/usePosts"; // Import the custom hook
+import {usePosts} from "api/usePosts";
 import Link from "next/link";
 
 const navigation = [
@@ -66,6 +66,14 @@ function classNames(...classes) {
 
 export default function Example() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const {posts, isLoading, isError} = usePosts(); // Use the custom hook
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error loading posts.</div>;
+    }
 
     return (
         <>
@@ -445,6 +453,18 @@ export default function Example() {
                                     </div>
                                 ))}
 
+                                <div>
+                                    {posts.map((post) => (
+                                        <div key={post.id}>
+
+                                            <Link href={`/${post.slug}`}>
+                                                {post.title.rendered}
+                                            </Link>
+
+                                        </div>
+                                    ))}
+                                </div>
+
                             </section>
 
 
@@ -455,3 +475,5 @@ export default function Example() {
         </>
     )
 }
+
+
