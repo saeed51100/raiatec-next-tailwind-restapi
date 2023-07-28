@@ -375,7 +375,23 @@ export default function Example() {
                 <div className="lg:pr-72">
 
                     <main className="py-10">
-                        <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
+                        <div className="px-4 sm:px-6 lg:px-8">
+                            {/*Your content */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
                     </main>
                 </div>
             </div>
