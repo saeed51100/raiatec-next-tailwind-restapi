@@ -432,7 +432,12 @@ export default function Example() {
                                                 <Link href={`/${post.slug}`}>{post.title.rendered}</Link>
                                             </h3>
 
-                                            <h2 className="mt-6 text-sm font-medium text-gray-900">{post.excerpt.rendered}</h2>
+                                            {/*<h2 className="font-normal text-gray-700 mb-3 line-clamp-4 break-all">{post.excerpt.rendered}</h2>*/}
+                                            {post.excerpt && (
+                                                <div className="font-normal text-gray-700 mb-3 line-clamp-4 break-all"
+                                                     dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
+                                            )}
+
 
                                         </div>
                                     </div>
