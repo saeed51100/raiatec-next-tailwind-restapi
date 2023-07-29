@@ -3,7 +3,7 @@
 import {usePosts} from "api/usePosts"; // Import the custom hook
 import Link from "next/link";
 
-const HomePage = () => {
+const ListOfPost = () => {
     const {posts, isLoading, isError} = usePosts(); // Use the custom hook
 
     if (isLoading) {
@@ -29,4 +29,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default ListOfPost;
