@@ -25,12 +25,6 @@ import Link from "next/link";
 import ListOfPost from "../components/list-of-opst";
 
 
-const userNavigation = [
-    {name: 'Your profile', href: '#'},
-    {name: 'Sign out', href: '#'},
-]
-
-
 export default function Example() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const {posts, isLoading, isError} = usePosts(); // Use the custom hook
