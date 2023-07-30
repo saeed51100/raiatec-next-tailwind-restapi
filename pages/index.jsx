@@ -1,9 +1,17 @@
 import Link from "next/link";
+import {usePosts} from "../api/usePosts";
 
 export default function Example() {
+    const {posts, isLoading, isError} = usePosts(); // Use the custom hook
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error loading posts.</div>;
+    }
     return (
         <>
-
             <section role="list"
                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
@@ -56,7 +64,6 @@ export default function Example() {
                     </div>
                 ))}
             </section>
-
         </>
     )
 }
