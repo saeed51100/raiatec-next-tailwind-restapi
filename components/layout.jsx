@@ -1,6 +1,6 @@
 import {usePosts} from "api/usePosts";
-import Sidebar from "../components/sidebar";
-import MenuTop from "../components/menu-top";
+import Sidebar from "components/sidebar";
+import MenuTop from "components/menu-top";
 
 
 export default function Layout({ children }) {
