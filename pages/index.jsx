@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {usePosts} from "../api/usePosts";
 
-export default function Example() {
+export default function Grid() {
     const {posts, isLoading, isError} = usePosts(); // Use the custom hook
     if (isLoading) {
         return <div>Loading...</div>;
