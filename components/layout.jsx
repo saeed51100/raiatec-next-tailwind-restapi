@@ -1,27 +1,10 @@
-
-/*
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import {useState} from 'react'
 import {usePosts} from "api/usePosts";
-import Link from "next/link";
 import Sidebar from "../components/sidebar";
 import MenuTop from "../components/menu-top";
 
 
 export default function Layout({ children }) {
-    const {posts, isLoading, isError} = usePosts(); // Use the custom hook
+    const {isLoading, isError} = usePosts(); // Use the custom hook
     if (isLoading) {
         return <div>Loading...</div>;
     }
