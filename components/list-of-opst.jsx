@@ -17,7 +17,7 @@ const ListOfPost = () => {
     return (
         <div>
             {posts.map((post) => (
-                <div key={post.id}>
+                <div key={post.id} className="my-2">
 
                     <Link href={`/${post.slug}`}>
                         {post.title.rendered}
