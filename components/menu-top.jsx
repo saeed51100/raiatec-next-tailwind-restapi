@@ -74,11 +74,13 @@ export default function MenuTop() {
 
                 {/*Raiatec logo */}
                 <div className="flex h-16 shrink-0 items-center">
-                    <img
-                        src="/raiatec.svg"
-                        alt="Raiatec Logo"
-                        className="h-8 w-auto"
-                    />
+                    <a href="/">
+                        <img
+                            src="/raiatec.svg"
+                            alt="Raiatec Logo"
+                            className="h-8 w-auto"
+                        />
+                    </a>
                 </div>
 
 
