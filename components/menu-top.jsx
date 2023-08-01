@@ -3,6 +3,7 @@ import {Bars3Icon, BellIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 import {Dialog, Transition} from "@headlessui/react";
 import {Fragment, useState} from "react";
+import Link from "next/link";
 
 export default function MenuTop() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -70,6 +71,18 @@ export default function MenuTop() {
 
             <div
                 className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+
+                {/*Raiatec logo */}
+                <div className="flex h-16 shrink-0 items-center">
+                    <img
+                        src="/raiatec.svg"
+                        alt="Raiatec Logo"
+                        className="h-8 w-auto"
+                    />
+                </div>
+
+
+                {/*Modal button*/}
                 <button type="button" className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
                         onClick={() => setSidebarOpen(true)}>
                     <span className="sr-only">Open sidebar</span>
@@ -79,32 +92,21 @@ export default function MenuTop() {
                 {/* Separator */}
                 <div className="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true"/>
 
-                {/* Search */}
-                <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-                    <form className="relative flex flex-1" action="#" method="GET">
-                        <label htmlFor="search-field" className="sr-only">
-                            Search
-                        </label>
-                        <MagnifyingGlassIcon
-                            className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-                            aria-hidden="true"
-                        />
-                        <input
-                            id="search-field"
-                            className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
-                            placeholder="Search..."
-                            type="search"
-                            name="search"
-                        />
-                    </form>
-                    <div className="flex items-center gap-x-4 lg:gap-x-6">
-                        <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
-                            <span className="sr-only">View notifications</span>
-                            <BellIcon className="h-6 w-6" aria-hidden="true"/>
-                        </button>
-
+                {/*Search Form*/}
+                <div className="flex flex-1 items-center justify-center px-2 lg:ml-6">
+                    <div className="w-full max-w-lg lg:max-w-xs">
+                        <label for="search" className="sr-only">Search</label>
+                        <div className="relative">
+                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <MagnifyingGlassIcon class="h-5 w-5 text-gray-400" aria-hidden="true"/>
+                            </div>
+                            <input id="search" name="search"
+                                   className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                   placeholder="Search" type="search"/>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </>
     )
