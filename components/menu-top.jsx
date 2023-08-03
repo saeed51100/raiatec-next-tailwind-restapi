@@ -123,7 +123,6 @@ export default function MenuTop() {
                         <li>
                             <Link href="/">
                                 <div
-                                    // className={linkActive}
                                     className={` ${
                                         router.pathname === '/' ? linkActive : linkHover
                                     }`}
@@ -135,7 +134,6 @@ export default function MenuTop() {
                         <li>
                             <Link href="/about">
                                 <div
-                                    // className={linkHover}
                                     className={` ${
                                         router.pathname === '/about' ? linkActive : linkHover
                                     }`}
