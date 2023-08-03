@@ -4,9 +4,15 @@ import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 import {Dialog, Transition} from "@headlessui/react";
 import {Fragment, useState} from "react";
 import Link from "next/link";
+import {useRouter} from 'next/router';
 
 export default function MenuTop() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const router = useRouter();
+    const linkActive = "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+    const linkHover = "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+
+
     return (
 
         <>
@@ -117,7 +123,11 @@ export default function MenuTop() {
                         <li>
                             <Link href="/">
                                 <div
-                                    className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                                    // className={linkActive}
+                                    className={` ${
+                                        router.pathname === '/' ? linkActive : linkHover
+                                    }`}
+
                                     aria-current="page">Home
                                 </div>
                             </Link>
@@ -125,7 +135,11 @@ export default function MenuTop() {
                         <li>
                             <Link href="/about">
                                 <div
-                                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About
+                                    // className={linkHover}
+                                    className={` ${
+                                        router.pathname === '/about' ? linkActive : linkHover
+                                    }`}
+                                >About
                                 </div>
                             </Link>
                         </li>
