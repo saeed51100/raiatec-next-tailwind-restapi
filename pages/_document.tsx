@@ -3,7 +3,21 @@ class MyDocument extends Document {
     render() {
         return (
             <Html dir="rtl" className="h-full bg-white">
-                <Head ></Head>
+                <Head>
+                    {/*https://flowbite.com/docs/customize/dark-mode/*/}
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                // On page load or when changing themes, best to add inline in \`head\` to avoid FOUC
+                                if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                                    document.documentElement.classList.add('dark');
+                                } else {
+                                    document.documentElement.classList.remove('dark')
+                                }
+                            `,
+                        }}
+                    />
+                </Head>
                 <body className="h-full">
                 <Main />
                 <NextScript />
