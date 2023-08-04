@@ -4,7 +4,8 @@ class MyDocument extends Document {
         return (
             <Html dir="rtl" className="h-full bg-white">
                 <Head>
-                    {/*https://flowbite.com/docs/customize/dark-mode/*/}
+                    {/*   https://flowbite.com/docs/customize/dark-mode/   */}
+                    {/*   and chat gpt   */}
                     <script
                         dangerouslySetInnerHTML={{
                             __html: `
