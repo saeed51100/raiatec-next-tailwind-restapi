@@ -4,7 +4,7 @@ import {Transition, Dialog} from "@headlessui/react";
 import {Fragment} from "react";
 import ListOfPost from "components/list-of-opst";
 
-export default function SidebarModal({ open, onClose, setSidebarOpen }) {
+export default function Modal({ open, onClose, setSidebarOpen }) {
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-50 lg:hidden" onClose={onClose}>
