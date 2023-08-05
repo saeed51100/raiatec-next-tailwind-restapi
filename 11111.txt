@@ -119,4 +119,4 @@ export default function Navbar({ onSidebarOpen }) {
 }
 
 
-Please optimize my codes.
+Please optimize my codes Besides, I want to have these three files in modular form and not to merge them.
