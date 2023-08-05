@@ -8,7 +8,7 @@ export default function MenuTop() {
 
     return (
         <>
-            <SidebarModal open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+            <SidebarModal open={sidebarOpen} onClose={() => setSidebarOpen(false)} setSidebarOpen={setSidebarOpen} />
             <Navbar onSidebarOpen={() => setSidebarOpen(true)} />
         </>
     );
