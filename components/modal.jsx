@@ -1,54 +1,3 @@
-I am using tailwindcss in my next.js application.
-I use the following three files to show the modal and navbar:
-
-// components/menu-top.jsx
-import React, { useState } from "react";
-import Navbar from "components/navbar";
-import SidebarModal from "components/modal";
-
-export default function MenuTop() {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-
-    return (
-        <>
-            <SidebarModal open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-            <Navbar onSidebarOpen={() => setSidebarOpen(true)} />
-        </>
-    );
-}
-
-// components/navbar.jsx
-import React, { useState } from "react";
-import { Bars3Icon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-
-export default function Navbar({ onSidebarOpen }) {
-    return (
-        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white dark:bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-            {/* Raiatec logo */}
-            <div className="flex h-16 shrink-0 items-center">
-                <Link href="/">
-                    <img
-                        src="/raiatec.svg"
-                        alt="Raiatec Logo"
-                        className="h-8 w-auto"
-                    />
-                </Link>
-            </div>
-
-            {/* Modal button */}
-            <button
-                type="button"
-                className="-m-2.5 p-2.5 text-gray-800 dark:text-white lg:hidden"
-                onClick={onSidebarOpen}
-            >
-                <span className="sr-only">Open sidebar</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-            </button>
-        </div>
-    );
-}
-
 // components/modal.jsx
 import React from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -120,22 +69,3 @@ export default function SidebarModal({ open, onClose }) {
         </Transition.Root>
     );
 }
-
-
-But I get the following error:
-
-Unhandled Runtime Error
-ReferenceError: setSidebarOpen is not defined
-
-Source
-components\modal.jsx (12:78) @ setSidebarOpen
-
-  10 | <Transition.Root show={open} as={Fragment}>
-  11 |     <Dialog as="div" className="relative z-50 lg:hidden" onClose={onClose}>
-> 12 |         <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
-     |                                                                      ^
-  13 |             <Transition.Child
-  14 |                 as={Fragment}
-  15 |                 enter="transition-opacity ease-linear duration-300"
-
-Please debug it.
