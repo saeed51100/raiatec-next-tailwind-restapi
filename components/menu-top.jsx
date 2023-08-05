@@ -151,9 +151,6 @@ export default function MenuTop() {
                 </button>
 
 
-                {/* Separator */}
-                <div className="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true"/>
-
                 {/*Modal button*/}
                 <button type="button" className="-m-2.5 p-2.5 text-gray-800 dark:text-white lg:hidden"
                         onClick={() => setSidebarOpen(true)}>
@@ -161,8 +158,6 @@ export default function MenuTop() {
                     <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
                 </button>
 
-                {/* Separator */}
-                <div className="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true"/>
 
 
                 {/*Search Form*/}
