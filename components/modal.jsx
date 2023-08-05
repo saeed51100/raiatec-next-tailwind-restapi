@@ -4,10 +4,8 @@ import {Transition, Dialog} from "@headlessui/react";
 import {Fragment} from "react";
 import ListOfPost from "components/list-of-opst";
 
-export default function Modal({ open, onClose, setSidebarOpen }) {
+function ModalBackground({ open }) {
     return (
-        <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-50 lg:hidden" onClose={onClose}>
                 <Transition.Child
                     as={Fragment}
                     enter="transition-opacity ease-linear duration-300"
@@ -19,8 +17,11 @@ export default function Modal({ open, onClose, setSidebarOpen }) {
                 >
                     <div className="fixed inset-0 bg-gray-900/80"/>
                 </Transition.Child>
+    );
+}
 
-                <div className="fixed inset-0 flex">
+function Sidebar({ children, onClose }) {
+    return (
                     <Transition.Child
                         as={Fragment}
                         enter="transition ease-in-out duration-300 transform"
@@ -41,14 +42,26 @@ export default function Modal({ open, onClose, setSidebarOpen }) {
                                 leaveTo="opacity-0"
                             >
                                 <div className="absolute right-full top-0 flex w-16 justify-center pt-5">
-                                    <button type="button" className="-m-2.5 p-2.5"
-                                            onClick={() => setSidebarOpen(false)}>
+                        <button type="button" className="-m-2.5 p-2.5" onClick={onClose}>
                                         <span className="sr-only">Close sidebar</span>
                                         <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true"/>
                                     </button>
                                 </div>
                             </Transition.Child>
-                            {/* Sidebar component, swap this element with another sidebar if you like */}
+                {children}
+            </Dialog.Panel>
+        </Transition.Child>
+    );
+}
+
+export default function Modal({ open, onClose }) {
+    return (
+        <Transition.Root show={open} as={Fragment}>
+            <Dialog as="div" className="relative z-50 lg:hidden" onClose={onClose}>
+                <ModalBackground open={open} />
+                <div className="fixed inset-0 flex">
+                    <Sidebar onClose={onClose}>
+                        {/* Sidebar content */}
                             <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                                 <div className="flex h-16 shrink-0 items-center">
                                     <img
@@ -59,8 +72,7 @@ export default function Modal({ open, onClose, setSidebarOpen }) {
                                 </div>
                                 <ListOfPost/>
                             </div>
-                        </Dialog.Panel>
-                    </Transition.Child>
+                    </Sidebar>
                 </div>
             </Dialog>
         </Transition.Root>
