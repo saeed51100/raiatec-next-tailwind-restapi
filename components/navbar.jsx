@@ -1,5 +1,4 @@
 // components/navbar.jsx
-import React, { useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
