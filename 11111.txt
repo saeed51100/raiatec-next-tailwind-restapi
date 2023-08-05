@@ -17,38 +17,6 @@ export default function MenuTop() {
     );
 }
 
-// components/navbar.jsx
-import React, { useState } from "react";
-import { Bars3Icon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-
-export default function Navbar({ onSidebarOpen }) {
-    return (
-        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white dark:bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-            {/* Raiatec logo */}
-            <div className="flex h-16 shrink-0 items-center">
-                <Link href="/">
-                    <img
-                        src="/raiatec.svg"
-                        alt="Raiatec Logo"
-                        className="h-8 w-auto"
-                    />
-                </Link>
-            </div>
-
-            {/* Modal button */}
-            <button
-                type="button"
-                className="-m-2.5 p-2.5 text-gray-800 dark:text-white lg:hidden"
-                onClick={onSidebarOpen}
-            >
-                <span className="sr-only">Open sidebar</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-            </button>
-        </div>
-    );
-}
-
 // components/modal.jsx
 import React from "react";
 import {XMarkIcon} from "@heroicons/react/24/outline";
@@ -119,12 +87,39 @@ export default function SidebarModal({open, onClose}) {
     );
 }
 
+// components/navbar.jsx
+import React, { useState } from "react";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
+export default function Navbar({ onSidebarOpen }) {
+    return (
+        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white dark:bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+            {/* Raiatec logo */}
+            <div className="flex h-16 shrink-0 items-center">
+                <Link href="/">
+                    <img
+                        src="/raiatec.svg"
+                        alt="Raiatec Logo"
+                        className="h-8 w-auto"
+                    />
+                </Link>
+            </div>
 
-But when I click on the cross icon, it gives the following error:
+            {/* Modal button */}
+            <button
+                type="button"
+                className="-m-2.5 p-2.5 text-gray-800 dark:text-white lg:hidden"
+                onClick={onSidebarOpen}
+            >
+                <span className="sr-only">Open sidebar</span>
+                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+        </div>
+    );
+}
 
-
- 1 of 1 unhandled error
+But when I click on the XMarkIcon , it gives the following error:
 
 Unhandled Runtime Error
 ReferenceError: setSidebarOpen is not defined
@@ -139,6 +134,5 @@ components\modal.jsx (46:53) @ onClick
   47 |         <span className="sr-only">Close sidebar</span>
   48 |         <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true"/>
   49 |     </button>
-Show collapsed frames
 
 Please debug it.
