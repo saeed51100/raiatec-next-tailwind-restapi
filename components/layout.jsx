@@ -1,9 +1,15 @@
 import {usePosts} from "api/usePosts";
 import Sidebar from "components/sidebar";
-import MenuTop from "components/menu-top";
+import React, {useState, useCallback} from "react";
+import Navbar from "components/navbar";
+import Modal from "components/modal";
 
 
-export default function Layout({ children }) {
+export default function Layout({children}) {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    const openSidebar = useCallback(() => setSidebarOpen(true), []);
+    const closeSidebar = useCallback(() => setSidebarOpen(false), []);
     const {isLoading, isError} = usePosts(); // Use the custom hook
     if (isLoading) {
         return <div>Loading...</div>;
@@ -14,33 +20,25 @@ export default function Layout({ children }) {
     }
 
     return (
-        <>
-            {/*
-        This example requires updating your template:
+        <div>
+            <Modal open={sidebarOpen} onClose={closeSidebar}/>
 
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
-            <div>
-                <MenuTop/>
+            <Navbar onSidebarOpen={openSidebar}/>
 
-                <Sidebar/>
+            <Sidebar/>
 
-                <div className="lg:pr-72">
+            <div className="lg:pr-72">
 
-                    <main className="py-10">
-                        <div className="px-4 sm:px-6 lg:px-8">
-                            {/*Your content */}
+                <main className="py-10">
+                    <div className="px-4 sm:px-6 lg:px-8">
+                        {/*Your content */}
 
-                            <main>{children}</main>
+                        <main>{children}</main>
 
-                        </div>
-                    </main>
-                </div>
+                    </div>
+                </main>
             </div>
-        </>
+        </div>
     )
 }
 
