@@ -4,6 +4,7 @@ import Link from "next/link";
 import {useEffect} from "react";
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 import {useRouter} from "next/router";
+import RaiatecLogo from "./raiatec-logo";
 
 export default function Navbar({onSidebarOpen}) {
     useEffect(() => {
@@ -54,16 +55,9 @@ export default function Navbar({onSidebarOpen}) {
     return (
         <div
             className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white dark:bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-            {/* Raiatec logo */}
-            <div className="flex h-16 shrink-0 items-center">
-                <Link href="/">
-                    <img
-                        src="/raiatec.svg"
-                        alt="Raiatec Logo"
-                        className="h-8 w-auto"
-                    />
-                </Link>
-            </div>
+
+            <RaiatecLogo />
+
 
             {/*Dark mode button*/}
             <button id="theme-toggle" type="button"
