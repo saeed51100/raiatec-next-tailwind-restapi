@@ -171,3 +171,5 @@ To make the program more modular, I want to remove all the arguments and variabl
 the components/navbar.jsx and components/modal.jsx files from the components/layout.jsx file
 and move them to the components/navbar.jsx and components/modal.jsx files. .
 How should I do this?
+Also, I don't want to use React context and custom hooks because it adds some code and
+logic to my app.
