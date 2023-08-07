@@ -1,23 +1,173 @@
-GPT-4
+I am using tailwindcss in my next.js application.
+To show the modal, I use the following three files:
 
-Your code is mostly well-structured, but there are a few ways you could optimize it.
+// components/layout.jsx
+import {usePosts} from "api/usePosts";
+import Sidebar from "components/sidebar";
+import React, {useState, useCallback} from "react";
+import Navbar from "components/navbar";
+import Modal from "components/modal";
 
-Here are some suggestions:
 
-Your MenuTop component can be made more declarative by creating two separate functions for
-opening and closing the sidebar. This makes your code easier to read and understand.
-You have a comment in your Modal component mentioning that it can be swapped with another
-sidebar. If this is a common operation, consider passing the sidebar as a prop to make this
-easier and more modular.
-Your Modal component can be further broken down into smaller components, such as ModalBackground
-and Sidebar, to make it easier to maintain and understand.
-Your Navbar component can also be broken down into smaller components, such as Logo and
-OpenSidebarButton.
-Inline comments can be used to describe the purpose of the code.
-Use useCallback hook to avoid unnecessary re-renders.
-Here're the optimized versions of your components:
+export default function Layout({children}) {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
-This refactoring makes your code more modular and easier to understand, and separates the
-concerns of each component. It also makes reusing components and testing each component
-individually easier.
+    const openSidebar = useCallback(() => setSidebarOpen(true), []);
+    const closeSidebar = useCallback(() => setSidebarOpen(false), []);
+    const {isLoading, isError} = usePosts(); // Use the custom hook
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
+    if (isError) {
+        return <div>Error loading posts.</div>;
+    }
+
+    return (
+        <div>
+            <Modal open={sidebarOpen} onClose={closeSidebar}/>
+
+            <Navbar onSidebarOpen={openSidebar}/>
+
+            <Sidebar/>
+
+            <div className="lg:pr-72">
+
+                <main className="py-10">
+                    <div className="px-4 sm:px-6 lg:px-8">
+                        {/*Your content */}
+
+                        <main>{children}</main>
+
+                    </div>
+                </main>
+            </div>
+        </div>
+    )
+}
+
+// components/navbar.jsx
+import {Bars3Icon} from "@heroicons/react/24/outline";
+import RaiatecLogo from "./raiatec-logo";
+import DarkModeButton from "./dark-mode-button";
+import SearchForm from "./search-Form";
+import NavigationItems from "./navigation-Items";
+
+export default function Navbar({onSidebarOpen}) {
+
+    return (
+        <div
+            className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white dark:bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+
+            <RaiatecLogo/>
+
+
+            <DarkModeButton/>
+
+
+            {/* Modal button */}
+            <button
+                type="button"
+                className="-m-2.5 p-2.5 text-gray-800 dark:text-white lg:hidden"
+                onClick={onSidebarOpen}
+            >
+                <span className="sr-only">Open sidebar</span>
+                <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
+            </button>
+
+
+            <SearchForm/>
+
+
+            <NavigationItems/>
+
+        </div>
+    );
+}
+
+// components/modal.jsx
+import {XMarkIcon} from "@heroicons/react/24/outline";
+import {Transition, Dialog} from "@headlessui/react";
+import {Fragment} from "react";
+import ListOfPost from "components/list-of-opst";
+
+function ModalBackground({open}) {
+    return (
+        <Transition.Child
+            as={Fragment}
+            enter="transition-opacity ease-linear duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity ease-linear duration-300"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+        >
+            <div className="fixed inset-0 bg-gray-900/80"/>
+        </Transition.Child>
+    );
+}
+
+function Sidebar({children, onClose}) {
+    return (
+        <Transition.Child
+            as={Fragment}
+            enter="transition ease-in-out duration-300 transform"
+            enterFrom="translate-x-full"
+            enterTo="translate-x-0"
+            leave="transition ease-in-out duration-300 transform"
+            leaveFrom="translate-x-0"
+            leaveTo="translate-x-full"
+        >
+            <Dialog.Panel className="relative ml-0 flex w-full max-w-xs flex-1">
+                <Transition.Child
+                    as={Fragment}
+                    enter="ease-in-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in-out duration-300"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                >
+                    <div className="absolute right-full top-0 flex w-16 justify-center pt-5">
+                        <button type="button" className="-m-2.5 p-2.5" onClick={onClose}>
+                            <span className="sr-only">Close sidebar</span>
+                            <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true"/>
+                        </button>
+                    </div>
+                </Transition.Child>
+                {children}
+            </Dialog.Panel>
+        </Transition.Child>
+    );
+}
+
+export default function Modal({open, onClose}) {
+    return (
+        <Transition.Root show={open} as={Fragment}>
+            <Dialog as="div" className="relative z-50 lg:hidden" onClose={onClose}>
+                <ModalBackground open={open}/>
+                <div className="fixed inset-0 flex">
+                    <Sidebar onClose={onClose}>
+                        {/* Sidebar content */}
+                        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+                            <div className="flex h-16 shrink-0 items-center">
+                                <img
+                                    className="h-8 w-auto"
+                                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                    alt="Your Company"
+                                />
+                            </div>
+                            <ListOfPost/>
+                        </div>
+                    </Sidebar>
+                </div>
+            </Dialog>
+        </Transition.Root>
+    );
+}
+
+
+To make the program more modular, I want to remove all the arguments and variables
+related to the components/navbar.jsx and components/modal.jsx files from
+the components/layout.jsx file and move them to their own files.
+How should I do this?
