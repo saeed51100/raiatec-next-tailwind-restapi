@@ -1,14 +1,22 @@
-I use tailwindcss in the next.js program and display the list of posts in a modal window using the following two files:
+Hello
+I have written the front end of my wordpress site using tailwindcss
+and next.js and it works properly on xampp in Windows 10.
+The codes I have written in next.js are as follows:
+
+// components/layout.jsx
+import {usePosts} from "api/usePosts";
+import Sidebar from "components/sidebar";
+import React, {useState, useCallback} from "react";
+import Navbar from "components/navbar";
+import Modal from "components/modal";
 
 
-// components/list-of-post.jsx
+export default function Layout({children}) {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
-import {usePosts} from "api/usePosts"; // Import the custom hook
-import Link from "next/link";
-
-const ListOfPost = () => {
-    const {posts, isLoading, isError} = usePosts(); // Use the custom hook
-
+    const openSidebar = useCallback(() => setSidebarOpen(true), []);
+    const closeSidebar = useCallback(() => setSidebarOpen(false), []);
+    const {isLoading, isError} = usePosts(); // Use the custom hook
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -19,25 +27,31 @@ const ListOfPost = () => {
 
     return (
         <div>
-            {posts.map((post) => (
-                <div key={post.id} className="my-2">
+            <Modal open={sidebarOpen} onClose={closeSidebar}/>
 
-                    <Link href={`/${post.slug}`}>
-                        {post.title.rendered}
-                    </Link>
+            <Navbar onSidebarOpen={openSidebar}/>
 
-                </div>
-            ))}
+            <Sidebar/>
+
+            <div className="lg:pr-72">
+
+                <main className="py-10">
+                    <div className="px-4 sm:px-6 lg:px-8">
+                        {/*Your content */}
+
+                        <main>{children}</main>
+
+                    </div>
+                </main>
+            </div>
         </div>
-    );
-};
-
-export default ListOfPost;
+    )
+}
 
 // components/modal.jsx
 import {XMarkIcon} from "@heroicons/react/24/outline";
 import {Transition, Dialog} from "@headlessui/react";
-import {Fragment} from "react";
+import { Fragment, useState } from "react";
 import ListOfPost from "components/list-of-post";
 
 function ModalBackground({open}) {
@@ -97,10 +111,11 @@ export default function Modal({open, onClose}) {
                 <ModalBackground open={open}/>
                 <div className="fixed inset-0 flex">
                     <Sidebar onClose={onClose}>
-                        {/* Sidebar content */}
+                        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+                            {/* Sidebar content */}
 
-                        <ListOfPost/>
-
+                            <ListOfPost onClose={onClose} />
+                        </div>
                     </Sidebar>
                 </div>
             </Dialog>
@@ -108,5 +123,77 @@ export default function Modal({open, onClose}) {
     );
 }
 
-Now the problem is that when clicking on the post title, the modal window remains open.
-Please write me a code that closes the modal window when the post title is clicked.
+// components/navbar.jsx
+import {Bars3Icon} from "@heroicons/react/24/outline";
+import RaiatecLogo from "./raiatec-logo";
+import DarkModeButton from "./dark-mode-button";
+import SearchForm from "./search-Form";
+import NavigationItems from "./navigation-Items";
+
+export default function Navbar({onSidebarOpen}) {
+
+    return (
+        <div
+            className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white dark:bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+
+            <RaiatecLogo/>
+
+
+            <DarkModeButton/>
+
+
+            {/* Modal button */}
+            <button
+                type="button"
+                className="-m-2.5 p-2.5 text-gray-800 dark:text-white lg:hidden"
+                onClick={onSidebarOpen}
+            >
+                <span className="sr-only">Open sidebar</span>
+                <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
+            </button>
+
+
+            <SearchForm/>
+
+
+            <NavigationItems/>
+
+        </div>
+    );
+}
+
+// components/list-of-post.jsx
+
+import {usePosts} from "api/usePosts"; // Import the custom hook
+import Link from "next/link";
+
+const ListOfPost = ({onClose}) => {
+    const {posts, isLoading, isError} = usePosts(); // Use the custom hook
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error loading posts.</div>;
+    }
+
+    return (
+        <div>
+            {posts.map((post) => (
+                <div key={post.id} className="my-2">
+
+                    <Link href={`/${post.slug}`} onClick={onClose}>
+                        {post.title.rendered}
+                    </Link>
+
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default ListOfPost;
+
+
+Please debug and optimize the codes.
