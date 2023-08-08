@@ -1,7 +1,7 @@
 // components/modal.jsx
 import {XMarkIcon} from "@heroicons/react/24/outline";
 import {Transition, Dialog} from "@headlessui/react";
-import {Fragment} from "react";
+import { Fragment, useState } from "react";
 import ListOfPost from "components/list-of-post";
 
 function ModalBackground({open}) {
@@ -64,7 +64,7 @@ export default function Modal({open, onClose}) {
                         <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                             {/* Sidebar content */}
 
-                            <ListOfPost/>
+                            <ListOfPost onClose={onClose} />
                         </div>
                     </Sidebar>
                 </div>
