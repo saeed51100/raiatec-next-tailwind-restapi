@@ -1,43 +1,7 @@
-I use tailwindcss in the next.js program and display the list of posts in a modal window using the following two files:
-
-
-// components/list-of-post.jsx
-
-import {usePosts} from "api/usePosts"; // Import the custom hook
-import Link from "next/link";
-
-const ListOfPost = () => {
-    const {posts, isLoading, isError} = usePosts(); // Use the custom hook
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (isError) {
-        return <div>Error loading posts.</div>;
-    }
-
-    return (
-        <div>
-            {posts.map((post) => (
-                <div key={post.id} className="my-2">
-
-                    <Link href={`/${post.slug}`}>
-                        {post.title.rendered}
-                    </Link>
-
-                </div>
-            ))}
-        </div>
-    );
-};
-
-export default ListOfPost;
-
 // components/modal.jsx
 import {XMarkIcon} from "@heroicons/react/24/outline";
 import {Transition, Dialog} from "@headlessui/react";
-import {Fragment} from "react";
+import { Fragment, useState } from "react";
 import ListOfPost from "components/list-of-post";
 
 function ModalBackground({open}) {
@@ -97,16 +61,14 @@ export default function Modal({open, onClose}) {
                 <ModalBackground open={open}/>
                 <div className="fixed inset-0 flex">
                     <Sidebar onClose={onClose}>
-                        {/* Sidebar content */}
+                        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+                            {/* Sidebar content */}
 
-                        <ListOfPost/>
-
+                            <ListOfPost onClose={onClose} />
+                        </div>
                     </Sidebar>
                 </div>
             </Dialog>
         </Transition.Root>
     );
 }
-
-Now the problem is that when clicking on the post title, the modal window remains open.
-Please write me a code that closes the modal window when the post title is clicked.
