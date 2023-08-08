@@ -1,20 +1,14 @@
-I am using tailwindcss in my next.js application.
-I use the following three files to show the modal and the program works correctly:
-
-// components/layout.jsx
-import {usePosts} from "api/usePosts";
-import Sidebar from "components/sidebar";
-import React, {useState, useCallback} from "react";
-import Navbar from "components/navbar";
-import Modal from "components/modal";
+I use tailwindcss in the next.js program and display the list of posts in a modal window using the following two files:
 
 
-export default function Layout({children}) {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+// components/list-of-post.jsx
 
-    const openSidebar = useCallback(() => setSidebarOpen(true), []);
-    const closeSidebar = useCallback(() => setSidebarOpen(false), []);
-    const {isLoading, isError} = usePosts(); // Use the custom hook
+import {usePosts} from "api/usePosts"; // Import the custom hook
+import Link from "next/link";
+
+const ListOfPost = () => {
+    const {posts, isLoading, isError} = usePosts(); // Use the custom hook
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -25,71 +19,26 @@ export default function Layout({children}) {
 
     return (
         <div>
-            <Modal open={sidebarOpen} onClose={closeSidebar}/>
+            {posts.map((post) => (
+                <div key={post.id} className="my-2">
 
-            <Navbar onSidebarOpen={openSidebar}/>
+                    <Link href={`/${post.slug}`}>
+                        {post.title.rendered}
+                    </Link>
 
-            <Sidebar/>
-
-            <div className="lg:pr-72">
-
-                <main className="py-10">
-                    <div className="px-4 sm:px-6 lg:px-8">
-                        {/*Your content */}
-
-                        <main>{children}</main>
-
-                    </div>
-                </main>
-            </div>
-        </div>
-    )
-}
-
-// components/navbar.jsx
-import {Bars3Icon} from "@heroicons/react/24/outline";
-import RaiatecLogo from "./raiatec-logo";
-import DarkModeButton from "./dark-mode-button";
-import SearchForm from "./search-Form";
-import NavigationItems from "./navigation-Items";
-
-export default function Navbar({onSidebarOpen}) {
-
-    return (
-        <div
-            className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white dark:bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-
-            <RaiatecLogo/>
-
-
-            <DarkModeButton/>
-
-
-            {/* Modal button */}
-            <button
-                type="button"
-                className="-m-2.5 p-2.5 text-gray-800 dark:text-white lg:hidden"
-                onClick={onSidebarOpen}
-            >
-                <span className="sr-only">Open sidebar</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
-            </button>
-
-
-            <SearchForm/>
-
-
-            <NavigationItems/>
-
+                </div>
+            ))}
         </div>
     );
-}
+};
+
+export default ListOfPost;
 
 // components/modal.jsx
 import {XMarkIcon} from "@heroicons/react/24/outline";
 import {Transition, Dialog} from "@headlessui/react";
 import {Fragment} from "react";
-import ListOfPost from "components/list-of-opst";
+import ListOfPost from "components/list-of-post";
 
 function ModalBackground({open}) {
     return (
@@ -166,10 +115,5 @@ export default function Modal({open, onClose}) {
     );
 }
 
-
-To make the program more modular, I want to remove all the arguments and variables related to
-the components/navbar.jsx and components/modal.jsx files from the components/layout.jsx file
-and move them to the components/navbar.jsx and components/modal.jsx files. .
-How should I do this?
-Also, I don't want to use React context and custom hooks because it adds some code and
-logic to my app.
+Now the problem is that when clicking on the post title, the modal window remains open.
+Please write me a code that closes the modal window when the post title is clicked.

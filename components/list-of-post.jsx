@@ -1,4 +1,4 @@
-// components/grid/index.js
+// components/list-of-post.jsx
 
 import {usePosts} from "api/usePosts"; // Import the custom hook
 import Link from "next/link";

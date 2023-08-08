@@ -2,7 +2,7 @@
 import {XMarkIcon} from "@heroicons/react/24/outline";
 import {Transition, Dialog} from "@headlessui/react";
 import {Fragment} from "react";
-import ListOfPost from "components/list-of-opst";
+import ListOfPost from "components/list-of-post";
 
 function ModalBackground({open}) {
     return (

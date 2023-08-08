@@ -1,4 +1,4 @@
-import ListOfPost from "./list-of-opst";
+import ListOfPost from "./list-of-post";
 
 export default function Sidebar() {
     return (
