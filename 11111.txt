@@ -196,4 +196,4 @@ const ListOfPost = ({onClose}) => {
 export default ListOfPost;
 
 
-Please debug and optimize the codes.
+What should I do for Linting and Formatting my program?
