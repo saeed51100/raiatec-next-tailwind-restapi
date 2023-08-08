@@ -18,11 +18,9 @@ const ListOfPost = ({onClose}) => {
         <div>
             {posts.map((post) => (
                 <div key={post.id} className="my-2">
-
                     <Link href={`/${post.slug}`} onClick={onClose}>
                         {post.title.rendered}
                     </Link>
-
                 </div>
             ))}
         </div>

@@ -13,9 +13,7 @@ export default function Navbar({onSidebarOpen}) {
 
             <RaiatecLogo/>
 
-
             <DarkModeButton/>
-
 
             {/* Modal button */}
             <button
@@ -27,12 +25,9 @@ export default function Navbar({onSidebarOpen}) {
                 <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
             </button>
 
-
             <SearchForm/>
 
-
             <NavigationItems/>
-
         </div>
     );
 }

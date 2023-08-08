@@ -12,10 +12,7 @@ export default function NavigationItems() {
                 <li>
                     <Link href="/">
                         <div
-                            className={` ${
-                                router.pathname === '/' ? linkActive : linkHover
-                            }`}
-
+                            className={` ${router.pathname === '/' ? linkActive : linkHover}`}
                             aria-current="page">Home
                         </div>
                     </Link>
@@ -23,10 +20,9 @@ export default function NavigationItems() {
                 <li>
                     <Link href="/about">
                         <div
-                            className={` ${
-                                router.pathname === '/about' ? linkActive : linkHover
-                            }`}
-                        >About
+                            className={` ${router.pathname === '/about' ? linkActive : linkHover}`}
+                        >
+                            About
                         </div>
                     </Link>
                 </li>
