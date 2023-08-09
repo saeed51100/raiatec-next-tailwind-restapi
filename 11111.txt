@@ -1,5 +1,6 @@
 I use next.js to show the list of posts as well as categories
 and I have a problem to show categories.
+categories are not shown
 Please debug the following codes:
 
 // api/usePosts.js
@@ -45,8 +46,7 @@ export function useCategories() {
 
 // components/list-of-posts.jsx
 
-import {usePosts} from "api/usePosts"; // Import the custom hook
-import { useCategories } from "api/useCategories"; // Import the custom hook for categories
+import {usePosts, useCategories} from "api/usePosts"; // Import the custom hook
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
@@ -85,20 +85,4 @@ const ListOfPost = ({onClose}) => {
 
 export default ListOfPost;
 
-The error I get is:
 
-./components/list-of-post.jsx:4:0
-Module not found: Can't resolve 'api/useCategories'
-  2 |
-  3 | import {usePosts} from "api/usePosts"; // Import the custom hook
-> 4 | import { useCategories } from "api/useCategories"; // Import the custom hook for categories
-  5 | import Link from "next/link";
-  6 |
-  7 | const ListOfPost = ({onClose}) => {
-
-https://nextjs.org/docs/messages/module-not-found
-
-Import trace for requested module:
-./components/modal.jsx
-./components/layout.jsx
-./pages/_app.tsx

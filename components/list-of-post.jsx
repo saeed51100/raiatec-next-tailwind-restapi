@@ -20,10 +20,11 @@ const ListOfPost = ({onClose}) => {
             <div>
                 {categories.map((category) => (
                     <div key={category.id} className="my-2 bg-red-200">
-                        {category.rendered}
+                        {category.name}
                     </div>
                 ))}
             </div>
+
             <div>
                 {posts.map((post) => (
                     <div key={post.id} className="my-2">
