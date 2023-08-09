@@ -1,3 +1,5 @@
+// api/usePosts.js
+
 import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -21,6 +23,17 @@ export function usePostBySlug(slug) {
 
     return {
         post: data && data[0], // Assuming the slug is unique, so we take the first post found
+        isLoading: !error && !data,
+        isError: error,
+    };
+}
+
+// Function to fetch categories
+export function useCategories() {
+    const apiUrl = `${API_URL}/categories?per_page=20`;
+    const {data, error} = useSWR(apiUrl, fetcher);
+    return {
+        categories: data,
         isLoading: !error && !data,
         isError: error,
     };

@@ -1,199 +1,104 @@
-Hello
-I have written the front end of my wordpress site using tailwindcss
-and next.js and it works properly on xampp in Windows 10.
-The codes I have written in next.js are as follows:
+I use next.js to show the list of posts as well as categories
+and I have a problem to show categories.
+Please debug the following codes:
 
-// components/layout.jsx
-import {usePosts} from "api/usePosts";
-import Sidebar from "components/sidebar";
-import React, {useState, useCallback} from "react";
-import Navbar from "components/navbar";
-import Modal from "components/modal";
+// api/usePosts.js
 
+import useSWR from 'swr';
 
-export default function Layout({children}) {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+const fetcher = (url) => fetch(url).then((res) => res.json());
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-    const openSidebar = useCallback(() => setSidebarOpen(true), []);
-    const closeSidebar = useCallback(() => setSidebarOpen(false), []);
-    const {isLoading, isError} = usePosts(); // Use the custom hook
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (isError) {
-        return <div>Error loading posts.</div>;
-    }
-
-    return (
-        <div>
-            <Modal open={sidebarOpen} onClose={closeSidebar}/>
-
-            <Navbar onSidebarOpen={openSidebar}/>
-
-            <Sidebar/>
-
-            <div className="lg:pr-72">
-
-                <main className="py-10">
-                    <div className="px-4 sm:px-6 lg:px-8">
-                        {/*Your content */}
-
-                        <main>{children}</main>
-
-                    </div>
-                </main>
-            </div>
-        </div>
-    )
+// Function to fetch post titles
+export function usePosts() {
+    const apiUrl = `${API_URL}/posts?per_page=20&_embed`;
+    const {data, error} = useSWR(apiUrl, fetcher);
+    return {
+        posts: data,
+        isLoading: !error && !data,
+        isError: error,
+    };
 }
 
-// components/modal.jsx
-import {XMarkIcon} from "@heroicons/react/24/outline";
-import {Transition, Dialog} from "@headlessui/react";
-import { Fragment, useState } from "react";
-import ListOfPost from "components/list-of-post";
+// Function to fetch a single post by its slug
+export function usePostBySlug(slug) {
+    const apiUrl = `${API_URL}/posts?slug=${slug}`;
+    const {data, error} = useSWR(apiUrl, fetcher);
 
-function ModalBackground({open}) {
-    return (
-        <Transition.Child
-            as={Fragment}
-            enter="transition-opacity ease-linear duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-        >
-            <div className="fixed inset-0 bg-gray-900/80"/>
-        </Transition.Child>
-    );
+    return {
+        post: data && data[0], // Assuming the slug is unique, so we take the first post found
+        isLoading: !error && !data,
+        isError: error,
+    };
 }
 
-function Sidebar({children, onClose}) {
-    return (
-        <Transition.Child
-            as={Fragment}
-            enter="transition ease-in-out duration-300 transform"
-            enterFrom="translate-x-full"
-            enterTo="translate-x-0"
-            leave="transition ease-in-out duration-300 transform"
-            leaveFrom="translate-x-0"
-            leaveTo="translate-x-full"
-        >
-            <Dialog.Panel className="relative ml-0 flex w-full max-w-xs flex-1">
-                <Transition.Child
-                    as={Fragment}
-                    enter="ease-in-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in-out duration-300"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                >
-                    <div className="absolute right-full top-0 flex w-16 justify-center pt-5">
-                        <button type="button" className="-m-2.5 p-2.5" onClick={onClose}>
-                            <span className="sr-only">Close sidebar</span>
-                            <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true"/>
-                        </button>
-                    </div>
-                </Transition.Child>
-                {children}
-            </Dialog.Panel>
-        </Transition.Child>
-    );
+// Function to fetch categories
+export function useCategories() {
+    const apiUrl = `${API_URL}/categories?per_page=20`;
+    const {data, error} = useSWR(apiUrl, fetcher);
+    return {
+        categories: data,
+        isLoading: !error && !data,
+        isError: error,
+    };
 }
 
-export default function Modal({open, onClose}) {
-    return (
-        <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-50 lg:hidden" onClose={onClose}>
-                <ModalBackground open={open}/>
-                <div className="fixed inset-0 flex">
-                    <Sidebar onClose={onClose}>
-                        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
-                            {/* Sidebar content */}
-
-                            <ListOfPost onClose={onClose} />
-                        </div>
-                    </Sidebar>
-                </div>
-            </Dialog>
-        </Transition.Root>
-    );
-}
-
-// components/navbar.jsx
-import {Bars3Icon} from "@heroicons/react/24/outline";
-import RaiatecLogo from "./raiatec-logo";
-import DarkModeButton from "./dark-mode-button";
-import SearchForm from "./search-Form";
-import NavigationItems from "./navigation-Items";
-
-export default function Navbar({onSidebarOpen}) {
-
-    return (
-        <div
-            className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white dark:bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-
-            <RaiatecLogo/>
-
-
-            <DarkModeButton/>
-
-
-            {/* Modal button */}
-            <button
-                type="button"
-                className="-m-2.5 p-2.5 text-gray-800 dark:text-white lg:hidden"
-                onClick={onSidebarOpen}
-            >
-                <span className="sr-only">Open sidebar</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
-            </button>
-
-
-            <SearchForm/>
-
-
-            <NavigationItems/>
-
-        </div>
-    );
-}
-
-// components/list-of-post.jsx
+// components/list-of-posts.jsx
 
 import {usePosts} from "api/usePosts"; // Import the custom hook
+import { useCategories } from "api/useCategories"; // Import the custom hook for categories
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
-    const {posts, isLoading, isError} = usePosts(); // Use the custom hook
+  const { posts, isLoading: isLoadingPosts, isError: isErrorPosts } = usePosts(); // Use the custom hook for posts
+  const { categories, isLoading: isLoadingCategories, isError: isErrorCategories } = useCategories(); // Use the custom hook for categories
 
-    if (isLoading) {
+  if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
     }
 
-    if (isError) {
-        return <div>Error loading posts.</div>;
+  if (isErrorPosts || isErrorCategories) {
+    return <div>Error loading data.</div>;
     }
 
     return (
-        <div>
-            {posts.map((post) => (
-                <div key={post.id} className="my-2">
-
-                    <Link href={`/${post.slug}`} onClick={onClose}>
-                        {post.title.rendered}
-                    </Link>
-
-                </div>
-            ))}
-        </div>
+        <>
+            <div>
+                {categories.map((category) => (
+                    <div key={category.id} className="my-2 bg-red-200">
+                        {category.rendered}
+                    </div>
+                ))}
+            </div>
+            <div>
+                {posts.map((post) => (
+                    <div key={post.id} className="my-2">
+                        <Link href={`/${post.slug}`} onClick={onClose}>
+                            {post.title.rendered}
+                        </Link>
+                    </div>
+                ))}
+            </div>
+        </>
     );
 };
 
 export default ListOfPost;
 
+The error I get is:
 
-I have installed eslint. How do I use it to review my application?
+./components/list-of-post.jsx:4:0
+Module not found: Can't resolve 'api/useCategories'
+  2 |
+  3 | import {usePosts} from "api/usePosts"; // Import the custom hook
+> 4 | import { useCategories } from "api/useCategories"; // Import the custom hook for categories
+  5 | import Link from "next/link";
+  6 |
+  7 | const ListOfPost = ({onClose}) => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./components/modal.jsx
+./components/layout.jsx
+./pages/_app.tsx
