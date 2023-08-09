@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {usePosts} from "api/usePosts";
+import {usePosts} from "api/useApi";
 
 export default function Grid() {
     const {posts, isLoading, isError} = usePosts(); // Use the custom hook

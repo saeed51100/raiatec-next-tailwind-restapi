@@ -1,7 +1,7 @@
 // pages/[post-slug].js
 
 import {useRouter} from 'next/router';
-import {usePostBySlug} from 'api/usePosts'; // Import the custom hook
+import {usePostBySlug} from 'api/useApi'; // Import the custom hook
 
 const SinglePostPage = () => {
     const router = useRouter();

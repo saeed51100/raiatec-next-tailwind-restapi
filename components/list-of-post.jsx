@@ -1,6 +1,6 @@
 // components/list-of-posts.jsx
 
-import {usePosts, useCategories} from "api/usePosts"; // Import the custom hook
+import {usePosts, useCategories} from "api/useApi"; // Import the custom hook
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
