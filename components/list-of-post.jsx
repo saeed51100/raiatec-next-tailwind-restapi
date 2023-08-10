@@ -4,15 +4,15 @@ import {usePosts, useCategories} from "api/useApi"; // Import the custom hook
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
-  const { posts, isLoading: isLoadingPosts, isError: isErrorPosts } = usePosts(); // Use the custom hook for posts
-  const { categories, isLoading: isLoadingCategories, isError: isErrorCategories } = useCategories(); // Use the custom hook for categories
+    const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts(); // Use the custom hook for posts
+    const {categories, isLoading: isLoadingCategories, isError: isErrorCategories} = useCategories(); // Use the custom hook for categories
 
-  if (isLoadingPosts || isLoadingCategories) {
+    if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
     }
 
-  if (isErrorPosts || isErrorCategories) {
-    return <div>Error loading data.</div>;
+    if (isErrorPosts || isErrorCategories) {
+        return <div>Error loading data.</div>;
     }
 
     return (
@@ -28,9 +28,27 @@ const ListOfPost = ({onClose}) => {
             <div>
                 {posts.map((post) => (
                     <div key={post.id} className="my-2">
-                        <Link href={`/${post.slug}`} onClick={onClose}>
-                            {post.title.rendered}
-                        </Link>
+                        {(post.categories.length === 0) ? (
+                            <div>{post.title.rendered}</div>
+                        ) : (
+
+
+                            categories.map((category) => (
+                                    <div key={category.id} >
+                                        <div className="bg-green-200">
+                                            {category.name}
+                                        </div>
+                                    </div>
+                                ))
+
+
+
+
+
+
+
+
+                        )}
                     </div>
                 ))}
             </div>

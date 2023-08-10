@@ -46,3 +46,11 @@ const ListOfPost = ({onClose}) => {
 };
 
 export default ListOfPost;
+
+
+like this:
+{if post.category  (
+                            <div>The post has a category: {post.category.name}</div>
+                        ) else (
+                            <div>The post does not have a category: {post.title.rendered}</div>
+                        )}
