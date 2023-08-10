@@ -1,14 +1,27 @@
-In the next.js code below, write the function isCategoryIsUnique(category.name) that
-takes the category.name and returns true if it is Unique and returns false if it is repeated.
+I have written the following code in next.js which works:
 
 // components/list-of-posts.jsx
-
+import { useMemo } from 'react';
 import {usePosts, useCategories} from "api/useApi"; // Import the custom hook
-
+import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
     const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts(); // Use the custom hook for posts
     const {categories, isLoading: isLoadingCategories, isError: isErrorCategories} = useCategories(); // Use the custom hook for categories
+
+// Computed property to check if category name is repeated
+    const isCategoryIsUnique = useMemo(() => {
+        const uniqueCategories = new Set();
+        return (categoryName) => {
+            if (uniqueCategories.has(categoryName)) {
+                return false; // Category name is repeated
+            } else {
+                uniqueCategories.add(categoryName);
+                return true; // Category name is not repeated
+            }
+        };
+    });
+
 
     if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
@@ -49,3 +62,8 @@ const ListOfPost = ({onClose}) => {
 };
 
 export default ListOfPost;
+
+
+But on useMemo, it gives the following warning:
+ESLint: React Hook useMemo does nothing when called with only one argument. Did you forget to pass an array of dependencies? (react-hooks/exhaustive-deps)
+What is the reason for that? Please debug it.
