@@ -18,7 +18,7 @@ const ListOfPost = ({onClose}) => {
                 return true; // Category name is not repeated
             }
         };
-}, []);
+}, [{ListOfPost}]);
 
 
     if (isLoadingPosts || isLoadingCategories) {
