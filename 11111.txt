@@ -1,6 +1,5 @@
 In the next.js code below, write the function isCategoryRepeated(category.name) that
-takes the category.name and returns true if it is not repeated and returns false if it is
-repeated.
+takes the category.name and returns true if it is not repeated and returns false if it is repeated.
 
 // components/list-of-posts.jsx
 
