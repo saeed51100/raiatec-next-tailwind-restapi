@@ -16,44 +16,32 @@ const ListOfPost = ({onClose}) => {
     }
 
     return (
-        <>
-            <div>
-                {categories.map((category) => (
-                    <div key={category.id} className="my-2 bg-red-200">
-                        {category.name}
-                    </div>
-                ))}
-            </div>
-
-            <div>
-                {posts.map((post) => (
-                    <div key={post.id} className="my-2">
-                        {(post.categories.length === 0) ? (
-                            <div>{post.title.rendered}</div>
-                        ) : (
+        <div>
+            {posts.map((post) => (
+                <div key={post.id} className="my-2">
+                    {(post.categories.length === 0) ? (
+                        <div>{post.title.rendered}</div>
+                    ) : (
 
 
-                            categories.map((category) => (
-                                <div key={category.id}>
-                                    { post.categories.includes(category.id) && isCategoryRepeated(category.name) ? (
-                                        <div className="bg-green-200">
-                                            {/* category.name of related current post */}
-                                            {category.name}
-                                        </div>
-                                    ) : (
-                                        ''
-                                    )}
-                                </div>
-                            ))
+                        categories.map((category) => (
+                            <div key={category.id}>
+                                {post.categories.includes(category.id) && isCategoryRepeated(category.name) ? (
+                                    <div className="bg-green-200">
+                                        {/* category.name of related current post */}
+                                        {category.name}
+                                    </div>
+                                ) : (
+                                    ''
+                                )}
+                            </div>
+                        ))
 
 
-
-
-                        )}
-                    </div>
-                ))}
-            </div>
-        </>
+                    )}
+                </div>
+            ))}
+        </div>
     );
 };
 
