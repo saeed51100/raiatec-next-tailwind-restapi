@@ -1,7 +1,4 @@
-Modify the following next.js code so that if the current post
-does not have a category, it will print post.title and if it does,
-it will print category.name.
-Please do not use the abbreviated if conditional syntax
+In the next.js code below, write the category.name code for the current post.
 
 // components/list-of-posts.jsx
 
@@ -33,11 +30,22 @@ const ListOfPost = ({onClose}) => {
             <div>
                 {posts.map((post) => (
                     <div key={post.id} className="my-2">
-                        {/*If the post did not have a category then print:*/}
-                        {post.title.rendered}
-                        {/*Else print:*/}
-                        {category.name}
+                        {(post.categories.length === 0) ? (
+                            <div>{post.title.rendered}</div>
+                        ) : (
 
+
+                            categories.map((category) => (
+                                    <div key={category.id} >
+                                        <div className="bg-green-200">
+                                            {/* category.name of related current post */}
+                                        </div>
+                                    </div>
+                                ))
+
+
+
+                        )}
                     </div>
                 ))}
             </div>
@@ -46,11 +54,3 @@ const ListOfPost = ({onClose}) => {
 };
 
 export default ListOfPost;
-
-
-like this:
-{if post.category  (
-                            <div>The post has a category: {post.category.name}</div>
-                        ) else (
-                            <div>The post does not have a category: {post.title.rendered}</div>
-                        )}
