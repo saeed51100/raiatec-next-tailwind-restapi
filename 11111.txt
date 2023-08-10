@@ -1,64 +1,23 @@
-I use next.js to show the list of posts as well as categories
-and I have a problem to show categories.
-categories are not shown
-Please debug the following codes:
-
-// api/usePosts.js
-
-import useSWR from 'swr';
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-// Function to fetch post titles
-export function usePosts() {
-    const apiUrl = `${API_URL}/posts?per_page=20&_embed`;
-    const {data, error} = useSWR(apiUrl, fetcher);
-    return {
-        posts: data,
-        isLoading: !error && !data,
-        isError: error,
-    };
-}
-
-// Function to fetch a single post by its slug
-export function usePostBySlug(slug) {
-    const apiUrl = `${API_URL}/posts?slug=${slug}`;
-    const {data, error} = useSWR(apiUrl, fetcher);
-
-    return {
-        post: data && data[0], // Assuming the slug is unique, so we take the first post found
-        isLoading: !error && !data,
-        isError: error,
-    };
-}
-
-// Function to fetch categories
-export function useCategories() {
-    const apiUrl = `${API_URL}/categories?per_page=20`;
-    const {data, error} = useSWR(apiUrl, fetcher);
-    return {
-        categories: data,
-        isLoading: !error && !data,
-        isError: error,
-    };
-}
+Modify the following next.js code so that if the current post
+does not have a category, it will print post.title and if it does,
+it will print category.name.
+Please do not use the abbreviated if conditional syntax
 
 // components/list-of-posts.jsx
 
-import {usePosts, useCategories} from "api/usePosts"; // Import the custom hook
+import {usePosts, useCategories} from "api/useApi"; // Import the custom hook
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
-  const { posts, isLoading: isLoadingPosts, isError: isErrorPosts } = usePosts(); // Use the custom hook for posts
-  const { categories, isLoading: isLoadingCategories, isError: isErrorCategories } = useCategories(); // Use the custom hook for categories
+    const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts(); // Use the custom hook for posts
+    const {categories, isLoading: isLoadingCategories, isError: isErrorCategories} = useCategories(); // Use the custom hook for categories
 
-  if (isLoadingPosts || isLoadingCategories) {
+    if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
     }
 
-  if (isErrorPosts || isErrorCategories) {
-    return <div>Error loading data.</div>;
+    if (isErrorPosts || isErrorCategories) {
+        return <div>Error loading data.</div>;
     }
 
     return (
@@ -66,16 +25,19 @@ const ListOfPost = ({onClose}) => {
             <div>
                 {categories.map((category) => (
                     <div key={category.id} className="my-2 bg-red-200">
-                        {category.rendered}
+                        {category.name}
                     </div>
                 ))}
             </div>
+
             <div>
                 {posts.map((post) => (
                     <div key={post.id} className="my-2">
-                        <Link href={`/${post.slug}`} onClick={onClose}>
-                            {post.title.rendered}
-                        </Link>
+                        {/*If the post did not have a category then print:*/}
+                        {post.title.rendered}
+                        {/*Else print:*/}
+                        {category.name}
+
                     </div>
                 ))}
             </div>
@@ -84,5 +46,3 @@ const ListOfPost = ({onClose}) => {
 };
 
 export default ListOfPost;
-
-
