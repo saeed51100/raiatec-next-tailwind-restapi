@@ -35,7 +35,7 @@ const ListOfPost = ({onClose}) => {
 
                             categories.map((category) => (
                                 <div key={category.id}>
-                                    { post.categories.includes(category.id) && {/* category is unique */} ? (
+                                    { post.categories.includes(category.id) && isCategoryRepeated(category.name) ? (
                                         <div className="bg-green-200">
                                             {/* category.name of related current post */}
                                             {category.name}
