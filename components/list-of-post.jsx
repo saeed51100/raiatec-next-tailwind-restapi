@@ -34,7 +34,9 @@ const ListOfPost = ({onClose}) => {
             {posts.map((post) => (
                 <div key={post.id} className="my-2">
                     {(post.categories.length === 0) ? (
-                        <div>{post.title.rendered}</div>
+                        <Link href={`/${post.slug}`} onClick={onClose}>
+                            {post.title.rendered}
+                        </Link>
                     ) : (
 
 
