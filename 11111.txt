@@ -4,7 +4,7 @@ takes the category.name and returns true if it is Unique and returns false if it
 // components/list-of-posts.jsx
 
 import {usePosts, useCategories} from "api/useApi"; // Import the custom hook
-import Link from "next/link";
+
 
 const ListOfPost = ({onClose}) => {
     const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts(); // Use the custom hook for posts
@@ -19,44 +19,32 @@ const ListOfPost = ({onClose}) => {
     }
 
     return (
-        <>
-            <div>
-                {categories.map((category) => (
-                    <div key={category.id} className="my-2 bg-red-200">
-                        {category.name}
-                    </div>
-                ))}
-            </div>
-
-            <div>
-                {posts.map((post) => (
-                    <div key={post.id} className="my-2">
-                        {(post.categories.length === 0) ? (
-                            <div>{post.title.rendered}</div>
-                        ) : (
+        <div>
+            {posts.map((post) => (
+                <div key={post.id} className="my-2">
+                    {(post.categories.length === 0) ? (
+                        <div>{post.title.rendered}</div>
+                    ) : (
 
 
-                            categories.map((category) => (
-                                <div key={category.id}>
-                                    { post.categories.includes(category.id) && isCategoryRepeated(category.name) ? (
-                                        <div className="bg-green-200">
-                                            {/* category.name of related current post */}
-                                            {category.name}
-                                        </div>
-                                    ) : (
-                                        ''
-                                    )}
-                                </div>
-                            ))
+                        categories.map((category) => (
+                            <div key={category.id}>
+                                {post.categories.includes(category.id) && isCategoryIsUnique(category.name) ? (
+                                    <div className="bg-green-200">
+                                        {/* category.name of related current post */}
+                                        {category.name}
+                                    </div>
+                                ) : (
+                                    ''
+                                )}
+                            </div>
+                        ))
 
 
-
-
-                        )}
-                    </div>
-                ))}
-            </div>
-        </>
+                    )}
+                </div>
+            ))}
+        </div>
     );
 };
 
