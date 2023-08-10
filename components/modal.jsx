@@ -1,10 +1,10 @@
 // components/modal.jsx
 import {XMarkIcon} from "@heroicons/react/24/outline";
 import {Transition, Dialog} from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import ListOfPost from "components/list-of-post";
 
-function ModalBackground({open}) {
+function ModalBackground() {
     return (
         <Transition.Child
             as={Fragment}

@@ -18,7 +18,7 @@ export default function NavigationItems() {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/about">
+                    <Link href="../pages/about.js">
                         <div
                             className={` ${router.pathname === '/about' ? linkActive : linkHover}`}
                         >
