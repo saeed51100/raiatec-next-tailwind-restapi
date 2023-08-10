@@ -33,7 +33,20 @@ const ListOfPost = ({onClose}) => {
                         ) : (
 
 
-                            {/* category of related current post */}
+                            categories.map((category) => (
+                                <div key={category.id}>
+                                    {(post.categories.includes(category.id)) ? (
+                                        <div className="bg-green-200">
+                                            {/* category.name of related current post */}
+                                            {category.name}
+                                        </div>
+                                    ) : (
+                                        ''
+                                    )}
+                                </div>
+                            ))
+
+
 
 
                         )}
