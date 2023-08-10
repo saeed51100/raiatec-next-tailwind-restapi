@@ -1,4 +1,5 @@
-In the next.js code below, write the category.name code for the current post.
+In the next.js code, write the code for
+the {/* category is not repeated */} section below:
 
 // components/list-of-posts.jsx
 
@@ -35,7 +36,20 @@ const ListOfPost = ({onClose}) => {
                         ) : (
 
 
+                            categories.map((category) => (
+                                <div key={category.id}>
+                                    { post.categories.includes(category.id) && {/* category is not repeated */} ? (
+                                        <div className="bg-green-200">
                                             {/* category.name of related current post */}
+                                            {category.name}
+                                        </div>
+                                    ) : (
+                                        ''
+                                    )}
+                                </div>
+                            ))
+
+
 
 
                         )}
