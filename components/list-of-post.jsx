@@ -3,16 +3,8 @@ import {usePosts, useCategories} from "api/useApi";
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
-    const {
-        posts,
-        isLoading: isLoadingPosts,
-        isError: isErrorPosts,
-    } = usePosts();
-    const {
-        categories,
-        isLoading: isLoadingCategories,
-        isError: isErrorCategories,
-    } = useCategories();
+    const { posts, isLoading: isLoadingPosts, isError: isErrorPosts } = usePosts();
+    const { categories, isLoading: isLoadingCategories, isError: isErrorCategories } = useCategories();
 
     if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
