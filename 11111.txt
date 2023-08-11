@@ -1,4 +1,5 @@
-I have written the following code in next.js which works:
+In the next.js code below, I use the isCategoryIsUnique function to check whether the
+Category is unique, and by using useMemo the code works correctly:
 
 // components/list-of-posts.jsx
 import { useMemo } from 'react';
@@ -20,7 +21,7 @@ const ListOfPost = ({onClose}) => {
                 return true; // Category name is not repeated
             }
         };
-    });
+}, [{}]);
 
 
     if (isLoadingPosts || isLoadingCategories) {
@@ -36,7 +37,9 @@ const ListOfPost = ({onClose}) => {
             {posts.map((post) => (
                 <div key={post.id} className="my-2">
                     {(post.categories.length === 0) ? (
-                        <div>{post.title.rendered}</div>
+                        <Link href={`/${post.slug}`} onClick={onClose}>
+                            {post.title.rendered}
+                        </Link>
                     ) : (
 
 
@@ -64,6 +67,12 @@ const ListOfPost = ({onClose}) => {
 export default ListOfPost;
 
 
-But on useMemo, it gives the following warning:
-ESLint: React Hook useMemo does nothing when called with only one argument. Did you forget to pass an array of dependencies? (react-hooks/exhaustive-deps)
-What is the reason for that? Please debug it.
+In the code above I have passed an empty {} object to useMemo to prevent updating listofposts to
+solve the problem of updating the list of posts.
+
+On the other hand, it is written in the React documentation:
+"You should only rely on useMemo as a performance optimization. If your code doesn't
+work without it, find the underlying problem and fix it first. Then you may add useMemo
+to improve performance."
+
+What approach can I use instead of using useMemo to solve the problem of updating the list of posts?
