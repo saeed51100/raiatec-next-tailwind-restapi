@@ -28,26 +28,20 @@ const ListOfPost = ({onClose}) => {
                     ) : (
 
                         post.categories.map((categoryId) => {
-                            const category = categories.find((cat) => cat.id === categoryId);
+                                const category = categories.find((cat) => cat.id === categoryId);
 
-                            if (!uniqueCategoryNames.has(category.name)) {
-                                uniqueCategoryNames.add(category.name);
-                                return (
-                                    <div key={category.id} className="bg-green-200">
-                                        {category.name}
-                                    </div>
-                                );
+                                if (!uniqueCategoryNames.has(category.name)) {
+                                    uniqueCategoryNames.add(category.name);
+                                    return (
+                                        <div key={category.id} className="bg-green-200">
+                                            {category.name}
+                                        </div>
+                                    );
+                                }
+                                return null; // Category name already displayed, don't render
                             }
-                            return null; // Category name already displayed, don't render
-                        }
-
-
-
-
                         )
                     )}
-
-
 
 
                 </div>
