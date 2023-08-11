@@ -69,4 +69,5 @@ export default ListOfPost;
 Line:
 .sort((a, b) => new Date(a.date) - new Date(b.date))
 For some categories, it sorts correctly and for others, the sort order is not correct.
-Is it a problem with my database or can sort by date be implemented in another way?
+I get the database from the wordpress site and it works fine there with the orderby: date command. Is it possible
+to implement orderby: date in javascript?
