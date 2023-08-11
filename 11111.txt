@@ -1,4 +1,5 @@
-Please put the sort part based on sort by date in the {/* related Post titles */} code.
+In the following next.js code:
+
 // components/list-of-posts.jsx
 import {usePosts, useCategories} from "api/useApi";
 import Link from "next/link";
@@ -41,7 +42,7 @@ const ListOfPost = ({onClose}) => {
                                         {/* related Post titles */}
                                         {posts
                                             .filter((postItem) => postItem.categories.includes(category.id)) // Filter related posts
-                                            .sort((a, b) => a.title.rendered.localeCompare(b.title.rendered))
+                                            .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort by date
                                             .map((postItem) => (
                                                 <ul key={postItem.id}>
                                                     <Link href={`/${postItem.slug}`} onClick={onClose}>
@@ -63,3 +64,9 @@ const ListOfPost = ({onClose}) => {
 };
 
 export default ListOfPost;
+
+
+Line:
+.sort((a, b) => new Date(a.date) - new Date(b.date))
+For some categories, it sorts correctly and for others, the sort order is not correct.
+Is it a problem with my database or can sort by date be implemented in another way?
