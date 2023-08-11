@@ -1,10 +1,10 @@
 // components/list-of-posts.jsx
-import {usePosts, useCategories} from "api/useApi"; // Import the custom hook
+import {usePosts, useCategories} from "api/useApi";
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
-    const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts(); // Use the custom hook for posts
-    const {categories, isLoading: isLoadingCategories, isError: isErrorCategories} = useCategories(); // Use the custom hook for categories
+    const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts();
+    const {categories, isLoading: isLoadingCategories, isError: isErrorCategories} = useCategories();
 
     if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;

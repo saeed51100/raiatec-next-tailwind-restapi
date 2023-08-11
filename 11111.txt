@@ -1,28 +1,12 @@
-In the next.js code below, I use the isCategoryIsUnique function to check whether the
-Category is unique, and by using useMemo the code works correctly:
+I have written the following code in next.js and it works correctly. Please optimize it:
 
 // components/list-of-posts.jsx
-import { useMemo } from 'react';
 import {usePosts, useCategories} from "api/useApi"; // Import the custom hook
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
     const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts(); // Use the custom hook for posts
     const {categories, isLoading: isLoadingCategories, isError: isErrorCategories} = useCategories(); // Use the custom hook for categories
-
-// Computed property to check if category name is repeated
-    const isCategoryIsUnique = useMemo(() => {
-        const uniqueCategories = new Set();
-        return (categoryName) => {
-            if (uniqueCategories.has(categoryName)) {
-                return false; // Category name is repeated
-            } else {
-                uniqueCategories.add(categoryName);
-                return true; // Category name is not repeated
-            }
-        };
-}, [{}]);
-
 
     if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
@@ -31,6 +15,9 @@ const ListOfPost = ({onClose}) => {
     if (isErrorPosts || isErrorCategories) {
         return <div>Error loading data.</div>;
     }
+
+    // Create a Set to track unique category names
+    const uniqueCategoryNames = new Set();
 
     return (
         <div>
@@ -42,22 +29,23 @@ const ListOfPost = ({onClose}) => {
                         </Link>
                     ) : (
 
+                        post.categories.map((categoryId) => {
+                                const category = categories.find((cat) => cat.id === categoryId);
 
-                        categories.map((category) => (
-                            <div key={category.id}>
-                                {post.categories.includes(category.id) && isCategoryIsUnique(category.name) ? (
-                                    <div className="bg-green-200">
-                                        {/* category.name of related current post */}
-                                        {category.name}
-                                    </div>
-                                ) : (
-                                    ''
-                                )}
-                            </div>
-                        ))
-
-
+                                if (!uniqueCategoryNames.has(category.name)) {
+                                    uniqueCategoryNames.add(category.name);
+                                    return (
+                                        <div key={category.id} className="bg-green-200">
+                                            {category.name}
+                                        </div>
+                                    );
+                                }
+                                return null; // Category name already displayed, don't render
+                            }
+                        )
                     )}
+
+
                 </div>
             ))}
         </div>
@@ -65,14 +53,3 @@ const ListOfPost = ({onClose}) => {
 };
 
 export default ListOfPost;
-
-
-In the code above I have passed an empty {} object to useMemo to prevent updating listofposts to
-solve the problem of updating the list of posts.
-
-On the other hand, it is written in the React documentation:
-"You should only rely on useMemo as a performance optimization. If your code doesn't
-work without it, find the underlying problem and fix it first. Then you may add useMemo
-to improve performance."
-
-What approach can I use instead of using useMemo to solve the problem of updating the list of posts?
