@@ -1,25 +1,10 @@
 // components/list-of-posts.jsx
-import { useMemo } from 'react';
 import {usePosts, useCategories} from "api/useApi"; // Import the custom hook
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
     const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts(); // Use the custom hook for posts
     const {categories, isLoading: isLoadingCategories, isError: isErrorCategories} = useCategories(); // Use the custom hook for categories
-
-// Computed property to check if category name is repeated
-    const isCategoryIsUnique = useMemo(() => {
-        const uniqueCategories = new Set();
-        return (categoryName) => {
-            if (uniqueCategories.has(categoryName)) {
-                return false; // Category name is repeated
-            } else {
-                uniqueCategories.add(categoryName);
-                return true; // Category name is not repeated
-            }
-        };
-}, [{}]);
-
 
     if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
@@ -28,6 +13,9 @@ const ListOfPost = ({onClose}) => {
     if (isErrorPosts || isErrorCategories) {
         return <div>Error loading data.</div>;
     }
+
+    // Create a Set to track unique category names
+    const uniqueCategoryNames = new Set();
 
     return (
         <div>
@@ -39,22 +27,29 @@ const ListOfPost = ({onClose}) => {
                         </Link>
                     ) : (
 
+                        post.categories.map((categoryId) => {
+                            const category = categories.find((cat) => cat.id === categoryId);
 
-                        categories.map((category) => (
-                            <div key={category.id}>
-                                {post.categories.includes(category.id) && isCategoryIsUnique(category.name) ? (
-                                    <div className="bg-green-200">
-                                        {/* category.name of related current post */}
+                            if (!uniqueCategoryNames.has(category.name)) {
+                                uniqueCategoryNames.add(category.name);
+                                return (
+                                    <div key={category.id} className="bg-green-200">
                                         {category.name}
                                     </div>
-                                ) : (
-                                    ''
-                                )}
-                            </div>
-                        ))
+                                );
+                            }
+                            return null; // Category name already displayed, don't render
+                        }
 
 
+
+
+                        )
                     )}
+
+
+
+
                 </div>
             ))}
         </div>
