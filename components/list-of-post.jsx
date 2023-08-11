@@ -39,12 +39,12 @@ const ListOfPost = ({onClose}) => {
 
                                         {/* related Post titles */}
                                         {posts
-                                            .filter((relatedpost) => relatedpost.categories.includes(category.id)) // Filter related posts
-                                            .sort((a, b) => a.title.rendered.localeCompare(b.title.rendered)) // Sort related posts by title
-                                            .map((relatedpost) => (
-                                                <ul key={relatedpost.id}>
-                                                    <Link href={`/${relatedpost.slug}`} onClick={onClose}>
-                                                        {relatedpost.title.rendered}
+                                            .filter((postItem) => postItem.categories.includes(category.id)) // Filter related posts
+                                            .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort by date
+                                            .map((postItem) => (
+                                                <ul key={postItem.id}>
+                                                    <Link href={`/${postItem.slug}`} onClick={onClose}>
+                                                        {postItem.title.rendered}
                                                     </Link>
                                                 </ul>
                                             ))}

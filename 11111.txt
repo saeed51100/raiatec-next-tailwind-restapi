@@ -1,6 +1,4 @@
-In the next.js code that I have written below, the {/* related Post titles */} section is
-displayed in descending order. Display it in ascending order.
-
+Please put the sort part based on sort by date in the {/* related Post titles */} code.
 // components/list-of-posts.jsx
 import {usePosts, useCategories} from "api/useApi";
 import Link from "next/link";
@@ -41,17 +39,16 @@ const ListOfPost = ({onClose}) => {
                                         </div>
 
                                         {/* related Post titles */}
-                                        {posts.map((post) => {
-                                            if (post.categories.includes(category.id)) {
-                                                return (
-                                                    <ul key={post.id}>
-                                                        <Link href={`/${post.slug}`} onClick={onClose}>
-                                                            {post.title.rendered}
-                                                        </Link>
-                                                    </ul>
-                                                );
-                                            }
-                                        })}
+                                        {posts
+                                            .filter((postItem) => postItem.categories.includes(category.id)) // Filter related posts
+                                            .sort((a, b) => a.title.rendered.localeCompare(b.title.rendered))
+                                            .map((postItem) => (
+                                                <ul key={postItem.id}>
+                                                    <Link href={`/${postItem.slug}`} onClick={onClose}>
+                                                        {postItem.title.rendered}
+                                                    </Link>
+                                                </ul>
+                                            ))}
                                     </div>
                                 );
                             }
@@ -66,4 +63,3 @@ const ListOfPost = ({onClose}) => {
 };
 
 export default ListOfPost;
-
