@@ -38,17 +38,16 @@ const ListOfPost = ({onClose}) => {
                                         </div>
 
                                         {/* related Post titles */}
-                                        {posts.map((post) => {
-                                            if (post.categories.includes(category.id)) {
-                                                return (
-                                                    <ul key={post.id}>
-                                                        <Link href={`/${post.slug}`} onClick={onClose}>
-                                                            {post.title.rendered}
-                                                        </Link>
-                                                    </ul>
-                                                );
-                                            }
-                                        })}
+                                        {posts
+                                            .filter((postItem) => postItem.categories.includes(category.id)) // Filter related posts
+                                            .sort((a, b) => a.title.rendered.localeCompare(b.title.rendered)) // Sort related posts by title
+                                            .map((postItem) => (
+                                                <ul key={postItem.id}>
+                                                    <Link href={`/${postItem.slug}`} onClick={onClose}>
+                                                        {postItem.title.rendered}
+                                                    </Link>
+                                                </ul>
+                                            ))}
                                     </div>
                                 );
                             }
