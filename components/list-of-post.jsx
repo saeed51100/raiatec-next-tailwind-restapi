@@ -3,8 +3,16 @@ import {usePosts, useCategories} from "api/useApi";
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
-    const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts();
-    const {categories, isLoading: isLoadingCategories, isError: isErrorCategories} = useCategories();
+    const {
+        posts,
+        isLoading: isLoadingPosts,
+        isError: isErrorPosts,
+    } = usePosts();
+    const {
+        categories,
+        isLoading: isLoadingCategories,
+        isError: isErrorCategories,
+    } = useCategories();
 
     if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
@@ -21,29 +29,25 @@ const ListOfPost = ({onClose}) => {
         <div>
             {posts.map((post) => (
                 <div key={post.id} className="my-2">
-                    {(post.categories.length === 0) ? (
+                    {post.categories.length === 0 ? (
                         <Link href={`/${post.slug}`} onClick={onClose}>
                             {post.title.rendered}
                         </Link>
                     ) : (
-
                         post.categories.map((categoryId) => {
-                                const category = categories.find((cat) => cat.id === categoryId);
+                            const category = categories.find((cat) => cat.id === categoryId);
 
-                                if (!uniqueCategoryNames.has(category.name)) {
-                                    uniqueCategoryNames.add(category.name);
-                                    return (
-                                        <div key={category.id} className="bg-green-200">
-                                            {category.name}
-                                        </div>
-                                    );
-                                }
-                                return null; // Category name already displayed, don't render
+                            if (!uniqueCategoryNames.has(category.name)) {
+                                uniqueCategoryNames.add(category.name);
+                                return (
+                                    <div key={category.id} className="bg-green-200">
+                                        {category.name}
+                                    </div>
+                                );
                             }
-                        )
+                            return null; // Category name already displayed, don't render
+                        })
                     )}
-
-
                 </div>
             ))}
         </div>
