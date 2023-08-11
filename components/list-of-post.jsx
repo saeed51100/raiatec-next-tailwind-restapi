@@ -37,7 +37,7 @@ const ListOfPost = ({onClose}) => {
                                             {category.name}
                                         </div>
 
-                                        {/* related Post title */}
+                                        {/* related Post titles */}
                                         {posts.map((post) => {
                                             if (post.categories.includes(category.id)) {
                                                 return (
