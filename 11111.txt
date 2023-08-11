@@ -1,4 +1,5 @@
-In the next.js code, write the code for the {/* related Post title */} section below:
+In the next.js code that I have written below, the {/* related Post titles */} section is
+displayed in descending order. Display it in ascending order.
 
 // components/list-of-posts.jsx
 import {usePosts, useCategories} from "api/useApi";
@@ -39,8 +40,18 @@ const ListOfPost = ({onClose}) => {
                                             {category.name}
                                         </div>
 
-                                        {/* related Post title */}
-
+                                        {/* related Post titles */}
+                                        {posts.map((post) => {
+                                            if (post.categories.includes(category.id)) {
+                                                return (
+                                                    <ul key={post.id}>
+                                                        <Link href={`/${post.slug}`} onClick={onClose}>
+                                                            {post.title.rendered}
+                                                        </Link>
+                                                    </ul>
+                                                );
+                                            }
+                                        })}
                                     </div>
                                 );
                             }
@@ -55,3 +66,4 @@ const ListOfPost = ({onClose}) => {
 };
 
 export default ListOfPost;
+
