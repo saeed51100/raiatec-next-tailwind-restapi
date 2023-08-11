@@ -38,16 +38,16 @@ const ListOfPost = ({onClose}) => {
                                         </div>
 
                                         {/* related Post title */}
-                                        <ul>
-                                            {posts
-                                                .filter((post) => post.categories.includes(category.id))
-                                                .map((relatedPost) => (
-                                                    <li key={relatedPost.id}>
-                                                        <Link href={`/${relatedPost.slug}`} onClick={onClose}>
-                                                            {relatedPost.title.rendered}
+                                        <ul className="pl-4">
+                                            {posts.map((post) => (
+                                                post.categories.includes(category.id) && (
+                                                    <li key={post.id} >
+                                                        <Link href={`/${post.slug}`} onClick={onClose}>
+                                                            {post.title.rendered}
                                                         </Link>
                                                     </li>
-                                                ))}
+                                                )
+                                            ))}
                                         </ul>
                                     </div>
                                 );
