@@ -37,18 +37,22 @@ const ListOfPost = ({onClose}) => {
                                             {category.name}
                                         </div>
 
-                                        {posts.map((relatedPost) =>
-                                                relatedPost.categories.includes(category.id) && (
-                                                    <div key={relatedPost.id} onClick={onClose}>
-                                                        <Link href={`/${relatedPost.slug}`}>
-                                                            {relatedPost.title.rendered}
+                                        {/* related Post title */}
+                                        <ul>
+                                            {posts
+                                                .filter((post) => post.categories.includes(category.id))
+                                                .map((post) => (
+                                                    <li key={post.id}>
+                                                        <Link href={`/${post.slug}`} onClick={onClose}>
+                                                            {post.title.rendered}
                                                         </Link>
-                                                    </div>
-                                                )
-                                        )}
+                                                    </li>
+                                                ))}
+                                        </ul>
                                     </div>
                                 );
                             }
+
                             return null; // Category name already displayed, don't render
                         })
                     )}
