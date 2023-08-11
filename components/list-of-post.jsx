@@ -34,6 +34,7 @@ const ListOfPost = ({onClose}) => {
                                 return (
                                     <div key={category.id} className="bg-green-200">
                                         {category.name}
+                                        {/* related Post title */}
                                     </div>
                                 );
                             }

@@ -1,20 +1,12 @@
-I have written the following code in next.js and it works correctly. Please debug optimize it:
+In the next.js code, write the code for the {/* related Post title */} section below:
 
 // components/list-of-posts.jsx
 import {usePosts, useCategories} from "api/useApi";
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
-    const {
-        posts,
-        isLoading: isLoadingPosts,
-        isError: isErrorPosts,
-    } = usePosts();
-    const {
-        categories,
-        isLoading: isLoadingCategories,
-        isError: isErrorCategories,
-    } = useCategories();
+    const { posts, isLoading: isLoadingPosts, isError: isErrorPosts } = usePosts();
+    const { categories, isLoading: isLoadingCategories, isError: isErrorCategories } = useCategories();
 
     if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
@@ -37,17 +29,18 @@ const ListOfPost = ({onClose}) => {
                         </Link>
                     ) : (
                         post.categories.map((categoryId) => {
-                                const category = categories.find((cat) => cat.id === categoryId);
+                            const category = categories.find((cat) => cat.id === categoryId);
 
-                                if (!uniqueCategoryNames.has(category.name)) {
-                                    uniqueCategoryNames.add(category.name);
-                                    return (
-                                        <div key={category.id} className="bg-green-200">
-                                            {category.name}
-                                        </div>
-                                    );
-                                }
-                                return null; // Category name already displayed, don't render
+                            if (!uniqueCategoryNames.has(category.name)) {
+                                uniqueCategoryNames.add(category.name);
+                                return (
+                                    <div key={category.id} className="bg-green-200">
+                                        {category.name}
+                                        {/* related Post title */}
+                                    </div>
+                                );
+                            }
+                            return null; // Category name already displayed, don't render
                         })
                     )}
                 </div>
@@ -57,4 +50,3 @@ const ListOfPost = ({onClose}) => {
 };
 
 export default ListOfPost;
-
