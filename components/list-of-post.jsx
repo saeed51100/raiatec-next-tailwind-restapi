@@ -40,14 +40,15 @@ const ListOfPost = ({onClose}) => {
                                         {/* related Post titles */}
                                         {posts
                                             .filter((postItem) => postItem.categories.includes(category.id)) // Filter related posts
-                                            .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort by date
+                                            .reverse()
                                             .map((postItem) => (
                                                 <ul key={postItem.id}>
-                                                    <Link href={`/${postItem.slug}`} onClick={onClose}>
-                                                        {postItem.title.rendered}
+                                                    <Link href={`/${postItem.slug}`}
+                                                          onClick={onClose}>{postItem.title.rendered}
                                                     </Link>
                                                 </ul>
                                             ))}
+
                                     </div>
                                 );
                             }
