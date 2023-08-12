@@ -30,7 +30,7 @@ export function usePostBySlug(slug) {
 
 // Function to fetch categories
 export function useCategories() {
-    const apiUrl = `${API_URL}/categories?per_page=20`;
+    const apiUrl = `${API_URL}/categories?per_page=-1`;
     const {data, error} = useSWR(apiUrl, fetcher);
     return {
         categories: data,
