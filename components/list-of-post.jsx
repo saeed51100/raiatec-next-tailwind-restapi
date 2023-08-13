@@ -3,8 +3,8 @@ import {usePosts, useCategories} from "api/useApi";
 import Link from "next/link";
 
 const ListOfPost = ({onClose}) => {
-    const { posts, isLoading: isLoadingPosts, isError: isErrorPosts } = usePosts();
-    const { categories, isLoading: isLoadingCategories, isError: isErrorCategories } = useCategories();
+    const {posts, isLoading: isLoadingPosts, isError: isErrorPosts} = usePosts();
+    const {categories, isLoading: isLoadingCategories, isError: isErrorCategories} = useCategories();
 
     if (isLoadingPosts || isLoadingCategories) {
         return <div>Loading...</div>;
@@ -32,11 +32,27 @@ const ListOfPost = ({onClose}) => {
                             if (!uniqueCategoryNames.has(category.name)) {
                                 uniqueCategoryNames.add(category.name);
                                 return (
-                                    <div key={category.id} className="bg-green-200">
-                                        {category.name}
+                                    <div key={category.id}>
+                                        <div className="bg-green-200">
+                                            {category.name}
+                                        </div>
+
+                                        {/* related Post titles */}
+                                        {posts
+                                            .filter((postItem) => postItem.categories.includes(category.id)) // Filter related posts
+                                            .sort((a, b) => a.id - b.id)
+                                            .map((postItem) => (
+                                                <ul key={postItem.id}>
+                                                    <Link href={`/${postItem.slug}`}
+                                                          onClick={onClose}>{postItem.title.rendered}
+                                                    </Link>
+                                                </ul>
+                                            ))}
+
                                     </div>
                                 );
                             }
+
                             return null; // Category name already displayed, don't render
                         })
                     )}
