@@ -40,7 +40,7 @@ const ListOfPost = ({onClose}) => {
                                         {/* related Post titles */}
                                         {posts
                                             .filter((postItem) => postItem.categories.includes(category.id)) // Filter related posts
-                                            .reverse()
+                                            .sort((a, b) => a.id - b.id)
                                             .map((postItem) => (
                                                 <ul key={postItem.id}>
                                                     <Link href={`/${postItem.slug}`}
