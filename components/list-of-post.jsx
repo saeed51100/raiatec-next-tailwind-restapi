@@ -21,11 +21,10 @@ const ListOfPost = ({onClose}) => {
         <div>
 
 
-            <div className="py-5">
-                <details className="group">
-                    <summary className="flex cursor-pointer list-none">
-                        <span>آموزش جاوا اسکریپت </span>
-                        <span className="transition group-open:-rotate-90">
+            <details className="group">
+                <summary className="flex cursor-pointer list-none">
+                    <span>آموزش جاوا اسکریپت </span>
+                    <span className="transition group-open:-rotate-90">
                                         <svg fill="none"
                                              height="24"
                                              shapeRendering="geometricPrecision"
@@ -39,12 +38,11 @@ const ListOfPost = ({onClose}) => {
                                             <path d="M15,6l-6,6l6,6"/>
                                         </svg>
                                 </span>
-                    </summary>
-                    <p className="text-neutral-600 mt-3 group-open:animate-fadeIn">
-                        SAAS platform is a cloud-based software
-                    </p>
-                </details>
-            </div>
+                </summary>
+                <p className="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                    SAAS platform is a cloud-based software
+                </p>
+            </details>
 
 
             {posts.map((post) => (
