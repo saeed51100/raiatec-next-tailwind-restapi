@@ -47,7 +47,7 @@ export default function ListOfPost({ onClose }) {
 
 
             {/* Place the accordion here */}
-            <div className="space-y-4">
+            <div className="">
                 {faqs.map((faq, index) => (
                     <div key={faq.question}>
 
@@ -96,6 +96,12 @@ export default function ListOfPost({ onClose }) {
                     ) : (
 
 
+
+
+
+
+
+
                         post.categories.map((categoryId) => {
                             const category = categories.find((cat) => cat.id === categoryId);
 
@@ -124,6 +130,12 @@ export default function ListOfPost({ onClose }) {
                             }
                             return null; // Category name already displayed, don't render
                         })
+
+
+
+
+
+
 
 
 
