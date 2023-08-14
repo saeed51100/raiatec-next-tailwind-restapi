@@ -52,6 +52,8 @@ const ListOfPost = ({onClose}) => {
                             {post.title.rendered}
                         </Link>
                     ) : (
+
+
                         post.categories.map((categoryId) => {
                             const category = categories.find((cat) => cat.id === categoryId);
 
@@ -81,6 +83,9 @@ const ListOfPost = ({onClose}) => {
 
                             return null; // Category name already displayed, don't render
                         })
+
+
+
                     )}
                 </div>
             ))}
