@@ -50,10 +50,7 @@ export default function ListOfPost({ onClose }) {
             <div className="space-y-4">
                 {faqs.map((faq, index) => (
                     <div key={faq.question}>
-                        <div
-                            className="flex cursor-pointer list-none"
-                            onClick={() => toggleAccordion(index)}
-                        >
+                        <div className="flex cursor-pointer list-none" onClick={() => toggleAccordion(index)}>
                             <span>{faq.question} </span>
                             <span className={`transition transform ${openAccordion === index ? '-rotate-90' : 'rotate-0'}`}>
           <svg
@@ -71,11 +68,8 @@ export default function ListOfPost({ onClose }) {
           </svg>
         </span>
                         </div>
-                        {openAccordion === index && (
-                            <p className="text-neutral-600 mt-3 animate-fadeIn">
-                                {faq.answer}
-                            </p>
-                        )}
+
+                        {openAccordion === index && (<p className="text-neutral-600 mt-3 animate-fadeIn">{faq.answer}</p>)}
                     </div>
                 ))}
             </div>
