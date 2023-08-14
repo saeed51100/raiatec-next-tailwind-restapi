@@ -116,7 +116,6 @@ export default function ListOfPost({ onClose }) {
                                     </div>
                                 );
                             }
-
                             return null; // Category name already displayed, don't render
                         })
 
