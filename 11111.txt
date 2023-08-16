@@ -1,18 +1,19 @@
-I have written the following next.js code:
-{
-  posts
-    .filter((postItem) => postItem.categories.includes(category.id)) // Filter related posts
-    .map((postItem) => (
-      <ul key={postItem.id}>
-        <Link href={`/${postItem.slug}`} onClick={onClose}>
-          {postItem.title.rendered}
-        </Link>
-      </ul>
-    ));
-}
+I have installed and configured prettier in next.js project.
+But when I press Alt+Shift+Ctrl+P on Windows, it gives the following message in IDE:
+Prettier: Error while reformatting
+Show details
 
+TypeError: prettierApi.resolveConfig.sync is not a function
+     at PrettierPlugin.resolveConfig (C:\Users\saeed\AppData\Roaming\JetBrains\PhpStorm2021.3\plugins\prettierJS\prettierLanguageService\prettier-plugin.js:42:48)
+     at PrettierPlugin.handleReformatCommand (C:\Users\saeed\AppData\Roaming\JetBrains\PhpStorm2021.3\plugins\prettierJS\prettierLanguageService\prettier-plugin.js:28:27)
+     at PrettierPlugin.onMessage (C:\Users\saeed\AppData\Roaming\JetBrains\PhpStorm2021.3\plugins\prettierJS\prettierLanguageService\prettier-plugin.js:13:33)
+     at Interface.<anonymous> (C:\Program Files\JetBrains\PhpStorm 2021.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\js-language-service.js:105:39)
+     at Interface.emit (node:events:513:28)
+     at [_onLine] [as _onLine] (node:internal/readline/interface:422:12)
+     at [_normalWrite] [as _normalWrite] (node:internal/readline/interface:616:22)
+     at Socket.ondata (node:internal/readline/interface:249:23)
+     at Socket.emit (node:events:513:28)
+     at addChunk (node:internal/streams/readable:324:12)
+Process finished with exit code -
 
-How can I add the following methods to it?
- 'orderby' => 'ID',
- 'order' => 'ASC',
- 'posts_per_page' => -1, //show all posts
+What should I do to solve the problem?
