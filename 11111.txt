@@ -1,5 +1,5 @@
 I have installed and configured prettier in next.js project in phpstorm.
-It works with the prettier --write components/sidebar.jsx command on the prettier command line and formats the sidebar.jsx file.
+It works with the "prettier --write components/sidebar.jsx" command on the prettier command line and formats the sidebar.jsx file.
 But when I press Alt+Shift+Ctrl+P , it gives the following message in IDE:
 Prettier: Error while reformatting
 Show details
