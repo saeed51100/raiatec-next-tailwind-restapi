@@ -1,0 +1,18 @@
+I have written the following next.js code:
+{
+  posts
+    .filter((postItem) => postItem.categories.includes(category.id)) // Filter related posts
+    .map((postItem) => (
+      <ul key={postItem.id}>
+        <Link href={`/${postItem.slug}`} onClick={onClose}>
+          {postItem.title.rendered}
+        </Link>
+      </ul>
+    ));
+}
+
+
+How can I add the following methods to it?
+ 'orderby' => 'ID',
+ 'order' => 'ASC',
+ 'posts_per_page' => -1, //show all posts
