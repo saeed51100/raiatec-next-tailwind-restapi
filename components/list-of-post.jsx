@@ -55,39 +55,26 @@ export default function ListOfPost({ onClose }) {
       {/* Place the accordion here */}
       <div className="">
         {faqs.map((faq, index) => (
+
+
           <div key={faq.question}>
-            <div
-              className="flex cursor-pointer list-none"
-              onClick={() => toggleAccordion(index)}
-            >
+            <div className="flex cursor-pointer list-none" onClick={() => toggleAccordion(index)}>
               <span>{faq.question}</span>
-              <span
-                className={`transition transform ${
-                  openAccordion === index ? "-rotate-90" : "rotate-0"
-                }`}
-              >
-                <svg
-                  fill="none"
-                  height="24"
-                  shapeRendering="geometricPrecision"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  width="24"
-                >
+              <span className={`transition transform ${openAccordion === index ? "-rotate-90" : "rotate-0"}`}>
+                <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
                   <path d="M15,6l-6,6l6,6" />
                 </svg>
               </span>
             </div>
 
-            {openAccordion === index && (
-              <p className="text-neutral-600 mt-3 animate-fadeIn">
+            {openAccordion === index && (<p className="text-neutral-600 mt-3 animate-fadeIn">
                 {faq.answer}
-              </p>
-            )}
+              </p>)}
           </div>
+
+
+
+
         ))}
       </div>
 
@@ -98,33 +85,60 @@ export default function ListOfPost({ onClose }) {
               {post.title.rendered}
             </Link>
           ) : (
-            post.categories.map((categoryId) => {
+
+
+
+
+
+
+
+
+            post.categories.map((categoryId, index) => {
               const category = categories.find((cat) => cat.id === categoryId);
 
               if (!uniqueCategoryNames.has(category.name)) {
                 uniqueCategoryNames.add(category.name);
                 return (
                   <div key={category.id}>
-                    <div className="bg-green-200">{category.name}</div>
-
+                    <div className="flex cursor-pointer list-none" onClick={() => toggleAccordion(index)}>
+                    <div className="bg-green-200">
+                      {category.name}
+                    </div>
+                      <span className={`transition transform ${openAccordion === index ? "-rotate-90" : "rotate-0"}`}>
+                <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
+                  <path d="M15,6l-6,6l6,6" />
+                </svg>
+              </span>
+                    </div>
                     {/* related Post titles */}
-                    {posts
-                      .filter((postItem) =>
-                        postItem.categories.includes(category.id)
-                      ) // Filter related posts
-                      .sort((a, b) => a.id - b.id)
-                      .map((postItem) => (
+                    {posts.filter((postItem) => postItem.categories.includes(category.id)).sort((a, b) => a.id - b.id).map((postItem) => (
+
+
                         <ul key={postItem.id}>
                           <Link href={`/${postItem.slug}`} onClick={onClose}>
+                            {openAccordion === index && (<p className="text-neutral-600 mt-3 animate-fadeIn">
                             {postItem.title.rendered}
+                            </p>)}
                           </Link>
                         </ul>
+
+
+
                       ))}
                   </div>
                 );
               }
               return null; // Category name already displayed, don't render
             })
+
+
+
+
+
+
+
+
+
           )}
         </div>
       ))}
