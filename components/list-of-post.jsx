@@ -14,20 +14,6 @@ export default function ListOfPost({ onClose }) {
     isLoading: isLoadingCategories,
     isError: isErrorCategories,
   } = useCategories();
-  const faqs = [
-    {
-      question: "question1",
-      answer: "answer1",
-    },
-    {
-      question: "question2",
-      answer: "answer2",
-    },
-    {
-      question: "question3",
-      answer: "answer3",
-    },
-  ];
 
   const [openAccordion, setOpenAccordion] = useState(null);
 
@@ -53,30 +39,7 @@ export default function ListOfPost({ onClose }) {
   return (
     <div>
       {/* Place the accordion here */}
-      <div className="">
-        {faqs.map((faq, index) => (
 
-
-          <div key={faq.question}>
-            <div className="flex cursor-pointer list-none" onClick={() => toggleAccordion(index)}>
-              <span>{faq.question}</span>
-              <span className={`transition transform ${openAccordion === index ? "-rotate-90" : "rotate-0"}`}>
-                <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
-                  <path d="M15,6l-6,6l6,6" />
-                </svg>
-              </span>
-            </div>
-
-            {openAccordion === index && (<p className="text-neutral-600 mt-3 animate-fadeIn">
-                {faq.answer}
-              </p>)}
-          </div>
-
-
-
-
-        ))}
-      </div>
 
       {posts.map((post) => (
         <div key={post.id} className="my-2">
@@ -111,20 +74,33 @@ export default function ListOfPost({ onClose }) {
               </span>
                     </div>
                     {/* related Post titles */}
-                    {posts.filter((postItem) => postItem.categories.includes(category.id)).sort((a, b) => a.id - b.id).map((postItem) => (
 
 
-                        <ul key={postItem.id}>
-                          <Link href={`/${postItem.slug}`} onClick={onClose}>
-                            {openAccordion === index && (<p className="text-neutral-600 mt-3 animate-fadeIn">
+
+                    {openAccordion === index && (
+                      <p className="text-neutral-600 mt-3 animate-fadeIn">
+                    {posts
+                      .filter((postItem) => postItem.categories.includes(category.id))
+                      .sort((a, b) => a.id - b.id)
+                      .map((postItem) => (
+
+
+
+                          <Link
+                            key={postItem.id}
+                            href={`/${postItem.slug}`}
+                            onClick={onClose}
+                          >
+
                             {postItem.title.rendered}
-                            </p>)}
+
                           </Link>
-                        </ul>
+
 
 
 
                       ))}
+                    </p>)}
                   </div>
                 );
               }

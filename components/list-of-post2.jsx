@@ -44,14 +44,12 @@ export default function ListOfPost({ onClose }) {
           <div key={category.id}>
             <div
               className="flex cursor-pointer list-none"
-              onClick={() => toggleAccordion(index)}
-            >
+              onClick={() => toggleAccordion(index)}>
               <span>{category.name}</span>
               <span
                 className={`transition transform ${
                   openAccordion === index ? "-rotate-90" : "rotate-0"
-                }`}
-              >
+                }`}>
                 <svg
                   fill="none"
                   height="24"
@@ -67,6 +65,9 @@ export default function ListOfPost({ onClose }) {
                 </svg>
               </span>
             </div>
+
+
+
 
             {openAccordion === index && (
               <div className="bg-gray-100 p-2">
