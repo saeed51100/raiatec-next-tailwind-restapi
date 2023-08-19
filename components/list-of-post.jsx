@@ -39,75 +39,54 @@ export default function ListOfPost({ onClose }) {
   return (
     <div>
       {/* Place the accordion here */}
+      <div className="">
+        {categories.map((category, index) => (
+          <div key={category.id}>
+            <div
+              className="flex cursor-pointer list-none"
+              onClick={() => toggleAccordion(index)}>
+              <span>{category.name}</span>
+              <span
+                className={`transition transform ${
+                  openAccordion === index ? "-rotate-90" : "rotate-0"
+                }`}>
+                <svg
+                  fill="none"
+                  height="24"
+                  shapeRendering="geometricPrecision"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  width="24"
+                >
+                  <path d="M15,6l-6,6l6,6" />
+                </svg>
+              </span>
+            </div>
 
-      {posts.map((post) => (
-        <div key={post.id} className="my-2">
-          {post.categories.length === 0 ? (
-            <Link href={`/${post.slug}`} onClick={onClose}>
-              {post.title.rendered}
-            </Link>
-          ) : (
-            post.categories.map((categoryId, index) => {
-              const category = categories.find((cat) => cat.id === categoryId);
 
-              if (!uniqueCategoryNames.has(category.name)) {
-                uniqueCategoryNames.add(category.name);
-                return (
-                  <div key={category.id}>
-                    <div
-                      className="flex cursor-pointer list-none"
-                      onClick={() => toggleAccordion(index)}
+
+
+            {openAccordion === index && (
+              <div className="bg-gray-100 p-2">
+                {posts
+                  .filter((post) => post.categories.includes(category.id))
+                  .map((post) => (
+                    <Link
+                      key={post.id}
+                      href={`/${post.slug}`}
+                      onClick={onClose}
                     >
-                      <div className="bg-green-200">{category.name}</div>
-                      <span
-                        className={`transition transform ${
-                          openAccordion === index ? "-rotate-90" : "rotate-0"
-                        }`}
-                      >
-                        <svg
-                          fill="none"
-                          height="24"
-                          shapeRendering="geometricPrecision"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.5"
-                          viewBox="0 0 24 24"
-                          width="24"
-                        >
-                          <path d="M15,6l-6,6l6,6" />
-                        </svg>
-                      </span>
-                    </div>
-                    {/* related Post titles */}
-
-                    {openAccordion === index && (
-                      <p className="text-neutral-600 mt-3 animate-fadeIn">
-                        {posts
-                          .filter((postItem) =>
-                            postItem.categories.includes(category.id)
-                          )
-                          .sort((a, b) => a.id - b.id)
-                          .map((postItem) => (
-                            <ul key={postItem.id}>
-                              <Link
-                                href={`/${postItem.slug}`}
-                                onClick={onClose}
-                              >
-                                {postItem.title.rendered}
-                              </Link>
-                            </ul>
-                          ))}
-                      </p>
-                    )}
-                  </div>
-                );
-              }
-              return null; // Category name already displayed, don't render
-            })
-          )}
-        </div>
-      ))}
+                      <div className="p-2">{post.title.rendered}</div>
+                    </Link>
+                  ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
