@@ -17,11 +17,11 @@ export default function ListOfPost({ onClose }) {
 
   const [openAccordion, setOpenAccordion] = useState(null);
 
-  const toggleAccordion = (index) => {
-    if (openAccordion === index) {
+  const toggleAccordion = (categoryId) => {
+    if (openAccordion === categoryId) {
       setOpenAccordion(null);
     } else {
-      setOpenAccordion(index);
+      setOpenAccordion(categoryId);
     }
   };
 
@@ -56,12 +56,12 @@ export default function ListOfPost({ onClose }) {
                   <div key={category.id}>
                     <div
                       className="flex cursor-pointer list-none"
-                      onClick={() => toggleAccordion(index)}
+                      onClick={() => toggleAccordion(category.id)}
                     >
                       <div className="bg-green-200">{category.name}</div>
                       <span
                         className={`transition transform ${
-                          openAccordion === index ? "-rotate-90" : "rotate-0"
+                          openAccordion === category.id ? "-rotate-90" : "rotate-0"
                         }`}
                       >
                         <svg
@@ -81,7 +81,7 @@ export default function ListOfPost({ onClose }) {
                     </div>
                     {/* related Post titles */}
 
-                    {openAccordion === index && (
+                    {openAccordion === category.id && (
                       <p className="text-neutral-600 mt-3 animate-fadeIn">
                         {posts
                           .filter((postItem) =>
