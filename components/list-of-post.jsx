@@ -89,14 +89,13 @@ export default function ListOfPost({ onClose }) {
                           )
                           .sort((a, b) => a.id - b.id)
                           .map((postItem) => (
-                            <ul key={postItem.id}>
-                              <Link
-                                href={`/${postItem.slug}`}
-                                onClick={onClose}
-                              >
-                                {postItem.title.rendered}
-                              </Link>
-                            </ul>
+                            <Link
+                              key={postItem.id}
+                              href={`/${postItem.slug}`}
+                              onClick={onClose}
+                            >
+                              <div>{postItem.title.rendered}</div>
+                            </Link>
                           ))}
                       </p>
                     )}
