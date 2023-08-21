@@ -64,6 +64,8 @@ export default function ListOfPost({ onClose }) {
   // Create a Set to track unique category names
   const uniqueCategoryNames = new Set();
 
+  const linkActive = "bg-gray-50 text-indigo-600";
+  const linkHover = "text-gray-700 hover:text-indigo-600 hover:bg-gray-50";
   return (
     <div>
       {/* Sidebar component, swap this element with another sidebar if you like */}
