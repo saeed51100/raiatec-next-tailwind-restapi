@@ -66,6 +66,7 @@ export default function ListOfPost({ onClose }) {
 
   const linkActive = "bg-gray-50 text-indigo-600";
   const linkHover = "text-gray-700 hover:text-indigo-600 hover:bg-gray-50";
+  const addJoin = "";
   return (
     <div>
       {/* Sidebar component, swap this element with another sidebar if you like */}
