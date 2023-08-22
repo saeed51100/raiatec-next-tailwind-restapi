@@ -1,7 +1,27 @@
-https://developer.wordpress.org/rest-api/using-the-rest-api/client-libraries/
-https://react-bootstrap.github.io/getting-started/introduction
-https://beta.reactjs.org/learn/describing-the-ui
-https://react.dev/learn/add-react-to-an-existing-project
-https://vuejs.org/guide/essentials/application.html
-https://madebyfabian.com/blog/how-to-create-a-nuxt-3-headless-website-with-wordpress
-https://masanos.com/notes/ur-ogjt46yo/#h8c045461e5
+In the next.js code below, I have placed a chevron icon in front of {category.name}.
+
+<div className="">{category.name}</div>
+<span
+    className={`transition transform ${
+        openAccordion === category.id
+            ? "-rotate-90"
+            : "rotate-0"
+    }`}
+>
+<svg
+    fill="none"
+    height="24"
+    shapeRendering="geometricPrecision"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="1.5"
+    viewBox="0 0 24 24"
+    width="24"
+>
+  <path d="M15,6l-6,6l6,6"/>
+</svg>
+</span>
+
+The problem is that they are not exactly facing each other and it needs vertical alignment.
+Please, considering that I use tailwindcss for styling, give the appropriate class to {category.name} to make it a little higher.
