@@ -105,7 +105,7 @@ export default function ListOfPost({ onClose }) {
                     {/* related Post titles */}
 
                     {openAccordion === category.id && (
-                      <p className="text-neutral-600 mt-3 animate-fadeIn">
+                      <p className="text-neutral-600 mt-3 animate-fadeIn border-r-4 border-indigo-500">
                         {posts
                           .filter((postItem) =>
                             postItem.categories.includes(category.id)
@@ -120,7 +120,7 @@ export default function ListOfPost({ onClose }) {
                                 router.asPath === `/${postItem.slug}`
                                   ? linkActive
                                   : linkHover,
-                                addJoin
+                                addJoin,"mr-2"
                               )}
                             >
                               <div>{postItem.title.rendered}</div>
