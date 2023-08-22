@@ -23,5 +23,4 @@ In the next.js code below, I have placed a chevron icon in front of {category.na
 </svg>
 </span>
 
-The problem is that they are not exactly facing each other and it needs vertical alignment.
-Please, considering that I use tailwindcss for styling, give the appropriate class to {category.name} to make it a little higher.
+How do I move the chevron icon to the left end of the div with tailwindcss class?
