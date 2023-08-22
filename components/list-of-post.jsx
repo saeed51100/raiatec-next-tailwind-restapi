@@ -13,12 +13,12 @@ export default function ListOfPost({ onClose }) {
   const {
     posts,
     isLoading: isLoadingPosts,
-    isError: isErrorPosts
+    isError: isErrorPosts,
   } = usePosts();
   const {
     categories,
     isLoading: isLoadingCategories,
-    isError: isErrorCategories
+    isError: isErrorCategories,
   } = useCategories();
 
   const [openAccordion, setOpenAccordion] = useState(null);
@@ -49,12 +49,7 @@ export default function ListOfPost({ onClose }) {
     "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold";
   return (
     <div>
-
-
-      <h2 className="font-bold m-10 ">
-        عنوان پست ها
-      </h2>
-
+      <h2 className="font-bold m-10 ">عنوان پست ها</h2>
 
       {posts.map((post) => (
         <div key={post.id} className="my-2">
@@ -79,10 +74,12 @@ export default function ListOfPost({ onClose }) {
                 return (
                   <div key={category.id}>
                     <div
-                      className="flex justify-between cursor-pointer "
+                      className={classNames(linkHover, addJoin, "flex justify-between cursor-pointer ")}
                       onClick={() => toggleAccordion(category.id)}
                     >
-                      <div className="">{category.name}</div>
+                      <div>
+                        {category.name}
+                      </div>
                       <span
                         className={`transition transform ${
                           openAccordion === category.id
