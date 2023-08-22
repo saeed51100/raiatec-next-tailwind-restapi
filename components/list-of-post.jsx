@@ -30,6 +30,7 @@ function classNames(...classes) {
 }
 
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 export default function ListOfPost({ onClose }) {
   const {
@@ -44,6 +45,7 @@ export default function ListOfPost({ onClose }) {
   } = useCategories();
 
   const [openAccordion, setOpenAccordion] = useState(null);
+  const router = useRouter();
 
   const toggleAccordion = (categoryId) => {
     if (openAccordion === categoryId) {
@@ -149,6 +151,12 @@ export default function ListOfPost({ onClose }) {
                               key={postItem.id}
                               href={`/${postItem.slug}`}
                               onClick={onClose}
+                              className={classNames(
+                                  router.asPath === `/${postItem.slug}`
+                                      ? "bg-gray-50 text-indigo-600"
+                                      : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
+                                  "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                              )}
                             >
                               <div>{postItem.title.rendered}</div>
                             </Link>
