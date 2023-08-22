@@ -72,10 +72,10 @@ export default function ListOfPost({ onClose }) {
                 return (
                   <div key={category.id}>
                     <div
-                      className="flex cursor-pointer list-none"
+                      className="flex cursor-pointer "
                       onClick={() => toggleAccordion(category.id)}
                     >
-                      <div className="bg-green-200">{category.name}</div>
+                      <div className="">{category.name}</div>
                       <span
                         className={`transition transform ${
                           openAccordion === category.id
