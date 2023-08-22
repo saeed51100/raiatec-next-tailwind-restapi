@@ -49,7 +49,8 @@ export default function ListOfPost({ onClose }) {
     "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold";
   return (
     <div>
-      <h2 className="font-bold m-10 ">عنوان پست ها</h2>
+      <p className="font-bold justify-center my-3 ">عنوان پست ها</p>
+      <div className="border-b-2 border-gray-300 mb-5"></div>
 
       {posts.map((post) => (
         <div key={post.id}>
@@ -74,12 +75,14 @@ export default function ListOfPost({ onClose }) {
                 return (
                   <div key={category.id}>
                     <div
-                      className={classNames(linkHover, addJoin, "flex justify-between cursor-pointer ")}
+                      className={classNames(
+                        linkHover,
+                        addJoin,
+                        "flex justify-between cursor-pointer "
+                      )}
                       onClick={() => toggleAccordion(category.id)}
                     >
-                      <div>
-                        {category.name}
-                      </div>
+                      <div>{category.name}</div>
                       <span
                         className={`transition transform ${
                           openAccordion === category.id
@@ -120,7 +123,8 @@ export default function ListOfPost({ onClose }) {
                                 router.asPath === `/${postItem.slug}`
                                   ? linkActive
                                   : linkHover,
-                                addJoin,"mr-2"
+                                addJoin,
+                                "mr-2"
                               )}
                             >
                               <div>{postItem.title.rendered}</div>
