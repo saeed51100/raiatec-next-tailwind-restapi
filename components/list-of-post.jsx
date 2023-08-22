@@ -52,7 +52,7 @@ export default function ListOfPost({ onClose }) {
       <h2 className="font-bold m-10 ">عنوان پست ها</h2>
 
       {posts.map((post) => (
-        <div key={post.id} className="">
+        <div key={post.id}>
           {post.categories.length === 0 ? (
             <Link
               key={post.id}
