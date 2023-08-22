@@ -98,7 +98,7 @@ export default function ListOfPost({onClose}) {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth="1.5"
-                            viewBox="0 0 24 24"
+                            viewBox="2 -1 24 24"
                             width="24"
                         >
                           <path d="M15,6l-6,6l6,6"/>
