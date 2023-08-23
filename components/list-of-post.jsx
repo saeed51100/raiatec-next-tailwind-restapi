@@ -53,7 +53,7 @@ export default function ListOfPost({ onClose }) {
 
   return (
     <div>
-      <p className="text-gray-700 dark:text-gray-200 font-bold justify-center my-3 ">عنوان پست ها</p>
+      <div className="text-gray-700 dark:text-gray-200 font-bold justify-center my-3 ">عنوان پست ها</div>
       <div className="border-b-2 border-gray-300 mb-5"></div>
 
       {posts.map((post) => (
@@ -71,7 +71,7 @@ export default function ListOfPost({ onClose }) {
               {post.title.rendered}
             </Link>
           ) : (
-            post.categories.map((categoryId, index) => {
+            post.categories.map((categoryId) => {
               const category = categories.find((cat) => cat.id === categoryId);
 
               if (!uniqueCategoryNames.has(category.name)) {
@@ -112,7 +112,7 @@ export default function ListOfPost({ onClose }) {
                     {/* related Post titles */}
 
                     {openAccordion === category.id && (
-                      <p className="text-neutral-600 mt-3 animate-fadeIn border-r-4 border-indigo-500">
+                      <div className="text-neutral-600 mt-3 animate-fadeIn border-r-4 border-indigo-500">
                         {posts
                           .filter((postItem) =>
                             postItem.categories.includes(category.id)
@@ -134,7 +134,7 @@ export default function ListOfPost({ onClose }) {
                               <div>{postItem.title.rendered}</div>
                             </Link>
                           ))}
-                      </p>
+                      </div>
                     )}
                   </div>
                 );
