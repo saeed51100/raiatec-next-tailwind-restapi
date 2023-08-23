@@ -43,8 +43,8 @@ export default function ListOfPost({ onClose }) {
   // Create a Set to track unique category names
   const uniqueCategoryNames = new Set();
 
-  const linkActive = "bg-gray-50 dark:bg-gray-700 text-indigo-600 dark:text-white";
-  const linkHover = "text-gray-700 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700";
+  const linkActive = "bg-gray-100 dark:bg-gray-700 text-indigo-600 dark:text-white";
+  const linkHover = "text-gray-700 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700";
   const addJoin =
     "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold";
 
