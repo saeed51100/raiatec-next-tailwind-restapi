@@ -128,7 +128,7 @@ export default function ListOfPost({ onClose }) {
                                   ? linkActive
                                   : linkHover,
                                 addJoin,
-                                "mr-2"
+                                "mr-2 my-2"
                               )}
                             >
                               <div>{postItem.title.rendered}</div>
