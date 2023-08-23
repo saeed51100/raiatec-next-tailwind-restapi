@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { usePosts } from "api/useApi";
+import Image from "next/image";
 
 export default function Grid() {
   const { posts, isLoading, isError } = usePosts(); // Use the custom hook
@@ -23,13 +24,17 @@ export default function Grid() {
               {post._embedded &&
               post._embedded["wp:featuredmedia"] &&
               post._embedded["wp:featuredmedia"][0].source_url ? (
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   src={post._embedded["wp:featuredmedia"][0].source_url}
                   alt={post.title.rendered}
                   className="rounded-t"
                 />
               ) : (
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   src="/raiatecThumb.svg"
                   alt={post.title.rendered}
                   style={{ width: "100%" }}
