@@ -25,16 +25,16 @@ export default function Grid() {
               post._embedded["wp:featuredmedia"] &&
               post._embedded["wp:featuredmedia"][0].source_url ? (
                 <Image
-                  width={500}
-                  height={500}
+                  width={300}
+                  height={300}
                   src={post._embedded["wp:featuredmedia"][0].source_url}
                   alt={post.title.rendered}
                   className="rounded-t"
                 />
               ) : (
                 <Image
-                  width={500}
-                  height={500}
+                  width={300}
+                  height={300}
                   src="/raiatecThumb.svg"
                   alt={post.title.rendered}
                   style={{ width: "100%" }}
