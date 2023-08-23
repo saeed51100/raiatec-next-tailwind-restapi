@@ -61,7 +61,7 @@ export default function Modal({ open, onClose }) {
         <ModalBackground open={open} />
         <div className="fixed inset-0 flex">
           <Sidebar onClose={onClose}>
-            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white dark:bg-gray-800 px-6 pb-4">
               {/* Sidebar content */}
 
               <ListOfPost onClose={onClose} />
