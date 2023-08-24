@@ -7,7 +7,7 @@ import NavigationItems from "./navigation-Items";
 
 export default function Navbar({ onSidebarOpen }) {
   return (
-    <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 bg-white dark:bg-gray-900 px-4 sm:gap-x-6 sm:px-6 lg:px-8">
+    <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 bg-white dark:bg-gray-900 px-4 sm:gap-x-6 sm:px-6 lg:px-8 border-b border-gray-200 dark:border-none">
       {/* Modal button */}
       <button
         type="button"
