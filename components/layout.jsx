@@ -28,7 +28,7 @@ export default function Layout({ children }) {
       <Sidebar />
 
       <div className="lg:pr-72">
-        <main className="py-10">
+        <main className="py-10 bg-white dark:bg-gray-300">
           <div className="px-4 sm:px-6 lg:px-8">
             {/*Your content */}
 
