@@ -16,7 +16,7 @@ const SinglePostPage = () => {
     }
 
     return (
-        <div>
+        <div className="bg-white">
             <h1>{post.title.rendered}</h1>
             <div dangerouslySetInnerHTML={{__html: post.content.rendered}}/>
         </div>
