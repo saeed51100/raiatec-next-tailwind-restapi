@@ -1,64 +1,9 @@
-I have a next.js application and I use tailwindcss.
-I have added the IRANSansXV.woff file to the public/fonts folder and I want to add the
-fonts to the application using Tailwind CSS via a CSS variable.
+I use tailwindcss to design the front end of my WordPress site.
+And to display the content of my posts, I use the following code:
 
-For this, I have written the following files:
+<div className="bg-white">
+   <h1>{post.title.rendered}</h1>
+   <div dangerouslySetInnerHTML={{__html: post.content.rendered}}/>
+</div>
 
-// src/global.css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@font-face {
-    font-family: 'iransansxv';
-    src: url('public/fonts/iransansxv.woff') format('woff-variations'),
-        /* will be the standard and works in Safari now */
-    url('public/fonts/iransansxv.woff') format('woff');
-    /* for the other supporting browsers */
-    font-weight: 100 900;
-    font-display: fallback;
-
-}
-body {
-    @apply font-iransansxv;
-}
-
-and this file:
-// tailwind.config.js
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: 'class',
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}', // Note the addition of the `app` directory.
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {
-      fontFamily: {
-        'iransansxv': ['iransansxv', 'iransansx', 'tahoma', 'serif'],
-      },
-    },
-  },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
-}
-
-And I got the following error:
-
-
-Failed to compile
-./src/global.css:4:0
-Module not found: Can't resolve './public/fonts/iransansxv.woff'
-
-https://nextjs.org/docs/messages/module-not-found
-
-Import trace for requested module:
-./src/global.css
-./pages/_app.tsx
-
-
-Please debug the codes.
-
+What tailwindcss classes do you recommend for styling the title and content of posts?
