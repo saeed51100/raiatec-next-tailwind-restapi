@@ -14,5 +14,6 @@
 
 }
 body {
-    font-family: 'iransansxv', iransansx, tahoma, serif;
+    /*font-family: 'iransansxv', iransansx, tahoma, serif;*/
+    @apply font-iransansxv;
 }
