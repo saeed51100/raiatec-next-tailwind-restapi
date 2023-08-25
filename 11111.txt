@@ -1,11 +1,10 @@
 I have a next.js application and I use tailwindcss.
-I want to load and use the following font located in the public/fonts folder in my program:
-public/fonts/IRANSansXV.woff
+I have added the IRANSansXV.woff file to the public/fonts folder and I want to add the
+fonts to the application using Tailwind CSS via a CSS variable.
 
-I want to add fonts using Tailwind CSS through a CSS variable.
-Please complete the code of the following files for me:
+For this, I have written the following files:
 
-// src/global.css:
+// src/global.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,9 +20,10 @@ Please complete the code of the following files for me:
 
 }
 body {
-    font-family: 'iransansxv', iransansx, tahoma, serif;
+    @apply font-iransansxv;
 }
 
+and this file:
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -32,14 +32,33 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}', // Note the addition of the `app` directory.
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
-
-    // Or if using `src` directory:
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'iransansxv': ['iransansxv', 'iransansx', 'tahoma', 'serif'],
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
   ],
 }
+
+And I got the following error:
+
+
+Failed to compile
+./src/global.css:4:0
+Module not found: Can't resolve './public/fonts/iransansxv.woff'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/global.css
+./pages/_app.tsx
+
+
+Please debug the codes.
+
