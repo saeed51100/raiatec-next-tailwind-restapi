@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: 'iransansxv';
+    src: url('public/fonts/iransansxv.woff') format('woff-variations'),
+        /* will be the standard and works in Safari now */
+    url('public/fonts/iransansxv.woff') format('woff');
+    /* for the other supporting browsers */
+    font-weight: 100 900;
+    font-display: fallback;
+
+}
+body {
+    font-family: 'iransansxv', iransansx, tahoma, serif;
+}

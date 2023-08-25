@@ -1,26 +1,45 @@
-In the next.js code below, I have placed a chevron icon in front of {category.name}.
+I have a next.js application and I use tailwindcss.
+I want to load and use the following font located in the public/fonts folder in my program:
+public/fonts/IRANSansXV.woff
 
-<div className="">{category.name}</div>
-<span
-    className={`transition transform ${
-        openAccordion === category.id
-            ? "-rotate-90"
-            : "rotate-0"
-    }`}
->
-<svg
-    fill="none"
-    height="24"
-    shapeRendering="geometricPrecision"
-    stroke="currentColor"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    strokeWidth="1.5"
-    viewBox="0 0 24 24"
-    width="24"
->
-  <path d="M15,6l-6,6l6,6"/>
-</svg>
-</span>
+I want to add fonts using Tailwind CSS through a CSS variable.
+Please complete the code of the following files for me:
 
-How do I move the chevron icon to the left end of the div with tailwindcss class?
+// src/global.css:
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'iransansxv';
+    src: url('public/fonts/iransansxv.woff') format('woff-variations'),
+        /* will be the standard and works in Safari now */
+    url('public/fonts/iransansxv.woff') format('woff');
+    /* for the other supporting browsers */
+    font-weight: 100 900;
+    font-display: fallback;
+
+}
+body {
+    font-family: 'iransansxv', iransansx, tahoma, serif;
+}
+
+// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: 'class',
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}', // Note the addition of the `app` directory.
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+
+    // Or if using `src` directory:
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
