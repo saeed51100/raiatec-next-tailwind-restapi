@@ -15,7 +15,7 @@ export default function Grid() {
     <>
       <section
         role="list"
-        className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:m-8 md:m-4"
       >
         {posts.map((post) => (
           <div key={post.id} className="max-w-lg mx-auto">
