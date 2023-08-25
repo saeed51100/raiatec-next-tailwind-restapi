@@ -16,8 +16,8 @@ const SinglePostPage = () => {
   }
 
   return (
-    <div className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 p-4 md:p-10 shadow-md md:rounded-xl">
-      <h1 className="text-center md:text-2xl text-xl font-bold md:m-6 m-2">{post.title.rendered}</h1>
+    <div className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow-md md:rounded-xl p-4 md:m-8">
+      <h1 className="text-center md:text-2xl text-xl font-bold p-4">{post.title.rendered}</h1>
       <div className="prose" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
     </div>
 

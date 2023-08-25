@@ -28,13 +28,8 @@ export default function Layout({ children }) {
       <Sidebar />
 
       <div className="lg:pr-72">
-        <main className="lg:p-8 md:p-4 bg-gray-300">
-
-          {/*Your content */}
-
-          <main>{children}</main>
-
-        </main>
+        {/*Your content */}
+        <main className="lg:p-8 md:p-4 bg-gray-300">{children}</main>
       </div>
     </div>
   );
