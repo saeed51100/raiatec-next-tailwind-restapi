@@ -20,7 +20,7 @@ class MyDocument extends Document {
             }}
           />
         </Head>
-        <body className="h-full overflow-y-scroll">
+        <body className="h-full overflow-y-scroll bg-gray-300">
           <Main />
           <NextScript />
         </body>

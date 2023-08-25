@@ -27,7 +27,7 @@ export default function Layout({ children }) {
 
       <Sidebar />
 
-      <div className="bg-gray-300 lg:pr-72">
+      <div className="lg:pr-72">
         {/*Your content */}
         <main className="">{children}</main>
       </div>
