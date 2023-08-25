@@ -42,7 +42,7 @@ export default function Grid() {
                 />
               )}
               <div className="p-5">
-                <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <h3 className="mb-2 font-bold tracking-tight text-gray-900 dark:text-white">
                   <Link href={`/${post.slug}`}>{post.title.rendered}</Link>
                 </h3>
 
@@ -58,10 +58,10 @@ export default function Grid() {
                 <div className="relative">
                   {post.slug && (
                     <Link
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium             text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4                    focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 absolute bottom-0 left-0 text-center"
+                      className="font-bold text-green-400 focus:ring-4 absolute bottom-0 left-0 px-3 py-2"
                       href={`/${post.slug}`}
                     >
-                      {"Read More"}
+                      {"ادامه مطلب..."}
                     </Link>
                   )}
                 </div>
