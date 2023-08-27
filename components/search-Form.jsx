@@ -30,9 +30,7 @@ export default function SearchForm() {
             onChange={handleInputChange}
           />
 
-          <div className="absolute z-10 w-full border divide-y shadow max-h-72 overflow-y-auto bg-white ...">
-            {/*<a className="block p-2 hover:bg-indigo-50 ..." href="#">Tailwind</a>*/}
-            {/*<a className="block p-2 hover:bg-indigo-50 ..." href="#">Bootstrap</a>*/}
+          <div className="absolute z-10 w-full divide-y max-h-72 overflow-y-auto bg-white">
             {searchTerm && results && (
               <div>
                 {results.map((result) => (
