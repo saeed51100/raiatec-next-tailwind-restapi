@@ -56,7 +56,7 @@ export default function SearchForm() {
           </div>
           <input
             className="block w-full rounded-md border border-gray-300 bg-gray-50 py-1.5 pl-10 pr-3 text-gray-900 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 sm:text-sm sm:leading-6"
-            placeholder="Search"
+            placeholder="جستجو"
             value={searchTerm}
             onChange={handleInputChange}
           />
