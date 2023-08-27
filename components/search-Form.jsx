@@ -26,6 +26,21 @@ export default function SearchForm() {
     }
   }, [searchTerm]);
 
+  useEffect(() => {
+    // Close the search results window when push Esc button
+    const handleEscKeyPress = (event) => {
+      if (event.key === "Escape") {
+        setSearchTerm(""); // Clear the search term
+      }
+    };
+
+    window.addEventListener("keydown", handleEscKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscKeyPress);
+    };
+  }, []); // Empty dependency array means this effect runs only once after the component mounts
+
   return (
     <div className="flex flex-1 items-center justify-center px-2 lg:ml-6">
       <div className="w-full max-w-lg lg:max-w-xs">
