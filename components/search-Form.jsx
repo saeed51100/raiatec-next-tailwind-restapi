@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react"; // Import useRef and useEffect
 import { useSearch } from "api/useApi";
 import Link from "next/link";
 
@@ -7,9 +7,25 @@ export default function SearchForm() {
   const [searchTerm, setSearchTerm] = useState("");
   const { results } = useSearch(searchTerm);
 
+  const searchResultsRef = useRef(null); // Create a ref for the search results container
+
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
+
+  const handleResultClick = () => {
+    // Close the search results window when a result is clicked
+    searchResultsRef.current.scrollTop = 0; // Scroll to the top
+    setSearchTerm(""); // Clear the search term
+  };
+
+  useEffect(() => {
+    // Close the search results window when the search term is cleared
+    if (!searchTerm) {
+      searchResultsRef.current.scrollTop = 0;
+    }
+  }, [searchTerm]);
+
   return (
     <div className="flex flex-1 items-center justify-center px-2 lg:ml-6">
       <div className="w-full max-w-lg lg:max-w-xs">
@@ -30,7 +46,10 @@ export default function SearchForm() {
             onChange={handleInputChange}
           />
 
-          <div className="absolute z-10 w-full divide-y max-h-72 overflow-y-auto bg-white">
+          <div
+            className="absolute z-10 w-full divide-y max-h-72 overflow-y-auto bg-white"
+            ref={searchResultsRef} // Attach the ref to the container
+          >
             {searchTerm && results && (
               <div>
                 {results.map((result) => (
@@ -38,6 +57,7 @@ export default function SearchForm() {
                     className="block p-2 hover:bg-indigo-50"
                     key={result.id}
                     href={`/${result.slug}`}
+                    onClick={handleResultClick} // Add onClick to handle result click
                   >
                     {result.title.rendered}
                   </Link>
