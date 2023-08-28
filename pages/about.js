@@ -156,7 +156,7 @@ export default function About() {
         </div>
         <div className="flex justify-center items-center p-4 bg-gray-200 rounded-lg">
           <Link
-            href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=DmwnWrRlRHpBDQdmwDwQmHklcpXjZCjpghqhqKChJQVhDRMrsmwdtfXWwnzQqWfjQZGHMGwXCKbB"
+            href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZdjtZcnGlMVwWQCcwbhLQBMGMTvrBxTbTHxbfdHBZTlfxJLKhdLsSCtKqQJJjJxxRBRSB"
             className="hover:opacity-70"
           >
             <svg
