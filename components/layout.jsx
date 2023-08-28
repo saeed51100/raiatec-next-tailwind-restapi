@@ -4,6 +4,7 @@ import Sidebar from "components/sidebar";
 import React, { useState, useCallback } from "react";
 import Navbar from "components/navbar";
 import Modal from "components/modal";
+import Custom404 from "pages/404";
 
 export default function Layout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function Layout({ children }) {
   }
 
   if (isError) {
-    return <div>Error loading posts.</div>;
+    return <Custom404 />;
   }
 
   return (

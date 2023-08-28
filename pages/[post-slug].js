@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { usePostBySlug } from "api/useApi"; // Import the custom hook
 import ScrollToTopButton from "components/scroll-to-top";
-
+import Custom404 from "pages/404"; // Import the custom 404 page
 
 const SinglePostPage = () => {
   const router = useRouter();
@@ -13,7 +13,8 @@ const SinglePostPage = () => {
   }
 
   if (isError || !post) {
-    return <div>Error loading the post.</div>;
+    // Render the custom 404 page
+    return <Custom404 />;
   }
 
   return (
