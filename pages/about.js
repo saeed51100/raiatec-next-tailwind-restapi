@@ -10,7 +10,7 @@ export default function About() {
       <div className="grid grid-cols-4 gap-4">
         <div className="flex justify-center items-center p-4 bg-gray-200 rounded-lg">
           <Link
-            href="https://github.com/saeed51100"
+            href="https://www.linkedin.com/company/%D8%B1%D8%A7%DB%8C%D8%A7%D8%AA%DA%A9/about/?viewAsMember=true"
             className="hover:opacity-70"
           >
             <svg
@@ -51,7 +51,7 @@ export default function About() {
         </div>
         <div className="flex justify-center items-center p-4 bg-gray-200 rounded-lg">
           <Link
-            href="https://github.com/saeed51100"
+            href="https://www.instagram.com/raiatec_dev/"
             className="hover:opacity-70"
           >
             <svg
