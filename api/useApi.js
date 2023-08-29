@@ -8,11 +8,9 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 // Function to fetch post titles
 export function usePosts() {
   const apiUrl = `${API_URL}/posts?per_page=20&_embed`;
-  const { data, error } = useSWR(apiUrl, fetcher);
+  const { data } = useSWR(apiUrl, fetcher);
   return {
-    posts: data,
-    isLoading: !error && !data,
-    isError: error
+    posts: data
   };
 }
 
