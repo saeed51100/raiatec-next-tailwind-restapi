@@ -1,4 +1,3 @@
-// components/navbar.jsx
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import RaiatecLogo from "./raiatec-logo";
 import DarkModeButton from "./dark-mode-button";

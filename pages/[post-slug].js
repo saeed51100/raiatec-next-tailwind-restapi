@@ -1,4 +1,3 @@
-// pages/[post-slug].js
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { usePostBySlug } from "api/useApi";

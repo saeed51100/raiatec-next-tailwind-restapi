@@ -1,4 +1,3 @@
-// components/list-of-posts.jsx
 import { useState } from "react";
 import { usePosts, useCategories } from "api/useApi";
 
@@ -43,17 +42,18 @@ export default function ListOfPost({ onClose }) {
   // Create a Set to track unique category names
   const uniqueCategoryNames = new Set();
 
-  const linkActive = "bg-gray-100 dark:bg-gray-700 text-indigo-600 dark:text-white";
-  const linkHover = "text-gray-700 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700";
+  const linkActive =
+    "bg-gray-100 dark:bg-gray-700 text-indigo-600 dark:text-white";
+  const linkHover =
+    "text-gray-700 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700";
   const addJoin =
     "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold";
 
-
-
-
   return (
     <div>
-      <div className="text-gray-700 dark:text-gray-200 font-bold justify-center my-3 ">عنوان پست ها</div>
+      <div className="text-gray-700 dark:text-gray-200 font-bold justify-center my-3 ">
+        عنوان پست ها
+      </div>
       <div className="border-b-2 border-gray-300 mb-5"></div>
 
       {posts.map((post) => (

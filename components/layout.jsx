@@ -1,4 +1,3 @@
-// components/layout.jsx
 import { usePosts } from "api/useApi";
 import Sidebar from "components/sidebar";
 import React, { useState, useCallback } from "react";
