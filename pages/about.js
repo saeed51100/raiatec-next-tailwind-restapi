@@ -155,10 +155,7 @@ export default function About() {
           </Link>
         </div>
         <div className="flex justify-center items-center p-4 bg-gray-200 rounded-lg">
-          <Link
-            href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZdjtZcnGlMVwWQCcwbhLQBMGMTvrBxTbTHxbfdHBZTlfxJLKhdLsSCtKqQJJjJxxRBRSB"
-            className="hover:opacity-70"
-          >
+          <Link href="mailto:info@raiatec.com" className="hover:opacity-70">
             <svg
               viewBox="0 0 32 32"
               x="0px"

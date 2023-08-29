@@ -1,53 +1,6 @@
-In the next.js program, I have written the following code that displays the content of
-a single post, and it works correctly:
+I am using tailwindcss in my next.js application
+And I use the following svg image for the email link:
 
-// pages/[post-slug].js
-import { useRouter } from "next/router";
-import { usePostBySlug } from "api/useApi"; // Import the custom hook
-import ScrollToTopButton from "components/scroll-to-top";
-
-
-const SinglePostPage = () => {
-  const router = useRouter();
-  const { post, isLoading, isError } = usePostBySlug(router.query["post-slug"]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError || !post) {
-    return <div>Error loading the post.</div>;
-  }
-
-  return (
-    <div
-      className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow-md md:rounded-xl p-4 md:p-8 lg:m-8 md:m-4">
-      <h1 className="text-center md:text-2xl text-xl font-bold p-4 lg:p-10">
-        {post.title.rendered}
-      </h1>
-      <div
-        className="prose"
-        dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-      />
-      <ScrollToTopButton />
-    </div>
-  );
-};
-export default SinglePostPage;
-
-
-I have also written the following code for the 404 error:
-
-// pages/404.js
-export default function Custom404() {
-  return (
-    <div className="container st404">
-      <h1 style="font-size: 100px">404</h1>
-      <h1>page not found</h1>
-    </div>
-  );
-}
-
-
-Currently, the pages/[post-slug].js file shows a message when an error occurs.
-Please use pages/404.js in this file to show the error.
+<div className="flex justify-center items-center p-4 bg-gray-200 rounded-lg"> <Link href="mailto:info@raiatec.com" className="hover:opacity-70" > <svg viewBox="0 0 32 32" x="0px" y="0px" width="100" height="100" xmlns="http://www.w3.org/2000/svg" > <path d="M28,13a1,1,0,0,0-1,1v8a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V14a1,1,0,0 ,0-2,0v8a3,3,0,0,0,.88,2.12A3,3,0,0,0,6,25H26a3,3,0,0,0,2.12-.88A3,3,0, 0,0,29,22V14A1,1,0,0,0,28,13Z" /> <path d="M15.4,18.8a1,1,0,0,0,1.2,0L28.41,9.94a1,1,0,0,0,.3-1.23,3.06,3.06,0,0, 0-.59-.83A3,3,0,0,0,26,7H6a3,3,0,0,0-2.12.88,3.06,3.06,0,0,0-.59.83,1,1,0 ,0,0,.3,1.23ZM6,9H26a.9.9,0,0,1,.28,0L16,16.75,5.72,9A.9.9,0,0,1,6,9Z" /> </svg> </Link> </div>
+Please put a tooltip for it so that it shows "info@raiatec.com" when I hover over it.
+Please do this using tailwindcss and without installing additional packages.
