@@ -20,13 +20,11 @@ const SinglePostPage = () => {
 
   return (
     <>
-      {/* Set the page title dynamically */}
       <Head>
-        <title>{post.title.rendered} - raiatec.com</title>
+        <title>{post.title.rendered}</title>
       </Head>
 
-      <div
-        className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow-md md:rounded-xl p-4 md:p-8 lg:m-8 md:m-4">
+      <div className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow-md md:rounded-xl p-4 md:p-8 lg:m-8 md:m-4">
         <h1 className="text-center md:text-2xl text-xl font-bold p-4 lg:p-10">
           {post.title.rendered}
         </h1>
