@@ -17,4 +17,4 @@ return (
 );
 }
 
-How can I exclude 404 error from applying layout and use a separate style for it?
+How can I exclude 404 error from applying layout ?
