@@ -6,6 +6,7 @@ export default function About() {
       <div className="text-center mb-8">
         <p className="text-3xl font-semibold">Saeed Javadzadeh</p>
         <p className="text-lg font-semibold">Full stack developer</p>
+        <p className="text-lg text-pink-900 font-semibold">info@raiatec.com</p>
       </div>
       <div className="grid grid-cols-4 gap-4">
         <div className="flex justify-center items-center p-4 bg-gray-200 rounded-lg">
