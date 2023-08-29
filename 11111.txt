@@ -1,20 +1,20 @@
-In the next.js program, I use the following file to apply lauoyt to the site pages:
-// pages/_app.tsx
+In the next.js program, I use the following file for title:
 import "../src/global.css";
 import Head from "next/head";
 import Layout from "../components/layout";
 
 export default function MyApp({ Component, pageProps }) {
-return (
-<>
-<Layout>
-<Component {...pageProps} />
-</Layout>
-<Head>
-<title>raiatec.com</title>
-</Head>
-</>
-);
+   return (
+     <>
+       <Layout>
+         <Component {...pageProps} />
+       </Layout>
+       <Head>
+         <title>raiatec.com</title>
+       </Head>
+     </>
+   );
 }
 
-How can I exclude 404 error from applying layout ?
+I want the title of the post to be set as title for a single post.
+Which files code should I change?
