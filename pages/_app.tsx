@@ -8,9 +8,6 @@ export default function MyApp({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-      <Head>
-        <title>raiatec.com</title>
-      </Head>
     </>
   );
 }

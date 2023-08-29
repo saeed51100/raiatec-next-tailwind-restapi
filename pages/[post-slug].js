@@ -1,8 +1,9 @@
 // pages/[post-slug].js
 import { useRouter } from "next/router";
-import { usePostBySlug } from "api/useApi"; // Import the custom hook
+import Head from "next/head";
+import { usePostBySlug } from "api/useApi";
 import ScrollToTopButton from "components/scroll-to-top";
-import Custom404 from "pages/404"; // Import the custom 404 page
+import Custom404 from "pages/404";
 
 const SinglePostPage = () => {
   const router = useRouter();
@@ -18,17 +19,24 @@ const SinglePostPage = () => {
   }
 
   return (
-    <div
-      className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow-md md:rounded-xl p-4 md:p-8 lg:m-8 md:m-4">
-      <h1 className="text-center md:text-2xl text-xl font-bold p-4 lg:p-10">
-        {post.title.rendered}
-      </h1>
+    <>
+      {/* Set the page title dynamically */}
+      <Head>
+        <title>{post.title.rendered} - raiatec.com</title>
+      </Head>
+
       <div
-        className="prose"
-        dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-      />
-      <ScrollToTopButton />
-    </div>
+        className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow-md md:rounded-xl p-4 md:p-8 lg:m-8 md:m-4">
+        <h1 className="text-center md:text-2xl text-xl font-bold p-4 lg:p-10">
+          {post.title.rendered}
+        </h1>
+        <div
+          className="prose"
+          dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+        />
+        <ScrollToTopButton />
+      </div>
+    </>
   );
 };
 
