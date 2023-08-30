@@ -36,15 +36,3 @@ export function useCategories() {
     isError: error
   };
 }
-
-// Function to fetch search result
-export function useSearch(keyword) {
-  const apiUrl = `${API_URL}/posts?search=${encodeURIComponent(keyword)}`;
-  const { data, error } = useSWR(apiUrl, fetcher);
-
-  return {
-    results: data,
-    isLoading: !error && !data,
-    isError: error
-  };
-}

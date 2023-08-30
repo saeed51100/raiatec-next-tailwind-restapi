@@ -56,7 +56,7 @@ export default function ListOfPost({ onClose }) {
       </div>
       <div className="border-b-2 border-gray-300 mb-5"></div>
 
-      {posts.map((post) => (
+      {posts?.map((post) => (
         <div key={post.id} className="my-2">
           {post.categories.length === 0 ? (
             <Link

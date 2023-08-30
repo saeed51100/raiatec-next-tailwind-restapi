@@ -21,9 +21,7 @@ export default function Layout({ children }) {
 
   return (
     <div>
-      <Modal open={sidebarOpen} onClose={closeSidebar} />
 
-      <Navbar onSidebarOpen={openSidebar} />
 
       <Sidebar />
 
