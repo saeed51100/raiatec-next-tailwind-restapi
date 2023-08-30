@@ -5,8 +5,8 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // Function to fetch post titles
-export function usePosts() {
-  const apiUrl = `${API_URL}/posts?per_page=20&_embed`;
+export function usePosts(page) {
+  const apiUrl = `${API_URL}/posts?per_page=5&page=${page}&_embed`;
   const { data } = useSWR(apiUrl, fetcher);
   return {
     posts: data,
