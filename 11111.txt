@@ -1,56 +1,52 @@
-In the next.js program, I use the following file for title:
-import "../src/global.css";
-import Head from "next/head";
-import Layout from "../components/layout";
+I am using tailwindcss in my next.js application.
+Using the following two files, I show the title of the site's posts:
 
-export default function MyApp({ Component, pageProps }) {
-   return (
-     <>
-       <Layout>
-         <Component {...pageProps} />
-       </Layout>
-       <Head>
-         <title>raiatec.com</title>
-       </Head>
-     </>
-   );
+// api/usePosts.js
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+// Function to fetch post titles
+export function usePosts() {
+  const apiUrl = `${API_URL}/posts?per_page=20&_embed`;
+  const { data } = useSWR(apiUrl, fetcher);
+  return {
+    posts: data,
+  };
 }
 
-I want the title of the post to be set as title for a single post.
-My single post file is as follows:
-// pages/[post-slug].js
-import { useRouter } from "next/router";
-import { usePostBySlug } from "api/useApi"; // Import the custom hook
-import ScrollToTopButton from "components/scroll-to-top";
-import Custom404 from "pages/404"; // Import the custom 404 page
+// Function to fetch a single post by its slug
+export function usePostBySlug(slug) {
+  const apiUrl = `${API_URL}/posts?slug=${slug}`;
+  const { data } = useSWR(apiUrl, fetcher);
 
-const SinglePostPage = () => {
-  const router = useRouter();
-  const { post, isLoading, isError } = usePostBySlug(router.query["post-slug"]);
+  return {
+    post: data && data[0], // Assuming the slug is unique, so we take the first post found
+  };
+}
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+// components/grid.jsx
+import Link from "next/link";
+import { usePosts } from "api/useApi";
 
-  if (isError || !post) {
-    // Render the custom 404 page
-    return <Custom404 />;
-  }
+export default function Grid() {
+  const { posts } = usePosts(); // Use the custom hook
 
   return (
-    <div
-      className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow-md md:rounded-xl p-4 md:p-8 lg:m-8 md:m-4">
-      <h1 className="text-center md:text-2xl text-xl font-bold p-4 lg:p-10">
-        {post.title.rendered}
-      </h1>
-      <div
-        className="prose"
-        dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-      />
-      <ScrollToTopButton />
-    </div>
-  );
-};
-export default SinglePostPage;
+    <>
+      {posts?.map((post) => (
+        <div key={post.id} className="max-w-lg mx-auto">
+          <Link href={`/${post.slug}`}>{post.title.rendered}</Link>
 
-Please change the codes so that the title of the post is selected for title.
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
+      ))}
+    </>
+  );
+}
+
+Please add pagination to my code so that 5 posts are shown on each page.

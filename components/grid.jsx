@@ -1,3 +1,4 @@
+// components/grid.jsx
 import Link from "next/link";
 import { usePosts } from "api/useApi";
 
