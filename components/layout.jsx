@@ -2,7 +2,7 @@ import { usePosts } from "api/useApi";
 import Sidebar from "components/sidebar";
 import React, { useState, useCallback } from "react";
 import Navbar from "components/navbar";
-import Modal from "components/modal";
+
 import Custom404 from "pages/404";
 
 export default function Layout({ children }) {
