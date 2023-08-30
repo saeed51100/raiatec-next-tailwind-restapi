@@ -17,22 +17,10 @@ export function usePosts() {
 // Function to fetch a single post by its slug
 export function usePostBySlug(slug) {
   const apiUrl = `${API_URL}/posts?slug=${slug}`;
-  const { data, error } = useSWR(apiUrl, fetcher);
+  const { data } = useSWR(apiUrl, fetcher);
 
   return {
     post: data && data[0], // Assuming the slug is unique, so we take the first post found
-    isLoading: !error && !data,
-    isError: error
   };
 }
 
-// Function to fetch categories
-export function useCategories() {
-  const apiUrl = `${API_URL}/categories?per_page=20`;
-  const { data, error } = useSWR(apiUrl, fetcher);
-  return {
-    categories: data,
-    isLoading: !error && !data,
-    isError: error
-  };
-}
