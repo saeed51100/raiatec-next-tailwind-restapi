@@ -50,3 +50,14 @@ export function useSearch(keyword) {
     isError: error
   };
 }
+
+// Function to fetch posts Grid
+export function usePostsGrid() {
+  const apiUrl = `${API_URL}/posts?per_page=20&_embed`;
+  const { data, error } = useSWR(apiUrl, fetcher);
+  return {
+    posts: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}

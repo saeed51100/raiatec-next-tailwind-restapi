@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { usePosts } from "api/useApi";
+import { usePostsGrid } from "api/useApi";
 import Image from "next/image";
 
 export default function Grid() {
-  const { posts, isLoading, isError } = usePosts(); // Use the custom hook
+  const { posts, isLoading, isError } = usePostsGrid(); // Use the custom hook
   if (isLoading) {
     return <div>Loading...</div>;
   }
