@@ -53,7 +53,7 @@ export function useSearch(keyword) {
 
 // Function to fetch posts Grid
 export function usePostsGrid() {
-  const apiUrl = `${API_URL}/posts?per_page=20&_embed`;
+  const apiUrl = `${API_URL}/posts?per_page=20&_embed&include=6230,5947,4075,3341,2665,1609,2806,1032,946,473,404,14`;
   const { data, error } = useSWR(apiUrl, fetcher);
   return {
     posts: data,
