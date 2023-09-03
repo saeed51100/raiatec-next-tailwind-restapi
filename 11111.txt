@@ -1,20 +1,5 @@
-In my next.js program, I use the following code in the .env file to fetch the data and the program works correctly:
-NEXT_PUBLIC_API_URL=https://raiatec.com/wp-json/wp/v2
-Now I want to fetch data from localhost/test.raiatec.com instead of raiatec.com. Therefore, I changed the .env file as follows:
-NEXT_PUBLIC_API_URL=http://localhost/test.raiatec.com/wp-json/wp/v2
-Now my question is, how should I change the following next.config.js file in order for the image settings to work correctly?
-
-// next.config.js
-/** @type {import("next").NextConfig} */
-const nextConfig = {
-   images: {
-     remotePatterns: [
-       {
-         protocol: "https",
-         hostname: "raiatec.com"
-       }
-     ]
-   }
-};
-
-module.exports = nextConfig;
+I have run my WordPress site on Windows 10 xampp localhost and it is working properly.
+On the other hand, I have installed the next.js program on Windows 10's node.js and using the api, I have created the front end of my WordPress site in next.js.
+That is, the backend is WordPress and runs on localhost, and the frontend is next.js on node.
+Now I want to deploy the next.js project on the local host.
+what should I do?
