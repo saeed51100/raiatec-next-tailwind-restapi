@@ -1,13 +1,8 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "raiatec.com"
-      }
-    ]
-  }
+    domains: ["localhost", "test.raiatec.com"], // Add your domains here
+  },
 };
 
 module.exports = nextConfig;
