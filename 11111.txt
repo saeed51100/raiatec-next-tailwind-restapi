@@ -1,5 +1,5 @@
-I have run my WordPress site on Windows 10 xampp localhost and it is working properly.
-On the other hand, I have installed the next.js program on Windows 10's node.js and using the api, I have created the front end of my WordPress site in next.js.
-That is, the backend is WordPress and runs on localhost, and the frontend is next.js on node.
-Now I want to deploy the next.js project on the local host.
-what should I do?
+I have a WordPress site at www.raiatec.com that I use as a backend.
+I have built the frontend of the application with next.js on localhost:3000 of my computer, which receives data from the api of my WordPress site, and everything works correctly.
+Now I want to deploy the next.js program in xampp windows program on localhost:80.
+To deploy using the Static Exports method, I have entered the output: 'export' command in nextConfig and executed the npm run build command and the "out" folder was created in my project.
+Now, what should I do to run the next.js project from localhost:80?
