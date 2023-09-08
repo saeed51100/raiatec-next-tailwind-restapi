@@ -138,10 +138,10 @@ export default function About() {
                   <path
                     fill="none"
                     stroke="#fff"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-miterlimit="10"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeMiterlimit="10"
+                    strokeWidth="2"
                     d="M30,11H18c-3.9,0-7,3.1-7,7v12c0,3.9,3.1,7,7,7h12c3.9,0,7-3.1,7-7V18C37,14.1,33.9,11,30,11z"
                   ></path>
                   <circle cx="31" cy="16" r="1" fill="#fff"></circle>
@@ -153,10 +153,10 @@ export default function About() {
                     r="6"
                     fill="none"
                     stroke="#fff"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-miterlimit="10"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeMiterlimit="10"
+                    strokeWidth="2"
                   ></circle>
                 </g>
               </svg>
