@@ -42,7 +42,7 @@ export default function SearchForm() {
   }, []); // Empty dependency array means this effect runs only once after the component mounts
 
   return (
-    <div className="flex flex-1 items-center justify-center px-2 lg:ml-6">
+    <div className="hidden md:flex flex-1 justify-center px-2">
       <div className="w-full max-w-lg lg:max-w-xs">
         <label form="search" className="sr-only">
           Search
