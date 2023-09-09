@@ -1,5 +1,8 @@
-I have a WordPress site at www.raiatec.com that I use as a backend.
-I have built the frontend of the application with next.js on localhost:3000 of my computer, which receives data from the api of my WordPress site, and everything works correctly.
-Now I want to deploy the next.js program in xampp windows program on localhost:80.
-To deploy using the Static Exports method, I have entered the output: 'export' command in nextConfig and executed the npm run build command and the "out" folder was created in my project.
-Now, what should I do to run the next.js project from localhost:80?
+I have installed a wordpress site on xampp windows 10 which works fine on localhost.
+In addition, I have also installed the next.js program to create a front-end on node.js in Windows, which works correctly by connecting to the api of a WordPress site with the following link:
+// .env.local
+NEXT_PUBLIC_API_URL=http://localhost/test.raiatec.com/wp-json/wp/v2
+
+Now I want to deploy the next.js program on xampp.
+In the next.js program, I have executed the npm run build command and the .next folder has been created and is ready to deploy.
+Next, what should I do to deploy on xampp?
