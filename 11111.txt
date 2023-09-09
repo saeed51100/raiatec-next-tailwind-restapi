@@ -1,4 +1,4 @@
-I have installed a wordpress site on xampp windows 10 which works fine on localhost.
+I have installed a WordPress site on xampp Windows 10 which works fine on localhost.
 In addition, I have also installed the next.js program to create a front-end on node.js in Windows, which works correctly by connecting to the api of a WordPress site with the following link:
 // .env.local
 NEXT_PUBLIC_API_URL=http://localhost/test.raiatec.com/wp-json/wp/v2
