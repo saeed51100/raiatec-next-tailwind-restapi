@@ -22,6 +22,7 @@ export default function About() {
               className="hover:opacity-70"
             >
               <svg
+                className="w-16 h-16 sm:w-24 sm:h-24"
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
                 y="0px"
@@ -46,6 +47,7 @@ export default function About() {
               className="hover:opacity-70"
             >
               <svg
+                className="w-16 h-16 sm:w-24 sm:h-24"
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
                 y="0px"
@@ -63,6 +65,7 @@ export default function About() {
               className="hover:opacity-70"
             >
               <svg
+                className="w-16 h-16 sm:w-24 sm:h-24"
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
                 y="0px"
@@ -165,6 +168,7 @@ export default function About() {
           <div className="flex justify-center items-center p-4 bg-gray-200 rounded-lg">
             <Link href="mailto:info@raiatec.com" className="hover:opacity-70">
               <svg
+                className="w-16 h-16 sm:w-24 sm:h-24"
                 viewBox="0 0 32 32"
                 x="0px"
                 y="0px"
